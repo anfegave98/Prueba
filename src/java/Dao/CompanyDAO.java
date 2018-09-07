@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -25,7 +27,7 @@ public class CompanyDAO {
         connection = DbUtil.getConnection();
     }
 
-    public void addCompany(Company company) throws SQLException {
+    public void createCompany(Company company) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("insert into company(company_id,name,primary_color,accent_color,sector_id,logo,email,password,basic_color,deleted) values (?,?,?,?,?,?,?,?,?,false)");
         preparedStatement.setString(1, company.getCompany_id());
         preparedStatement.setString(2, company.getName());
@@ -39,14 +41,25 @@ public class CompanyDAO {
         preparedStatement.setBoolean(10, company.isDeleted());
         preparedStatement.executeUpdate();
     }
-
-    public void deleteCompany(String company_id) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update company set deleted=true where company_id=" + company_id);
-
-        preparedStatement.executeUpdate();
+    
+     public Company readCompany(String company_id) throws SQLException, URISyntaxException {
+        Company company= new Company();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from company where deleted=false and company_id=" + company_id);
+        while (rs.next()) {
+            company.setCompany_id(rs.getString("company_id"));
+            company.setName(rs.getString("name"));
+            company.setPrimary_color(rs.getString("primary_color"));
+            company.setAccent_color(rs.getString("accent_color"));
+            company.setSector_id(rs.getString("sector_id"));
+            company.setLogo(rs.getString("logo"));
+            company.setEmail(rs.getString("email"));
+            company.setBasic_color(rs.getBoolean("basic_color"));  
+        }
+        return company;
     }
-
-    public void updateCompany(Company company) throws SQLException {
+    
+     public void updateCompany(Company company) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("update company set name=?,primary_color=?,accent_color=?,sector_id=?,logo=?,email=?,password=?,basic_color=?" + " where company_id=?");
         preparedStatement.setString(1, company.getName());
         preparedStatement.setString(2, company.getPrimary_color());
@@ -59,4 +72,12 @@ public class CompanyDAO {
         preparedStatement.setString(9, company.getCompany_id());
         preparedStatement.executeUpdate();
     }
+
+    public void deleteCompany(String company_id) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("update company set deleted=true where company_id=" + company_id);
+
+        preparedStatement.executeUpdate();
+    }
+
+   
 }
