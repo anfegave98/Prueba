@@ -22,20 +22,7 @@ public class Store {
     private String phone_2;
     private String email;
     private boolean principal;
-
-    public Store(int store_id, String company, String name, boolean sell, boolean lend, boolean rental, String address, String phone_1, String phone_2, String email, boolean principal) {
-        this.store_id = store_id;
-        this.company = company;
-        this.name = name;
-        this.sell = sell;
-        this.lend = lend;
-        this.rental = rental;
-        this.address = address;
-        this.phone_1 = phone_1;
-        this.phone_2 = phone_2;
-        this.email = email;
-        this.principal = principal;
-    }
+    private boolean deleted;
 
     public Store() {
     }
@@ -127,6 +114,15 @@ public class Store {
     public void setPrincipal(boolean principal) {
         this.principal = principal;
     }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+    
     
     
 }
