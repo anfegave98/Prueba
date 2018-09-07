@@ -24,8 +24,8 @@ public class Admin_role_storeDAO {
     
      private Connection connection;
 
-    public Admin_role_storeDAO() throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
-        connection = DbUtil.getConnection();
+    public Admin_role_storeDAO(String database) throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
+        connection = DbUtil.getConnection(database);
     }
 
     public void createAdmin_role_store(Admin_role_store admin_role_store) throws SQLException {

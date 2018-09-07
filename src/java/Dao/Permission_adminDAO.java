@@ -23,8 +23,8 @@ public class Permission_adminDAO {
     
     private Connection connection;
 
-    public Permission_adminDAO() throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
-        connection = DbUtil.getConnection();
+    public Permission_adminDAO(String database) throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
+        connection = DbUtil.getConnection(database);
     }
 
     public void createPermission_admin(Permission_admin permission_admin) throws SQLException {

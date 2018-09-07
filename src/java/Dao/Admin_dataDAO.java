@@ -24,8 +24,8 @@ public class Admin_dataDAO {
 
     private Connection connection;
 
-    public Admin_dataDAO() throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
-        connection = DbUtil.getConnection();
+    public Admin_dataDAO(String database) throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
+        connection = DbUtil.getConnection(database);
     }
 
     public void createAdmin_data(Admin_data admin_data) throws SQLException {

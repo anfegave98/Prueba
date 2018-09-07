@@ -24,8 +24,8 @@ public class StoreDAO {
 
     private Connection connection;
 
-    public StoreDAO() throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
-        connection = DbUtil.getConnection();
+    public StoreDAO(String database) throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
+        connection = DbUtil.getConnection(database);
     }
 
     public void createStore(Store store) throws SQLException {

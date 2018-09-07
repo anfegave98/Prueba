@@ -24,8 +24,8 @@ public class CompanyDAO {
 
     private Connection connection;
 
-    public CompanyDAO() throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
-        connection = DbUtil.getConnection();
+    public CompanyDAO(String database) throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
+        connection = DbUtil.getConnection(database);
     }
 
     public void createCompany(Company company) throws SQLException {

@@ -23,8 +23,8 @@ public class Data_typeDAO {
     
     private Connection connection;
 
-    public Data_typeDAO() throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
-        connection = DbUtil.getConnection();
+    public Data_typeDAO(String database) throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
+        connection = DbUtil.getConnection(database);
     }
 
     public void createData_type(Data_type data_type) throws SQLException {
