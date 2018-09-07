@@ -10,23 +10,23 @@ public class DbUtil {
 
     private static Connection CONNECTION = null;
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException, IOException {
-
+    public static Connection getConnection(String databas) throws SQLException, ClassNotFoundException, IOException {
+        /*
         // Datos de conexión a base de datos remota de PostgreSQL
         String host = "ec2-107-22-175-33.compute-1.amazonaws.com";
         String database = "debo114fl23ifl";
         String user = "ylwndcmebrlvij";
         String pass = "11d08d2243339aa3e1aeda21561f54b20dfb3fbdb35d58b42dfb787e008f3e6d";
         String port = "5432";
-
-        /*
+        */
+        
         // Datos de conexión a base de datos local de PostgreSQL
         String host = "localhost";
-        String database = "usalaba1";
+        String database = databas;
         String user = "root";
         String pass = "root";
         String port = "5432";
-         */
+         
         if (CONNECTION == null) {
 
             // Intentar conectar a traves de conexion automatica de Heroku
