@@ -47,6 +47,7 @@ public class Client_dataDAO {
         preparedStatement.setInt(2, client_data.getData_type_id());
         preparedStatement.setBoolean(3, client_data.isLogin());
         preparedStatement.setBoolean(4, client_data.isObligatory());
+        preparedStatement.setInt(5, client_data.getClient_data_id());
         preparedStatement.executeUpdate();
     }
 
