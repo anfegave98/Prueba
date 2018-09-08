@@ -60,7 +60,7 @@ public class SectorDAO {
     public ArrayList<Sector> getAllSector() throws SQLException {
         ArrayList<Sector> sectors=new ArrayList<>();
         Statement statement= connection.createStatement();
-        ResultSet rs=statement.executeQuery("select * from sector where deleted=false");
+        ResultSet rs=statement.executeQuery("select * from sector");
         while(rs.next()){
             Sector sector=new Sector();
             sector.setSector_id(rs.getInt("sector_id"));

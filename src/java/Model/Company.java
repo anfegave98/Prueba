@@ -15,7 +15,7 @@ public class Company {
    private String name;
    private String primary_color;
    private String accent_color;
-   private String sector_id;
+   private int sector_id;
    private String logo;
    private String email;
    private String password;
@@ -59,11 +59,11 @@ public class Company {
         this.accent_color = accent_color;
     }
 
-    public String getSector_id() {
+    public int getSector_id() {
         return sector_id;
     }
 
-    public void setSector_id(String sector_id) {
+    public void setSector_id(int sector_id) {
         this.sector_id = sector_id;
     }
 
