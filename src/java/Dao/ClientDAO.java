@@ -81,4 +81,26 @@ public class ClientDAO {
         }
         return clients;
     }
+
+    public boolean is(String email, String password) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from client where email='" +email+"' and password='"+password+"'");
+        while (rs.next()) {
+            return true;
+        }
+        return false;
+    }
+
+    public Object readClient(String email) throws SQLException {
+        Client client=new Client();
+        Statement statement= connection.createStatement();
+        ResultSet rs=statement.executeQuery("select * from client where deleted=false and email='"+email+"'");
+        while(rs.next()){
+            client.setClient_id(rs.getInt("client_id"));
+            client.setEmail(rs.getString("email"));
+            client.setName(rs.getString("name"));
+            client.setLast_name(rs.getString("last_name"));
+        }
+        return client;
+    }
 }
