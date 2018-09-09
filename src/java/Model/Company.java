@@ -11,7 +11,7 @@ package Model;
  */
 public class Company {
     
-   private String company_id;
+   private int company_id;
    private String name;
    private String primary_color;
    private String accent_color;
@@ -26,12 +26,12 @@ public class Company {
 
     public Company() {
     }
-    
-    public String getCompany_id() {
+
+    public int getCompany_id() {
         return company_id;
     }
 
-    public void setCompany_id(String company_id) {
+    public void setCompany_id(int company_id) {
         this.company_id = company_id;
     }
 

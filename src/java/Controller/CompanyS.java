@@ -8,6 +8,7 @@ package Controller;
 import Dao.CompanyDAO;
 import Model.Company;
 import Util.Encription;
+import Util.createDatabaseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
@@ -29,27 +30,39 @@ public class CompanyS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
-            if (op.equalsIgnoreCase("create")) {
-                Company company=new Company();
-                company.setCompany_id(request.getParameter("company_id"));
-                company.setName(request.getParameter("name"));
-                company.setPrimary_color(request.getParameter("primary_color"));
-                company.setAccent_color(request.getParameter("accent_color"));
-                company.setSector_id(Integer.parseInt(request.getParameter("sector_id")));
-                company.setLogo(request.getParameter("logo"));
-                company.setEmail(request.getParameter("email"));
-                Encription e = new Encription();
-                company.setPassword(e.encription(request.getParameter("password")));             
-                company.setBasic_color(Boolean.parseBoolean(request.getParameter("basic_color")));
-                CompanyDAO c=new CompanyDAO("BiStock");
+            if (op.equalsIgnoreCase("create")){
+                CompanyDAO c = new CompanyDAO("BiStock");
+                if (!c.getEmail(request.getParameter("email"))) {
+                    Company company = new Company();
+                    company.setName(request.getParameter("name"));
+                    company.setPrimary_color(request.getParameter("primary_color"));
+                    company.setAccent_color(request.getParameter("accent_color"));
+                    company.setSector_id(Integer.parseInt(request.getParameter("sector_id")));
+                    company.setLogo(request.getParameter("logo"));
+                    company.setEmail(request.getParameter("email"));
+                    Encription e = new Encription();
+                    company.setPassword(e.encription(request.getParameter("password")));
+                    company.setBasic_color(Boolean.parseBoolean(request.getParameter("basic_color")));
+                    company.setCompany_id(c.createCompany(company));
+                    
+                    String baseDeDatos="AABGJJMO_BiStock_"+company.getCompany_id();
+                    createDatabaseDAO cd=new createDatabaseDAO(baseDeDatos);
+                    out.println(cd.createDatabase("AABGJJMO_BiStock_"+company.getCompany_id()));
+                    
+                }else{
+                    out.println("Email ya existente");
+                }
+            }
+            if(op.equalsIgnoreCase("")){
                 
             }
         } catch (NoSuchAlgorithmException ex) {

@@ -1,7 +1,8 @@
 package Util;
 
+import Model.Company;
+import com.mysql.jdbc.*;
 import java.io.IOException;
-import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,60 +12,21 @@ public class DbUtil {
     private static Connection CONNECTION = null;
 
     public static Connection getConnection(String databas) throws SQLException, ClassNotFoundException, IOException {
-        /*
-        // Datos de conexión a base de datos remota de PostgreSQL
-        String host = "ec2-107-22-175-33.compute-1.amazonaws.com";
-        String database = "debo114fl23ifl";
-        String user = "ylwndcmebrlvij";
-        String pass = "11d08d2243339aa3e1aeda21561f54b20dfb3fbdb35d58b42dfb787e008f3e6d";
-        String port = "5432";
-        */
-        
+
         // Datos de conexión a base de datos local de PostgreSQL
-        String host = "localhost";
+        String host = "127.0.0.1";
         String database = databas;
         String user = "root";
         String pass = "root";
-        String port = "5432";
-         
-        if (CONNECTION == null) {
+        String port = "3306";
 
-            // Intentar conectar a traves de conexion automatica de Heroku
-            URI dbUri;
-            try {
-                dbUri = new URI(System.getenv("DATABASE_URL"));
-            } catch (Exception ex) {
-                dbUri = null;
-            }
-
-            // Caso de que este almacenado en Heroku
-            if (dbUri != null) {
-                String username = dbUri.getUserInfo().split(":")[0];
-                String password = dbUri.getUserInfo().split(":")[1];
-                String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-
-                try {
-                    CONNECTION = DriverManager.getConnection(dbUrl, username, password);
-                } catch (SQLException e) {
-                    System.out.println("Conexion falló conectando a traves de Heroku");
-                    e.printStackTrace();
-                }
-
-            } else {
-                // Caso de que esté usandose de forma local sea con Maven o con Java Web App
-                Class.forName("org.postgresql.Driver");
-                String dbUrl = "jdbc:postgresql://" + host + ':' + port + "/" + database + "?user=" + user + "&password=" + pass + "&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-                try {
-                    CONNECTION = DriverManager.getConnection(dbUrl);
-                } catch (SQLException e) {
-                    System.out.println("Conexion fallo por metodo de Maven Local");
-                    System.out.println("Intentando conectar por Driver JDBC PostreSQL");
-                }
-
-            }
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            CONNECTION = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + databas, "root", "root");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        System.out.println("Connection Succesful!");
         return CONNECTION;
     }
 
@@ -81,6 +43,14 @@ public class DbUtil {
             throw e;
         }
 
+    }
+
+    public void createDatabase(Company c) throws SQLException, ClassNotFoundException {
+        String solucion = "AABGJJMO_BiStock_" + c.getCompany_id();
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection Conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/?user=root&password=root");
+        Statement s = (Statement) Conn.createStatement();
+        s.executeUpdate("CREATE DATABASE " + solucion + "");
     }
 
 }

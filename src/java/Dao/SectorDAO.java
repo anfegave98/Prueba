@@ -28,24 +28,6 @@ public class SectorDAO {
         connection = DbUtil.getConnection(database);
     }
 
-    public void addSector(Sector sector) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into sector(name,deleted) values (?,false)");
-        preparedStatement.setString(1, sector.getName());
-        preparedStatement.executeUpdate();
-    }
-
-    public void deleteSector(int sector_id) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update sector set deleted=true where sector_id=" + sector_id);
-        preparedStatement.executeUpdate();
-    }
-
-    public void updateSector(Sector sector) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update sector set name=?" + " where sector_id=?");
-        preparedStatement.setString(1, sector.getName());
-        preparedStatement.setInt(2, sector.getSector_id());
-        preparedStatement.executeUpdate();
-    }
-
     public Sector readSector(int sector_id) throws SQLException {
         Sector sector=new Sector();
         Statement statement= connection.createStatement();
@@ -67,6 +49,7 @@ public class SectorDAO {
             sector.setName(rs.getString("name"));
             sectors.add(sector);
         }
+        connection.close();
         return sectors;
     }
 }

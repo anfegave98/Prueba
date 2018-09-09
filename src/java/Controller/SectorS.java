@@ -33,7 +33,6 @@ public class SectorS extends HttpServlet {
             Gson g=new Gson();
             if (op.equalsIgnoreCase("getAll")) {
                 SectorDAO s = new SectorDAO("BiStock");
-                System.out.println("hola");
                 out.println(g.toJson(s.getAllSector()));
             }
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
