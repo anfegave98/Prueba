@@ -11,7 +11,7 @@ package Model;
  */
 public class Lend_items {
     private int lend_id;
-    private String codebar;
+    private int asset_store_id;
     private int calification;
     private int lend_quantity;
     private int devolution_quantity;
@@ -27,14 +27,15 @@ public class Lend_items {
         this.lend_id = lend_id;
     }
 
-    public String getCodebar() {
-        return codebar;
+    public int getAsset_store_id() {
+        return asset_store_id;
     }
 
-    public void setCodebar(String codebar) {
-        this.codebar = codebar;
+    public void setAsset_store_id(int asset_store_id) {
+        this.asset_store_id = asset_store_id;
     }
 
+    
     public int getCalification() {
         return calification;
     }

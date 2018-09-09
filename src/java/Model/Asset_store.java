@@ -5,16 +5,29 @@
  */
 package Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author FiJus
  */
 public class Asset_store {
+    private int asset_store_id;
     private int asset_id;
     private int store_id;
-    private String codebar;
     private int avaliable;
     private int no_avaliable;
+    private Date creation_date;
+    private Date elimnation_date;
+    private boolean deleted;
+
+    public int getAsset_store_id() {
+        return asset_store_id;
+    }
+
+    public void setAsset_store_id(int asset_store_id) {
+        this.asset_store_id = asset_store_id;
+    }
 
     public Asset_store() {
     }
@@ -35,18 +48,27 @@ public class Asset_store {
         this.store_id = store_id;
     }
 
-    public String getCodebar() {
-        return codebar;
-    }
-
-    public void setCodebar(String codebar) {
-        this.codebar = codebar;
-    }
 
     public int getAvaliable() {
         return avaliable;
     }
 
+    public Date getCreation_date() {
+        return creation_date;
+    }
+
+    public void setCreation_date(Date creation_date) {
+        this.creation_date = creation_date;
+    }
+
+    public Date getElimnation_date() {
+        return elimnation_date;
+    }
+
+    public void setElimnation_date(Date elimnation_date) {
+        this.elimnation_date = elimnation_date;
+    }
+    
     public void setAvaliable(int avaliable) {
         this.avaliable = avaliable;
     }
@@ -58,6 +80,15 @@ public class Asset_store {
     public void setNo_avaliable(int no_avaliable) {
         this.no_avaliable = no_avaliable;
     }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+    
     
     
 }
