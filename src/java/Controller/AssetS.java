@@ -5,8 +5,16 @@
  */
 package Controller;
 
+import Dao.AssetDAO;
+import Model.Asset;
+import Util.Encription;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author FiJus
+ * @author anfeg
  */
 public class AssetS extends HttpServlet {
 
@@ -35,7 +43,7 @@ public class AssetS extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AssetS</title>");            
+            out.println("<title>Servlet AssetS</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AssetS at " + request.getContextPath() + "</h1>");
@@ -70,7 +78,37 @@ public class AssetS extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String op = request.getParameter("op");
+            AssetDAO a = new AssetDAO("AABGJJMO_BiStock_" + 1);
+            Encription e = new Encription();
+            if (op.equalsIgnoreCase("create")) {
+                if (!a.getName(request.getParameter("name"))) {
+                    Asset asset = new Asset();
+                    if (request.getParameter("asset_parent_id") == "") {
+                        asset.setAsset_parent_id(0);
+                        asset.setName(request.getParameter("name"));
+                        asset.setPrincipal_picture(request.getParameter("principal_picture"));
+                        asset.setDescription(request.getParameter("description"));
+                        out.println(a.createAsset(asset));
+                    } else {
+                        asset.setAsset_parent_id(Integer.parseInt(request.getParameter("asset_parent_id")));
+                        asset.setName(request.getParameter("name"));
+                        asset.setPrincipal_picture(request.getParameter("principal_picture"));
+                        asset.setDescription(request.getParameter("description"));
+                        out.println(a.createAsset(asset));
+                    }
+                } else {
+                    out.println("Asset ya existe");
+                }
+            }
+            if (op.equalsIgnoreCase("")) {
+
+            }
+        } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
+            Logger.getLogger(AssetS.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -84,3 +122,4 @@ public class AssetS extends HttpServlet {
     }// </editor-fold>
 
 }
+

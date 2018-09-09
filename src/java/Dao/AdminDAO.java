@@ -28,7 +28,7 @@ public class AdminDAO {
         connection = DbUtil.getConnection(database);
     }
 
-    public void createAdmin(Admin admin) throws SQLException {
+       public boolean createAdmin(Admin admin) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("insert into admin(password,email,name,last_name,deleted,creation_date) values (?,?,?,?,false,?)");
         preparedStatement.setString(1, admin.getPassword());
         preparedStatement.setString(2, admin.getEmail());
@@ -36,7 +36,9 @@ public class AdminDAO {
         preparedStatement.setString(4, admin.getLast_name());
         preparedStatement.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
         preparedStatement.executeUpdate();
+        return true;
     }
+
 
     public Admin readAdmin(int admin_id) throws SQLException, URISyntaxException {
         Admin admin = new Admin();
@@ -88,4 +90,13 @@ public class AdminDAO {
         }
         return admin;
     }
+    public boolean getEmail(String email) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from admin where email='" +email+"'");
+        while (rs.next()) {
+            return true;
+        }
+        return false;
+    }
+
 }

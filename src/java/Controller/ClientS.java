@@ -5,8 +5,16 @@
  */
 package Controller;
 
+import Dao.ClientDAO;
+import Model.Client;
+import Util.Encription;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author FiJus
+ * @author anfeg
  */
 public class ClientS extends HttpServlet {
 
@@ -70,7 +78,31 @@ public class ClientS extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String op = request.getParameter("op");
+            ClientDAO a = new ClientDAO("AABGJJMO_BiStock_"+1);
+            Encription e = new Encription();
+            if (op.equalsIgnoreCase("create")){                
+                if (!a.getEmail(request.getParameter("email"))) {
+                    Client client = new Client();                   
+                    client.setPassword(e.encription(request.getParameter("password")));
+                    client.setEmail(request.getParameter("email"));
+                    client.setName(request.getParameter("name"));
+                    client.setLast_name(request.getParameter("last_name"));                  
+                    out.println(a.createClient(client));                   
+                }else{
+                    out.println("Email ya existente");
+                }
+            }
+            if(op.equalsIgnoreCase("")){
+                
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
+            Logger.getLogger(ClientS.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

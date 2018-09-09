@@ -28,15 +28,17 @@ public class ClientDAO {
         connection = DbUtil.getConnection(database);
     }
 
-    public void addClient(Client client) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into client(email,password,name,last_name,deleted,creation_date) values (?,?,?,?,false,?)");
+    public boolean createClient(Client client) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into client(email,password,name,last_name,role_client_id,deleted,creation_date) values (?,?,?,?,1,false,?)");
         preparedStatement.setString(1, client.getEmail());
         preparedStatement.setString(2, client.getPassword());
         preparedStatement.setString(3, client.getName());
         preparedStatement.setString(4, client.getLast_name());
         preparedStatement.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
         preparedStatement.executeUpdate();
+        return true;
     }
+
 
     public void deleteClient(int client_id) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("update client set deleted=true,elimination_date=? where client_id=" + client_id);
@@ -103,4 +105,13 @@ public class ClientDAO {
         }
         return client;
     }
+    public boolean getEmail(String email) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from client where email='" +email+"'");
+        while (rs.next()) {
+            return true;
+        }
+        return false;
+    }
+
 }
