@@ -66,4 +66,26 @@ public class AdminDAO {
         preparedStatement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
         preparedStatement.executeUpdate();
     }
+
+    public boolean is(String email, String password) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from admin where email='" +email+"' and password='"+password+"'");
+        while (rs.next()) {
+            return true;
+        }
+        return false;
+    }
+
+    public Admin readAdmin(String email) throws SQLException {
+        Admin admin = new Admin();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from admin where deleted=false and email='" + email+"'");
+        while (rs.next()) {
+            admin.setAdmin_id(rs.getInt("admin_id"));
+            admin.setEmail(rs.getString("email"));
+            admin.setName(rs.getString("name"));
+            admin.setLast_name(rs.getString("last_name"));
+        }
+        return admin;
+    }
 }

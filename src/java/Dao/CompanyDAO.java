@@ -28,7 +28,7 @@ public class CompanyDAO {
     public CompanyDAO(String database) throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
         connection = DbUtil.getConnection(database);
     }
-
+    
     public int createCompany(Company company) throws SQLException, ClassNotFoundException {
         PreparedStatement preparedStatement = connection.prepareStatement("insert into company(name,primary_color,accent_color,sector_id,logo,email,password,basic_color,deleted,creation_date) values (?,?,?,?,?,?,?,?,false,?)");
         preparedStatement.setString(1, company.getName());
@@ -97,6 +97,32 @@ public class CompanyDAO {
             return true;
         }
         return false;
+    }
+
+    public boolean is(String email, String password) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from company where email='" +email+"' and password='"+password+"'");
+        while (rs.next()) {
+            return true;
+        }
+        return false;
+    }
+
+    public Object readCompany(String email) throws SQLException {
+        Company company = new Company();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from company where deleted=false and email='" +email+"'");
+        while (rs.next()) {
+            company.setCompany_id(rs.getInt("company_id"));
+            company.setName(rs.getString("name"));
+            company.setPrimary_color(rs.getString("primary_color"));
+            company.setAccent_color(rs.getString("accent_color"));
+            company.setSector_id(rs.getInt("sector_id"));
+            company.setLogo(rs.getString("logo"));
+            company.setEmail(rs.getString("email"));
+            company.setBasic_color(rs.getBoolean("basic_color"));
+        }
+        return company;
     }
 
 }
