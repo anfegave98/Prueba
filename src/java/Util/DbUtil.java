@@ -12,14 +12,6 @@ public class DbUtil {
     private static Connection CONNECTION = null;
 
     public static Connection getConnection(String databas) throws SQLException, ClassNotFoundException, IOException {
-
-        // Datos de conexión a base de datos local de PostgreSQL
-        String host = "127.0.0.1";
-        String database = databas;
-        String user = "root";
-        String pass = "root";
-        String port = "3306";
-
         try {
             Class.forName("com.mysql.jdbc.Driver");
             CONNECTION = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + databas, "root", "root");

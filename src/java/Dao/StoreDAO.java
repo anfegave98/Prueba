@@ -28,8 +28,8 @@ public class StoreDAO {
         connection = DbUtil.getConnection(database);
     }
 
-    public void createStore(Store store) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into store(company,name,sell,lend,rental,address,phone_1,phone_2,email,principal,deleted,create_date) values (?,?,?,?,?,?,?,?,?,?,false,?)");
+    public Boolean createStore(Store store) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into store(company_id,name,sell,lend,rental,address,phone_1,phone_2,email,principal,deleted,creation_date) values (?,?,?,?,?,?,?,?,?,?,false,?)");
         preparedStatement.setString(1, store.getCompany());
         preparedStatement.setString(2, store.getName());
         preparedStatement.setBoolean(3, store.isSell());
@@ -42,13 +42,15 @@ public class StoreDAO {
         preparedStatement.setBoolean(10, store.isPrincipal());
         preparedStatement.setTimestamp(11, new Timestamp(System.currentTimeMillis()));
         preparedStatement.executeUpdate();
+        return true;
     }
 
     public Store readStore(int store_id) throws SQLException, URISyntaxException {
-        Store store = new Store();
+        Store store = null;
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select * from store where deleted=false and store_id=" + store_id);
         while (rs.next()) {
+            store=new Store();
             store.setStore_id(rs.getInt("store_id"));
             store.setCompany(rs.getString("company"));
             store.setName(rs.getString("name"));
@@ -84,4 +86,14 @@ public class StoreDAO {
         preparedStatement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
         preparedStatement.executeUpdate();
     }
+
+    public boolean existsOne() throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from store where deleted=false");
+        while(rs.next()){
+            return true;
+        }
+        return false;
+    }
+    
 }

@@ -53,11 +53,10 @@ public class CompanyS extends HttpServlet {
                     company.setPassword(e.encription(request.getParameter("password")));
                     company.setBasic_color(Boolean.parseBoolean(request.getParameter("basic_color")));
                     company.setCompany_id(c.createCompany(company));
-                    
                     String baseDeDatos="AABGJJMO_BiStock_"+company.getCompany_id();
                     createDatabaseDAO cd=new createDatabaseDAO(baseDeDatos);
+                    request.getSession().setAttribute("company", company);
                     out.println(cd.createDatabase("AABGJJMO_BiStock_"+company.getCompany_id()));
-                    
                 }else{
                     out.println("Email ya existente");
                 }

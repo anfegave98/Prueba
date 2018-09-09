@@ -8,6 +8,10 @@
         <servlet-name>SectorS</servlet-name>
         <servlet-class>Controller.SectorS</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StoreS</servlet-name>
+        <servlet-class>Controller.StoreS</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CompanyS</servlet-name>
         <url-pattern>/CompanyS</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>SectorS</servlet-name>
         <url-pattern>/SectorS</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StoreS</servlet-name>
+        <url-pattern>/StoreS</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
