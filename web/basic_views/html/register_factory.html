@@ -2,16 +2,46 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
     <title>Page Title</title>
-    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/register_factory.js"></script>
 </head>
 
 <body>
-
-    <h1>This is a Heading</h1>
-    <p>This is a paragraph.</p>
-
+    <h1>BiStock</h1>
+    <p>Ofrecemos personalización a la medida de las necesidades de tu empresa.
+        Previsualiza tu tablero digital al mismo tiempo que ingresas los datos.
+        Cuando estés listo, presiona “Siguiente”.</p>
+    <p>Nombre de la empresa</p>
+    <input type="text" id="name">
+    <br>
+    <p>Color primario</p>
+    <input type="color" id="color_primary" value="#008080">
+    <p>Color Secundario</p>
+    <input type="color" id="color_secondary" value="#ff8000">
+    <p>Tema:</p>
+    <input type="radio" name="theme" value="1"> Claro<br>
+    <input type="radio" name="theme" value="0"> Oscuro<br>
+    <p>Sector:</p>
+    <select id="mySelect">
+        <option value="0">--Selecciona--</option>
+    </select>
+    <p>Logo</p>
+    <input id="inp" type='file'>
+    <p id="b64"></p>
+    <img id="img" height="150">
+    <p>Email</p>
+    <input type="email" id="email">
+    <p>Contraseña</p>
+    <input type="password" id="pass_1">
+    <p>Repita Contraseña</p>
+    <input type="password" id="pass_2">
+    <br>
+    <br>
+    <button id="send_button" onclick="createFactory()">ENVIAR</button>
+    <br>
+    <br>
 </body>
 
 </html>
