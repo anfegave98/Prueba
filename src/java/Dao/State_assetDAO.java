@@ -37,7 +37,6 @@ public class State_assetDAO {
         preparedStatement.setString(3, state_asset.getDescription());
         preparedStatement.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
         preparedStatement.setInt(5, state_asset.getAdmin_id());
-        preparedStatement.setBoolean(6,false);
         preparedStatement.executeUpdate();
         return true;
     }
