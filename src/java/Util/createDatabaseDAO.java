@@ -246,7 +246,6 @@ public class createDatabaseDAO {
                 + "state_asset_id int primary key auto_increment,\n"
                 + "asset_store_id int,\n"
                 + "admin_id int,\n"
-                + "codebar varchar(300),\n"
                 + "quantity int,\n"
                 + "devolution_quantity int,\n"
                 + "description varchar(300),\n"

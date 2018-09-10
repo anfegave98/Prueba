@@ -6,7 +6,9 @@
 package Controller;
 
 import Dao.AssetDAO;
+import Dao.Asset_storeDAO;
 import Model.Asset;
+import Model.Asset_store;
 import Util.Encription;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -66,11 +68,10 @@ public class AssetS extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
             AssetDAO a = new AssetDAO("AABGJJMO_BiStock_" + 1);
-            Encription e = new Encription();
             if (op.equalsIgnoreCase("create")) {
                 if (!a.getCodebar(request.getParameter("codebar"))) {
                     Asset asset = new Asset();
-                    if (request.getParameter("asset_parent_id") == "") {
+                    if (request.getParameter("asset_parent_id").equals("")) {
                         asset.setAsset_parent_id(0);
                         asset.setName(request.getParameter("name"));
                         asset.setCodebar(request.getParameter("codebar"));
@@ -85,6 +86,12 @@ public class AssetS extends HttpServlet {
                         asset.setDescription(request.getParameter("description"));
                         out.println(a.createAsset(asset));
                     }
+                    Asset_store as=new Asset_store();
+                    as.setAsset_id(a.readAssetByCodebar(request.getParameter("codebar")).getAsset_id());
+                    as.setAvaliable(Integer.parseInt(request.getParameter("available")));
+                    as.setStore_id(Integer.parseInt(request.getParameter("store_id")));
+                    Asset_storeDAO asset_store=new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
+                    asset_store.createAsset_store(as);
                 } else {
                     out.println("Asset ya existe");
                 }
