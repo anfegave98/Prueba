@@ -8,11 +8,13 @@ package Controller;
 import Dao.ClientDAO;
 import Model.Client;
 import Util.Encription;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -64,7 +66,25 @@ public class ClientS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String op = request.getParameter("op");
+            ClientDAO a = new ClientDAO("AABGJJMO_BiStock_" + 1);
+            Gson g = new Gson(); 
+            if (op.equalsIgnoreCase("getall")) {
+                ArrayList<Client> clients = a.getAll();
+                String pasareEsto = g.toJson(clients);
+                out.print(pasareEsto);
+            }
+            if (op.equalsIgnoreCase("get")) {
+                 String email = request.getParameter("email");
+                Client e = a.getByEmail(email);              
+                String pasareEsto = g.toJson(e);
+               out.print(pasareEsto);
+            }
+        } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
+            Logger.getLogger(ClientS.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -95,8 +115,18 @@ public class ClientS extends HttpServlet {
                     out.println("Email ya existente");
                 }
             }
-            if(op.equalsIgnoreCase("")){
-                
+            if (op.equalsIgnoreCase("deleted")) {
+               String email = request.getParameter("email");
+                a.deleteClient(email);
+
+            }
+             if (op.equalsIgnoreCase("update")) {
+                Client client = new Client();
+                client.setEmail(request.getParameter("email"));
+                client.setName(request.getParameter("name"));
+                client.setLast_name(request.getParameter("last_name"));
+                a.updateClient(client);
+
             }
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
