@@ -84,9 +84,8 @@ public class CompanyDAO {
         preparedStatement.executeUpdate();
     }
 
-    public void deleteCompany(String company_id) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update company set deleted=true,elimination_date=? where company_id=" + company_id);
-        preparedStatement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+    public void deleteCompany(int company_id) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("update company set deleted=true where company_id=" + company_id);
         preparedStatement.executeUpdate();
     }
 
