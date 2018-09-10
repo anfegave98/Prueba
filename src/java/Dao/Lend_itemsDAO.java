@@ -29,12 +29,11 @@ public class Lend_itemsDAO {
         connection = DbUtil.getConnection(database);
     }
 
-    public void addLend_items(Lend_items lend_items) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into lend_items(lend_id,asset_store_id,lend_quantity,devolution_quantity) values (?,?,?,?)");
+    public void createLend_items(Lend_items lend_items) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into lend_items(lend_id,asset_store_id,lend_quantity,devolution_quantity) values (?,?,?,0)");
         preparedStatement.setInt(1, lend_items.getLend_id());
         preparedStatement.setInt(2, lend_items.getAsset_store_id());
         preparedStatement.setInt(3, lend_items.getLend_quantity());
-        preparedStatement.setInt(4, lend_items.getDevolution_quantity());
         preparedStatement.executeUpdate();
     }
 

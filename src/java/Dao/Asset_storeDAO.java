@@ -30,7 +30,7 @@ public class Asset_storeDAO {
     }
 
     public void createAsset_store(Asset_store asset_store) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into asset_store(asset_id,store_id,avaliable,no_avaliable,creation_date,delete) values (?,?,?,0,?,false)");
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into asset_store(asset_id,store_id,available,no_available,creation_date,deleted) values (?,?,?,0,?,false)");
         preparedStatement.setInt(1, asset_store.getAsset_id());
         preparedStatement.setInt(2, asset_store.getStore_id());
         preparedStatement.setInt(3, asset_store.getAvaliable());

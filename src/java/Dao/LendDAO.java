@@ -29,13 +29,18 @@ public class LendDAO {
         connection = DbUtil.getConnection(database);
     }
 
-    public void addLend(Lend lend) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into lend(admin_role_store_id,client_id,start_date,devolution_date) values (?,?,?,?)");
+    public int createLend(Lend lend) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into lend(admin_role_store_id,client_id,start_date) values (?,?,?)");
         preparedStatement.setInt(1, lend.getAdmin_role_store_id());
         preparedStatement.setInt(2, lend.getClient_id());
-        preparedStatement.setTimestamp(3, new Timestamp(lend.getStart_date().getTime()));
-        preparedStatement.setTimestamp(4, new Timestamp(lend.getDevolution_date().getTime()));
+        preparedStatement.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
         preparedStatement.executeUpdate();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select MAX(lend_id) as lend_id,start_date from lend");
+        while(rs.next()){
+            return rs.getInt("lend_id");
+        }
+        return 0;
     }
 
     public Lend readLend(int lend_id) throws SQLException {
