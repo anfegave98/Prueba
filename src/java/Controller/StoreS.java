@@ -38,9 +38,9 @@ public class StoreS extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
-            //Company company = (Company) request.getSession().getAttribute("company");
-            //StoreDAO s = new StoreDAO("AABGJJMO_BiStock_" + company.getCompany_id());
-            StoreDAO s = new StoreDAO("AABGJJMO_BiStock_"+1);
+            Company company = (Company) request.getSession().getAttribute("company");
+            StoreDAO s = new StoreDAO("AABGJJMO_BiStock_" + company.getCompany_id());
+            //StoreDAO s = new StoreDAO("AABGJJMO_BiStock_"+1);
             Gson g = new Gson();
             //if (!s.existsOne(company.getCompany_id())) {
             if (!s.existsOne()) {

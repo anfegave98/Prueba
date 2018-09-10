@@ -10,9 +10,7 @@
 
 <body>
     <h1>BiStock</h1>
-    <p>Ofrecemos personalización a la medida de las necesidades de tu empresa.
-        Previsualiza tu tablero digital al mismo tiempo que ingresas los datos.
-        Cuando estés listo, presiona “Siguiente”.</p>
+    <p>Registra tu empresa</p>
     <p>Nombre de la empresa</p>
     <input type="text" id="name">
     <br>
@@ -33,13 +31,15 @@
     <img id="img" height="150">
     <p>Email</p>
     <input type="email" id="email">
-    <p>Contraseña</p>
+    <p>Contraseña:</p>
+    <p>Las contraseña deben tener mínimo 8 carácteres, al menos un número
+        , al menos una letra mayúscula y al menos una letra minúscula.</p>
     <input type="password" id="pass_1">
     <p>Repita Contraseña</p>
     <input type="password" id="pass_2">
     <br>
     <br>
-    <button id="send_button" onclick="createFactory()">ENVIAR</button>
+    <button id="send_button" onclick="validateRegister()">SIGUENTE</button>
     <br>
     <br>
 </body>
