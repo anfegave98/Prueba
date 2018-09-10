@@ -99,6 +99,9 @@ public class createDatabaseDAO {
                 + ");";
         preparedStatement = connection.prepareStatement(table);
         preparedStatement.executeUpdate();
+        table = "insert into role_admin(name,deleted) values('Default',false)";
+        preparedStatement = connection.prepareStatement(table);
+        preparedStatement.executeUpdate();
         //Permission_admin
         table = "create table Permission_Admin(\n"
                 + "service_admin_id int,\n"
@@ -136,6 +139,9 @@ public class createDatabaseDAO {
                 + "name varchar(50),\n"
                 + "deleted bool\n"
                 + ");";
+        preparedStatement = connection.prepareStatement(table);
+        preparedStatement.executeUpdate();
+        table = "insert into role_client(name,deleted) values('Default',false)";
         preparedStatement = connection.prepareStatement(table);
         preparedStatement.executeUpdate();
         //Permission_Client
@@ -187,6 +193,7 @@ public class createDatabaseDAO {
         //Asset
         table = "create table Asset(\n"
                 + "asset_id int primary key auto_increment,\n"
+                + "codebar varchar(300),\n"
                 + "asset_parent_id int,\n"
                 + "name varchar(100),\n"
                 + "principal_picture varchar(500),\n"
@@ -220,14 +227,14 @@ public class createDatabaseDAO {
         preparedStatement.executeUpdate();
         //Asset_Store
         table = "create table Asset_Store(\n"
+                + "asset_store_id int primary key auto_increment,\n"
                 + "asset_id int,\n"
                 + "store_id int,\n"
-                + "codebar varchar(300),\n"
                 + "available int,\n"
                 + "no_available int,\n"
                 + "creation_date timestamp,\n"
                 + "elimination_date timestamp,\n"
-//                + "UNIQUE KEY ‘codebar_UNIQUE’ (codebar),\n"
+                + "deleted bool, \n"
                 + "foreign key(asset_id) references asset(asset_id),\n"
                 + "foreign key(store_id) references store(store_id)\n"
                 + ");";
@@ -236,12 +243,16 @@ public class createDatabaseDAO {
         //State_Asset
         table = "create table State_Asset(\n"
                 + "state_asset_id int primary key auto_increment,\n"
+                + "asset_store_id int,\n"
                 + "admin_id int,\n"
                 + "codebar varchar(300),\n"
                 + "quantity int,\n"
+                + "devolution_quantity int,\n"
                 + "description varchar(300),\n"
                 + "creation_date timestamp,\n"
-                + "foreign key(admin_id) references admin(admin_id)\n"
+                + "deleted bool,\n"
+                + "foreign key(admin_id) references admin(admin_id),\n"
+                + "foreign key(asset_store_id) references asset_store(asset_store_id)\n"
                 + ");";
         preparedStatement = connection.prepareStatement(table);
         preparedStatement.executeUpdate();
@@ -263,14 +274,17 @@ public class createDatabaseDAO {
         //Lend_Items
         table = "create table Lend_Items(\n"
                 + "lend_id int,\n"
+                + "asset_store_id int,\n"
                 + "codebar varchar(300),\n"
                 + "calification int,\n"
                 + "lend_quantity int,\n"
                 + "devolution_quantity int,\n"
-                + "foreign key(lend_id) references Lend(lend_id)"
+                + "foreign key(lend_id) references Lend(lend_id),\n"
+                + "foreign key(asset_store_id) references asset_store(asset_store_id)\n"
                 + ");";
         preparedStatement = connection.prepareStatement(table);
         preparedStatement.executeUpdate();
         return true;
     }
 }
+

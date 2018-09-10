@@ -10,9 +10,11 @@ package Model;
  * @author FiJus
  */
 public class Asset {
+
     private int asset_id;
     private int asset_parent_id;
     private String name;
+    private String codebar;
     private String principal_picture;
     private String description;
 
@@ -39,6 +41,14 @@ public class Asset {
         return name;
     }
 
+    public String getCodebar() {
+        return codebar;
+    }
+
+    public void setCodebar(String codebar) {
+        this.codebar = codebar;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -58,6 +68,5 @@ public class Asset {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
+
 }

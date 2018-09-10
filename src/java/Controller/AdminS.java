@@ -5,8 +5,19 @@
  */
 package Controller;
 
+import Dao.AdminDAO;
+import Model.Admin;
+import Util.Encription;
+import Util.createDatabaseDAO;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author FiJus
+ * @author anfeg
  */
 public class AdminS extends HttpServlet {
 
@@ -35,7 +46,7 @@ public class AdminS extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AdminS</title>");            
+            out.println("<title>Servlet AdminS</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AdminS at " + request.getContextPath() + "</h1>");
@@ -56,7 +67,26 @@ public class AdminS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String op = request.getParameter("op");
+            AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + 1);
+            Gson g = new Gson();
+            if (op.equalsIgnoreCase("getall")) {
+                ArrayList<Admin> admins = a.getAllAdmins();
+                String pasareEsto = g.toJson(admins);
+                out.print(pasareEsto);
+
+            }
+            if (op.equalsIgnoreCase("get")) {
+                String email = request.getParameter("email");
+                Admin e = a.getByEmail(email);
+                String pasareEsto = g.toJson(e);
+                out.print(pasareEsto);
+            }
+        } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminS.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -70,7 +100,43 @@ public class AdminS extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String op = request.getParameter("op");
+            AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + 1);
+            Encription e = new Encription();
+            Gson g = new Gson();
+            if (op.equalsIgnoreCase("create")) {
+                if (!a.getEmail(request.getParameter("email"))) {
+                    Admin admin = new Admin();
+                    admin.setPassword(e.encription(request.getParameter("password")));
+                    admin.setEmail(request.getParameter("email"));
+                    admin.setName(request.getParameter("name"));
+                    admin.setLast_name(request.getParameter("last_name"));
+                    out.println(a.createAdmin(admin));
+                } else {
+                    out.println("Email ya existente");
+                }
+            }
+            if (op.equalsIgnoreCase("deleted")) {
+                String email = request.getParameter("email");
+                a.deleteAdmin(email);
+
+            }
+            if (op.equalsIgnoreCase("update")) {
+                Admin admin = new Admin();
+                admin.setEmail(request.getParameter("email"));
+                admin.setName(request.getParameter("name"));
+                admin.setLast_name(request.getParameter("last_name"));
+                a.updateAdmin(admin);
+
+            }
+
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminS.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -14,11 +14,13 @@ import java.sql.Date;
 public class State_asset {
     
     private int state_asset_id;
-    private String codebar;
+    private int asset_store_id;
     private int quantity;
+    private int devolution_quantity;
     private String description;
     private Date creation_date;
     private int admin_id;
+    private boolean deleted;
 
     public State_asset() {
     }
@@ -31,13 +33,15 @@ public class State_asset {
         this.state_asset_id = state_asset_id;
     }
 
-    public String getCodebar() {
-        return codebar;
+    public int getAsset_store_id() {
+        return asset_store_id;
     }
 
-    public void setCodebar(String codebar) {
-        this.codebar = codebar;
+    public void setAsset_store_id(int asset_store_id) {
+        this.asset_store_id = asset_store_id;
     }
+
+   
 
     public int getQuantity() {
         return quantity;
@@ -46,6 +50,15 @@ public class State_asset {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public int getDevolution_quantity() {
+        return devolution_quantity;
+    }
+
+    public void setDevolution_quantity(int devolution_quantity) {
+        this.devolution_quantity = devolution_quantity;
+    }
+    
 
     public String getDescription() {
         return description;
@@ -70,6 +83,15 @@ public class State_asset {
     public void setAdmin_id(int admin_id) {
         this.admin_id = admin_id;
     }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+    
     
     
     

@@ -30,12 +30,11 @@ public class Asset_storeDAO {
     }
 
     public void createAsset_store(Asset_store asset_store) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into asset_store(asset_id,store_id,codebar,avaliable,no_avaliable,creation_date,delete) values (?,?,?,?,0,?,false)");
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into asset_store(asset_id,store_id,avaliable,no_avaliable,creation_date,delete) values (?,?,?,?,0,?,false)");
         preparedStatement.setInt(1, asset_store.getAsset_id());
         preparedStatement.setInt(2, asset_store.getStore_id());
-        preparedStatement.setString(3, asset_store.getCodebar());
-        preparedStatement.setInt(4, asset_store.getAvaliable());
-        preparedStatement.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+        preparedStatement.setInt(3, asset_store.getAvaliable());
+        preparedStatement.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
         preparedStatement.executeUpdate();
     }
 
@@ -46,14 +45,15 @@ public class Asset_storeDAO {
     }
 
     public void updateAsset_store(Asset_store asset_store) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update asset_store set codebar=?,avaliable=?,no_avaliable=?" + " where asset_id=? and store_id=?");
-        preparedStatement.setString(1, asset_store.getCodebar());
-        preparedStatement.setInt(2, asset_store.getAvaliable());
-        preparedStatement.setInt(3, asset_store.getNo_avaliable());
-        preparedStatement.setInt(4, asset_store.getAsset_id());
-        preparedStatement.setInt(5, asset_store.getStore_id());
+        PreparedStatement preparedStatement = connection.prepareStatement("update asset_store set avaliable=?,no_avaliable=?" + " where asset_id=? and store_id=?");
+        preparedStatement.setInt(1, asset_store.getAvaliable());
+        preparedStatement.setInt(2, asset_store.getNo_avaliable());
+        preparedStatement.setInt(3, asset_store.getAsset_id());
+        preparedStatement.setInt(4, asset_store.getStore_id());
         preparedStatement.executeUpdate();
     }
+    
+    
 
     public Asset_store readAsset_store(int asset_id, int store_id) throws SQLException, URISyntaxException {
         Asset_store asset_store = new Asset_store();
@@ -62,7 +62,6 @@ public class Asset_storeDAO {
         while (rs.next()) {
             asset_store.setAsset_id(rs.getInt("asset_id"));
             asset_store.setStore_id(rs.getInt("store_id"));
-            asset_store.setCodebar(rs.getString("asset_store"));
             asset_store.setAvaliable(rs.getInt("avaliable"));
             asset_store.setNo_avaliable(rs.getInt("no_avaliable"));
         }
@@ -77,7 +76,6 @@ public class Asset_storeDAO {
             Asset_store asset_store = new Asset_store();
             asset_store.setAsset_id(rs.getInt("asset_id"));
             asset_store.setStore_id(rs.getInt("store_id"));
-            asset_store.setCodebar(rs.getString("asset_store"));
             asset_store.setAvaliable(rs.getInt("avaliable"));
             asset_store.setNo_avaliable(rs.getInt("no_avaliable"));
             asset_stores.add(asset_store);

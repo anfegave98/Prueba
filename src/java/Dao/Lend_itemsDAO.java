@@ -30,9 +30,9 @@ public class Lend_itemsDAO {
     }
 
     public void addLend_items(Lend_items lend_items) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into lend_items(lend_id,codebar,lend_quantity,devolution_quantity) values (?,?,?,?)");
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into lend_items(lend_id,asset_store_id,lend_quantity,devolution_quantity) values (?,?,?,?)");
         preparedStatement.setInt(1, lend_items.getLend_id());
-        preparedStatement.setString(2, lend_items.getCodebar());
+        preparedStatement.setInt(2, lend_items.getAsset_store_id());
         preparedStatement.setInt(3, lend_items.getLend_quantity());
         preparedStatement.setInt(4, lend_items.getDevolution_quantity());
         preparedStatement.executeUpdate();
@@ -45,7 +45,7 @@ public class Lend_itemsDAO {
         while(rs.next()){
             Lend_items lend_items=new Lend_items();
             lend_items.setLend_id(lend_id);
-            lend_items.setCodebar(rs.getString("codebar"));
+            lend_items.setAsset_store_id(rs.getInt("asset_store_id"));
             lend_items.setCalification(rs.getInt("calification"));
             lend_items.setLend_quantity(rs.getInt("lend_quantity"));
             lend_items.setDevolution_quantity(rs.getInt("devolution_quantity"));
@@ -61,7 +61,7 @@ public class Lend_itemsDAO {
         while(rs.next()){
             Lend_items lend_items=new Lend_items();
             lend_items.setLend_id(rs.getInt("lend_id"));
-            lend_items.setCodebar(rs.getString("codebar"));
+            lend_items.setAsset_store_id(rs.getInt("asset_store_id"));
             lend_items.setCalification(rs.getInt("calification"));
             lend_items.setLend_quantity(rs.getInt("lend_quantity"));
             lend_items.setDevolution_quantity(rs.getInt("devolution_quantity"));
