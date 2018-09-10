@@ -29,15 +29,7 @@ public class LendS extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String op=request.getParameter("op");
-            if(op.equalsIgnoreCase("is")){
-                Company company=(Company) request.getSession().getAttribute("company");
-                //ClientDAO c=new ClientDAO("AABGJJMO_BiStock_"+company.getCompany_id());
-                ClientDAO c=new ClientDAO("AABGJJMO_BiStock_"+1);
-                out.println(c.readClient(request.getParameter("email")));
-            }
-        } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
-            Logger.getLogger(LendS.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
 

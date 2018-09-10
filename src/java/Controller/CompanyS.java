@@ -30,7 +30,7 @@ public class CompanyS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     @Override
@@ -39,8 +39,9 @@ public class CompanyS extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
-            if (op.equalsIgnoreCase("create")){
+            Encription e = new Encription();
                 CompanyDAO c = new CompanyDAO("BiStock");
+            if (op.equalsIgnoreCase("create")) {
                 if (!c.getEmail(request.getParameter("email"))) {
                     Company company = new Company();
                     company.setName(request.getParameter("name"));
@@ -49,20 +50,21 @@ public class CompanyS extends HttpServlet {
                     company.setSector_id(Integer.parseInt(request.getParameter("sector_id")));
                     company.setLogo(request.getParameter("logo"));
                     company.setEmail(request.getParameter("email"));
-                    Encription e = new Encription();
                     company.setPassword(e.encription(request.getParameter("password")));
                     company.setBasic_color(Boolean.parseBoolean(request.getParameter("basic_color")));
                     company.setCompany_id(c.createCompany(company));
-                    String baseDeDatos="AABGJJMO_BiStock_"+company.getCompany_id();
-                    createDatabaseDAO cd=new createDatabaseDAO(baseDeDatos);
+                    String baseDeDatos = "AABGJJMO_BiStock_" + company.getCompany_id();
+                    createDatabaseDAO cd = new createDatabaseDAO(baseDeDatos);
                     request.getSession().setAttribute("company", company);
-                    out.println(cd.createDatabase("AABGJJMO_BiStock_"+company.getCompany_id()));
-                }else{
-                    out.println("Email ya existente");
+                    out.println(cd.createDatabase("AABGJJMO_BiStock_" + company.getCompany_id()));
+                } else {
+                    out.println(false);
                 }
             }
-            if(op.equalsIgnoreCase("")){
-                
+            if (op.equalsIgnoreCase("deleted")) {
+                int company_id = Integer.parseInt(request.getParameter("company_id"));
+                c.deleteCompany(company_id);
+
             }
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Company.class.getName()).log(Level.SEVERE, null, ex);
