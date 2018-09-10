@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  *
@@ -70,17 +71,15 @@ public class CompanyDAO {
     }
 
     public void updateCompany(Company company) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update company set name=?,primary_color=?,accent_color=?,sector_id=?,logo=?,email=?,password=?,basic_color=?,modification_date=?" + " where company_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("update company set name=?,primary_color=?,accent_color=?,sector_id=?,logo=?,basic_color=?,modification_date=?" + " where company_id=?");
         preparedStatement.setString(1, company.getName());
         preparedStatement.setString(2, company.getPrimary_color());
         preparedStatement.setString(3, company.getAccent_color());
         preparedStatement.setInt(4, company.getSector_id());
         preparedStatement.setString(5, company.getLogo());
-        preparedStatement.setString(6, company.getEmail());
-        preparedStatement.setString(7, company.getPassword());
-        preparedStatement.setBoolean(8, company.isBasic_color());
-        preparedStatement.setTimestamp(9, new Timestamp(System.currentTimeMillis()));
-        preparedStatement.setInt(10, company.getCompany_id());
+        preparedStatement.setBoolean(6, company.isBasic_color());
+        preparedStatement.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+        preparedStatement.setInt(8, company.getCompany_id());
         preparedStatement.executeUpdate();
     }
 
@@ -122,6 +121,56 @@ public class CompanyDAO {
             company.setBasic_color(rs.getBoolean("basic_color"));
         }
         return company;
+    }
+     public Company readCompanyByName(String name) throws SQLException {
+        Company company = null;
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from company where deleted=false and name='"+name+"'");
+        while (rs.next()) {
+            company= new Company();   
+            company.setName(rs.getString("name"));
+        }
+        if(company==null){
+            company=new Company();
+            company.setName("0");
+        }
+        return company;
+    }
+     public Company getByEmail(String email) throws SQLException, URISyntaxException {
+        Company company= new Company();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from company where email='" +email+"'");
+        while (rs.next()) {
+            company.setCompany_id(rs.getInt("company_id"));
+            company.setName(rs.getString("name"));
+            company.setPrimary_color(rs.getString("primary_color"));
+            company.setAccent_color(rs.getString("accent_color"));
+            company.setSector_id(rs.getInt("sector_id"));
+            company.setLogo(rs.getString("logo"));
+            company.setEmail(rs.getString("email"));
+            company.setBasic_color(rs.getBoolean("basic_color"));
+        }
+        return company;
+    }
+     
+      public ArrayList<Company> getAllCompanys() throws SQLException {
+
+        ArrayList<Company> companys = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from company where deleted=false");
+        while (rs.next()) {
+            Company company = new Company();
+            company.setCompany_id(rs.getInt("company_id"));
+            company.setName(rs.getString("name"));
+            company.setPrimary_color(rs.getString("primary_color"));
+            company.setAccent_color(rs.getString("accent_color"));
+            company.setSector_id(rs.getInt("sector_id"));
+            company.setLogo(rs.getString("logo"));
+            company.setEmail(rs.getString("email"));
+            company.setBasic_color(rs.getBoolean("basic_color"));      
+            companys.add(company);
+        }
+        return companys;
     }
 
 }
