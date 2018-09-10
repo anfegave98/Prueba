@@ -61,11 +61,13 @@ public class State_assetS extends HttpServlet {
                 out.println("ok");                    
             }
             if (op.equalsIgnoreCase("remove")) {
-                State_asset state_asset = new State_asset();                
-                state_asset.setAsset_store_id(Integer.parseInt(request.getParameter("asset_store_id")));
+                State_asset state_asset = s.readState_asset(Integer.parseInt(request.getParameter("state_asset_id")));
+                out.println(state_asset.getQuantity());
+                out.println(state_asset.getDevolution_quantity());
                 int devolution_quantity = Integer.parseInt(request.getParameter("devolution_quantity"));
                 state_asset.setDevolution_quantity(state_asset.getDevolution_quantity()+ devolution_quantity);
-                out.println(state_asset.getDevolution_quantity()); 
+                out.println(state_asset.getDevolution_quantity());
+                
                 if(state_asset.getDevolution_quantity() == state_asset.getQuantity()){
                     state_asset.setDeleted(true);
                 }

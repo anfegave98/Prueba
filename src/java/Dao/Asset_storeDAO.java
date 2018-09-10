@@ -30,7 +30,7 @@ public class Asset_storeDAO {
     }
 
     public void createAsset_store(Asset_store asset_store) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into asset_store(asset_id,store_id,avaliable,no_avaliable,creation_date,delete) values (?,?,?,?,0,?,false)");
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into asset_store(asset_id,store_id,avaliable,no_avaliable,creation_date,delete) values (?,?,?,0,?,false)");
         preparedStatement.setInt(1, asset_store.getAsset_id());
         preparedStatement.setInt(2, asset_store.getStore_id());
         preparedStatement.setInt(3, asset_store.getAvaliable());
@@ -71,8 +71,8 @@ public class Asset_storeDAO {
     public Asset_store readAsset_store(int asset_store_id) throws SQLException, URISyntaxException {
         Asset_store asset_store = new Asset_store();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from asset_store where  asset_store_id=" + asset_store_id );
-        while (rs.next()) {                                              //deleted=false and
+        ResultSet rs = statement.executeQuery("select * from asset_store where deleted=false and asset_store_id=" + asset_store_id );
+        while (rs.next()) {                                              
             asset_store.setAsset_id(rs.getInt("asset_id"));
             asset_store.setStore_id(rs.getInt("store_id"));
             asset_store.setAvaliable(rs.getInt("available"));

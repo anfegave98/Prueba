@@ -53,6 +53,7 @@ public class State_assetDAO {
             state_asset.setState_asset_id(rs.getInt("state_asset_id"));
             state_asset.setAsset_store_id(rs.getInt("asset_store_id"));
             state_asset.setQuantity(rs.getInt("quantity"));
+            state_asset.setDevolution_quantity(rs.getInt("devolution_quantity"));
             state_asset.setDescription(rs.getString("description"));
             state_asset.setCreation_date(new Date(((Timestamp)rs.getObject("creation_date")).getTime()));
             state_asset.setAdmin_id(rs.getInt("admin_id"));
@@ -61,12 +62,14 @@ public class State_assetDAO {
     }
 
     public void updateState_asset(State_asset state_asset) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update state_asset set asset_store_id=?,quantity=?,description=?,admin_id=?" + " where state_asset_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("update state_asset set asset_store_id=?,quantity=?,devolution_quantity=?,description=?,admin_id=?,deleted=?" + " where state_asset_id=?");
         preparedStatement.setInt(1, state_asset.getAsset_store_id());
-        preparedStatement.setInt(2, state_asset.getQuantity());    
-        preparedStatement.setString(3, state_asset.getDescription());
-        preparedStatement.setInt(4, state_asset.getAdmin_id());
-        preparedStatement.setInt(5, state_asset.getState_asset_id());
+        preparedStatement.setInt(2, state_asset.getQuantity());
+        preparedStatement.setInt(3, state_asset.getDevolution_quantity()); 
+        preparedStatement.setString(4, state_asset.getDescription());
+        preparedStatement.setInt(5, state_asset.getAdmin_id());
+        preparedStatement.setInt(6, state_asset.getState_asset_id());
+        preparedStatement.setBoolean(7, state_asset.isDeleted());
         preparedStatement.executeUpdate();
     }
     
