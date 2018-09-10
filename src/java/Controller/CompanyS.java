@@ -58,7 +58,7 @@ public class CompanyS extends HttpServlet {
                     request.getSession().setAttribute("company", company);
                     out.println(cd.createDatabase("AABGJJMO_BiStock_"+company.getCompany_id()));
                 }else{
-                    out.println("Email ya existente");
+                    out.println(false);
                 }
             }
             if(op.equalsIgnoreCase("")){

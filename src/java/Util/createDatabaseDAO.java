@@ -119,6 +119,7 @@ public class createDatabaseDAO {
                 + "role_admin_id int,\n"
                 + "creation_date timestamp,\n"
                 + "elimination_date timestamp,\n"
+                + "deleted bool,\n"
                 + "foreign key(admin_id) references admin(admin_id),\n"
                 + "foreign key(store_id) references store(store_id),\n"
                 + "foreign key(role_admin_id) references role_admin(role_admin_id)\n"
