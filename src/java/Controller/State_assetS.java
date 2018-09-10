@@ -75,7 +75,7 @@ public class State_assetS extends HttpServlet {
                 Asset_storeDAO asset_storedao = new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
                 int id_store = asset_storedao.readAsset_store(Integer.parseInt(request.getParameter("asset_store_id"))).getStore_id();
                 Asset_store asset_store = asset_storedao.readAsset_store(asset_storedao.readAsset_store(Integer.parseInt(request.getParameter("asset_store_id"))).getAsset_id(), id_store);
-                asset_store.setNo_avaliable(asset_store.getNo_avaliable() - state_asset.getDevolution_quantity());
+                asset_store.setNo_avaliable(asset_store.getNo_avaliable() - devolution_quantity);
                 asset_storedao.updateAsset_store(asset_store);
                 out.println("ok"); 
           

@@ -58,8 +58,8 @@ public class Asset_storeDAO {
     public Asset_store readAsset_store(int asset_id, int store_id) throws SQLException, URISyntaxException {
         Asset_store asset_store = new Asset_store();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from asset_store where  asset_id=" + asset_id + " and store_id=" + store_id);
-        while (rs.next()) {                                              //deleted=false and
+        ResultSet rs = statement.executeQuery("select * from asset_store where deleted=false and asset_id=" + asset_id + " and store_id=" + store_id);
+        while (rs.next()) {                                              
             asset_store.setAsset_id(rs.getInt("asset_id"));
             asset_store.setStore_id(rs.getInt("store_id"));
             asset_store.setAvaliable(rs.getInt("available"));

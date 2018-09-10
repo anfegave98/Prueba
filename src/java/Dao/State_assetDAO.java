@@ -68,8 +68,8 @@ public class State_assetDAO {
         preparedStatement.setInt(3, state_asset.getDevolution_quantity()); 
         preparedStatement.setString(4, state_asset.getDescription());
         preparedStatement.setInt(5, state_asset.getAdmin_id());
-        preparedStatement.setInt(6, state_asset.getState_asset_id());
-        preparedStatement.setBoolean(7, state_asset.isDeleted());
+        preparedStatement.setBoolean(6, state_asset.isDeleted());
+        preparedStatement.setInt(7, state_asset.getState_asset_id());
         preparedStatement.executeUpdate();
     }
     
