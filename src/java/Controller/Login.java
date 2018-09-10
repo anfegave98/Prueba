@@ -31,7 +31,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     @Override
@@ -40,28 +40,37 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             Encription e = new Encription();
-            Gson g = new Gson();
             String op = request.getParameter("op");
-            String email = request.getParameter("email");
-            String password = e.encription(request.getParameter("password"));
-            CompanyDAO c = new CompanyDAO("BiStock");
-            if (c.is(email, password)) {
-                request.getSession().setAttribute("company", c.readCompany(email));
-                out.println("Company");
-            } else {
-                AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + 1);
-                if (a.is(email, password)) {
-                    request.getSession().setAttribute("admin", a.readAdmin(email));
-                    out.println("Admin");
+            if (op.equalsIgnoreCase("in")) {
+                //int company_id = Integer.parseInt(request.getParameter("company_id"));
+                String email = request.getParameter("email");
+                String password = e.encription(request.getParameter("password"));
+                CompanyDAO c = new CompanyDAO("BiStock");
+                if (c.is(email, password)) {
+                    request.getSession().setAttribute("company", c.readCompany(email));
+                    out.println("Company");
                 } else {
-                    ClientDAO cl = new ClientDAO("AABGJJMO_BiStock_" + 1);
-                    if (cl.is(email, password)) {
-                        request.getSession().setAttribute("client", cl.readClient(email));
-                        out.println("Client");
+                    AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + 1);
+//                AdminDAO a = new AdminDAO("AABGJJMO_BiStock_"+company_id);
+                    if (a.is(email, password)) {
+                        request.getSession().setAttribute("admin", a.readAdmin(email));
+                        out.println("Admin");
                     } else {
-                        out.println(false);
+                        ClientDAO cl = new ClientDAO("AABGJJMO_BiStock_" + 1);
+//                    ClientDAO cl = new ClientDAO("AABGJJMO_BiStock_" + company_id);
+                        if (cl.is(email, password)) {
+                            request.getSession().setAttribute("client", cl.readClient(email));
+                            out.println("Client");
+                        } else {
+                            out.println(false);
+                        }
                     }
                 }
+            }
+            if(op.equalsIgnoreCase("out")){
+                request.getSession().setAttribute("company", null);
+                request.getSession().setAttribute("admin", null);
+                request.getSession().setAttribute("client", null);        
             }
         } catch (NoSuchAlgorithmException | SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
