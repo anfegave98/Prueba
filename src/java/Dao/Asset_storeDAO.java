@@ -45,7 +45,7 @@ public class Asset_storeDAO {
     }
 
     public void updateAsset_store(Asset_store asset_store) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update asset_store set avaliable=?,no_avaliable=?" + " where asset_id=? and store_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("update asset_store set available=?,no_available=?" + " where asset_id=? and store_id=?");
         preparedStatement.setInt(1, asset_store.getAvaliable());
         preparedStatement.setInt(2, asset_store.getNo_avaliable());
         preparedStatement.setInt(3, asset_store.getAsset_id());
@@ -58,12 +58,25 @@ public class Asset_storeDAO {
     public Asset_store readAsset_store(int asset_id, int store_id) throws SQLException, URISyntaxException {
         Asset_store asset_store = new Asset_store();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from asset_store where deleted=false and asset_id=" + asset_id + " and store_id" + store_id);
-        while (rs.next()) {
+        ResultSet rs = statement.executeQuery("select * from asset_store where  asset_id=" + asset_id + " and store_id=" + store_id);
+        while (rs.next()) {                                              //deleted=false and
             asset_store.setAsset_id(rs.getInt("asset_id"));
             asset_store.setStore_id(rs.getInt("store_id"));
-            asset_store.setAvaliable(rs.getInt("avaliable"));
-            asset_store.setNo_avaliable(rs.getInt("no_avaliable"));
+            asset_store.setAvaliable(rs.getInt("available"));
+            asset_store.setNo_avaliable(rs.getInt("no_available"));
+        }
+        return asset_store;
+    }
+    
+    public Asset_store readAsset_store(int asset_store_id) throws SQLException, URISyntaxException {
+        Asset_store asset_store = new Asset_store();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from asset_store where  asset_store_id=" + asset_store_id );
+        while (rs.next()) {                                              //deleted=false and
+            asset_store.setAsset_id(rs.getInt("asset_id"));
+            asset_store.setStore_id(rs.getInt("store_id"));
+            asset_store.setAvaliable(rs.getInt("available"));
+            asset_store.setNo_avaliable(rs.getInt("no_available"));
         }
         return asset_store;
     }

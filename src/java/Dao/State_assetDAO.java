@@ -39,6 +39,7 @@ public class State_assetDAO {
         preparedStatement.setInt(5, state_asset.getAdmin_id());
         preparedStatement.executeUpdate();
         return true;
+        
     }
     
     
