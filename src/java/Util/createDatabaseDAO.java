@@ -275,7 +275,6 @@ public class createDatabaseDAO {
         table = "create table Lend_Items(\n"
                 + "lend_id int,\n"
                 + "asset_store_id int,\n"
-                + "codebar varchar(300),\n"
                 + "calification int,\n"
                 + "lend_quantity int,\n"
                 + "devolution_quantity int,\n"
