@@ -106,6 +106,11 @@ public class Company {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+    @Override
+    public String toString() {
+        return "Company{" + "company_id=" + company_id + ", name=" + name + ", primary_color=" + primary_color + ", accent_color=" + accent_color + ", sector_id=" + sector_id + ", logo=" + logo + ", email=" + email + ", password=" + password + ", basic_color=" + basic_color + ", deleted=" + deleted + '}';
+    }
    
    
     

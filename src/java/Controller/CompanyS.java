@@ -88,6 +88,8 @@ public class CompanyS extends HttpServlet {
 
             }
             if (op.equalsIgnoreCase("update")) {
+                String name = request.getParameter("name");
+                Company x = c.getByEmail(request.getParameter("email"));
                 Company company = new Company();
                 company.setCompany_id(Integer.parseInt(request.getParameter("company_id")));
                 company.setName(request.getParameter("name"));
@@ -96,7 +98,11 @@ public class CompanyS extends HttpServlet {
                 company.setSector_id(Integer.parseInt(request.getParameter("sector_id")));
                 company.setLogo(request.getParameter("logo"));
                 company.setBasic_color(Boolean.parseBoolean(request.getParameter("basic_color")));
-                c.updateCompany(company);
+                if (x.getName().equals(name)) {
+                    c.updateCompanyWithoutName(company);
+                } else {
+                    c.updateCompany(company);
+                }
             }
 
         } catch (NoSuchAlgorithmException ex) {
