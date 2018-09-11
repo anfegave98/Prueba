@@ -1,0 +1,71 @@
+.landing-page .top-banner  {
+    /* background: linear-gradient(120deg, #01539a, #9a9a9a); */
+    background: linear-gradient(120deg, #01539a, #2d7cce);
+}
+
+.landing-page .footer {
+    background: linear-gradient(120deg, #01539a, #2d7cce);
+}
+
+.landing-page .top-banner-overlay {
+    background: url(../images/topbanneroverlay2.svg) no-repeat center;
+    background-size: cover;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.landing-page .top-banner-img {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.dark-transparent-card {
+    color: white;
+    background-color: #00000075;
+}
+
+.white-hr {
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.asColorPicker-wrap:hover .asColorPicker-clear {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.asColorPicker-trigger span {
+    width: 15px;
+    height: 15px;
+}
+
+.reg2 .jsgrid-cell {
+  background-color: transparent;
+}
+.reg2 .jsgrid-grid-header {
+    background: #f9f9f91f;
+}
+
+.reg2 .jsgrid .jsgrid-button {
+    background-image: url(../images/sprites/jsgrid-icons-white.png);
+}
+
+.reg2 .jsgrid-header-cell {
+    background: #0969c77a;
+}
+/*
+.reg2 .jsgrid .jsgrid-table td {
+    padding: 13px 21px;
+}*/
+
+.form-check .form-check-label input:checked + .input-helper:after {
+    line-height: 2px;
+} 
+
+.jsgrid-pager-nav-button {
+    padding: .2em .0em;
+}
+.jsgrid-pager-page {
+    padding: .2em .0em;
+}
+
