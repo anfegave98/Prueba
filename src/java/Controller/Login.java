@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
             Encription e = new Encription();
             String op = request.getParameter("op");
             if (op.equalsIgnoreCase("in")) {
-                //int company_id = Integer.parseInt(request.getParameter("company_id"));
+                int company_id = Integer.parseInt(request.getParameter("company_id"));
                 String email = request.getParameter("email");
                 String password = e.encription(request.getParameter("password"));
                 CompanyDAO c = new CompanyDAO("BiStock");
@@ -50,14 +50,12 @@ public class Login extends HttpServlet {
                     request.getSession().setAttribute("company", c.readCompany(email));
                     out.println("Company");
                 } else {
-                    AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + 1);
-//                AdminDAO a = new AdminDAO("AABGJJMO_BiStock_"+company_id);
+                    AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
                     if (a.is(email, password)) {
                         request.getSession().setAttribute("admin", a.readAdmin(email));
                         out.println("Admin");
                     } else {
-                        ClientDAO cl = new ClientDAO("AABGJJMO_BiStock_" + 1);
-//                    ClientDAO cl = new ClientDAO("AABGJJMO_BiStock_" + company_id);
+                        ClientDAO cl = new ClientDAO("AABGJJMO_BiStock_" + company_id);
                         if (cl.is(email, password)) {
                             request.getSession().setAttribute("client", cl.readClient(email));
                             out.println("Client");
@@ -67,10 +65,10 @@ public class Login extends HttpServlet {
                     }
                 }
             }
-            if(op.equalsIgnoreCase("out")){
+            if (op.equalsIgnoreCase("out")) {
                 request.getSession().setAttribute("company", null);
                 request.getSession().setAttribute("admin", null);
-                request.getSession().setAttribute("client", null);        
+                request.getSession().setAttribute("client", null);
             }
         } catch (NoSuchAlgorithmException | SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
