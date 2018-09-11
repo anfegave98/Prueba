@@ -87,6 +87,7 @@ public class CompanyS extends HttpServlet {
                 c.deleteCompany(company_id);
 
             }
+            
             if (op.equalsIgnoreCase("update")) {
                 String name = request.getParameter("name");
                 Company x = c.getByEmail(request.getParameter("email"));

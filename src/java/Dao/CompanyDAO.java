@@ -82,6 +82,7 @@ public class CompanyDAO {
         preparedStatement.setInt(8, company.getCompany_id());
         preparedStatement.executeUpdate();
     }
+    
     public void updateCompanyWithoutName(Company company) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("update company set primary_color=?,accent_color=?,sector_id=?,logo=?,basic_color=?,modification_date=?" + " where company_id=?");
         preparedStatement.setString(1, company.getPrimary_color());
