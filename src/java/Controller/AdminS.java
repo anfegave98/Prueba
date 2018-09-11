@@ -39,6 +39,8 @@ public class AdminS extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
+//            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
             AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
             if (op.equalsIgnoreCase("getall")) {
@@ -64,6 +66,8 @@ public class AdminS extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
+//            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
             AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + 1);
             Encription e = new Encription();
             Gson g = new Gson();

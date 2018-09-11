@@ -46,18 +46,21 @@ public class Login extends HttpServlet {
                 String email = request.getParameter("email");
                 String password = e.encription(request.getParameter("password"));
                 CompanyDAO c = new CompanyDAO("BiStock");
-                if (c.is(email, password)) {
+                if (c.is(company_id,email, password)) {
                     request.getSession().setAttribute("company", c.readCompany(email));
+                    request.getSession().setAttribute("company_id", company_id);
                     out.println("Company");
                 } else {
                     AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
                     if (a.is(email, password)) {
                         request.getSession().setAttribute("admin", a.readAdmin(email));
+                        request.getSession().setAttribute("company_id", company_id);
                         out.println("Admin");
                     } else {
                         ClientDAO cl = new ClientDAO("AABGJJMO_BiStock_" + company_id);
                         if (cl.is(email, password)) {
                             request.getSession().setAttribute("client", cl.readClient(email));
+                            request.getSession().setAttribute("company_id", company_id);
                             out.println("Client");
                         } else {
                             out.println(false);

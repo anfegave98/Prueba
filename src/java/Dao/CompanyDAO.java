@@ -97,9 +97,9 @@ public class CompanyDAO {
         return false;
     }
 
-    public boolean is(String email, String password) throws SQLException {
+    public boolean is(int company_id,String email, String password) throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from company where email='" +email+"' and password='"+password+"'");
+        ResultSet rs = statement.executeQuery("select * from company where company_id="+company_id+" and email='" +email+"' and password='"+password+"'");
         while (rs.next()) {
             return true;
         }

@@ -34,6 +34,8 @@ public class ClientS extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
+            //            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            ClientDAO a = new ClientDAO("AABGJJMO_BiStock_" + company_id);
             ClientDAO a = new ClientDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
             if (op.equalsIgnoreCase("getall")) {
@@ -62,6 +64,8 @@ public class ClientS extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
+            //            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            ClientDAO a = new ClientDAO("AABGJJMO_BiStock_" + company_id);
             ClientDAO a = new ClientDAO("AABGJJMO_BiStock_" + 1);
             Encription e = new Encription();
             if (op.equalsIgnoreCase("create")) {

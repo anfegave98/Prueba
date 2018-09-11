@@ -48,8 +48,8 @@ public class LendS extends HttpServlet {
             throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
-            //Company company = (Company) request.getSession().getAttribute("company");
-            //StoreDAO s = new StoreDAO("AABGJJMO_BiStock_" + company.getCompany_id());
+//            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            LendDAO a = new LendDAO("AABGJJMO_BiStock_" + company_id);
             LendDAO ld = new LendDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
             if (op.equalsIgnoreCase("create")) {
@@ -59,9 +59,10 @@ public class LendS extends HttpServlet {
                 //Date d=(Date) request.getParameter("devolution_date");
                 int mayor = ld.createLend(l);
                 if (mayor != 0) {
+//                  int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//                  Lend_itemsDAO a = new Lend_itemsDAO("AABGJJMO_BiStock_" + company_id);
                     Lend_itemsDAO ldi = new Lend_itemsDAO("AABGJJMO_BiStock_" + 1);
                     String lend_items = request.getParameter("lend_items");
-                    System.out.println(lend_items);
                     List<queryLend> list_items = new Gson().fromJson(lend_items, new TypeToken<List<queryLend>>() {}.getType());
                     for(queryLend q: list_items){
                         Lend_items item=new Lend_items();

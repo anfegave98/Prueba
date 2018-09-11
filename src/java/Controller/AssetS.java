@@ -36,6 +36,8 @@ public class AssetS extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
+            //            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            AssetDAO a = new AssetDAO("AABGJJMO_BiStock_" + company_id);
             AssetDAO a = new AssetDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
             if (op.equalsIgnoreCase("getall")) {
@@ -67,6 +69,8 @@ public class AssetS extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
+            //            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            AssetDAO a = new AssetDAO("AABGJJMO_BiStock_" + company_id);
             AssetDAO a = new AssetDAO("AABGJJMO_BiStock_" + 1);
             if (op.equalsIgnoreCase("create")) {
                 if (!a.getCodebar(request.getParameter("codebar"))) {
@@ -90,6 +94,8 @@ public class AssetS extends HttpServlet {
                     as.setAsset_id(a.readAssetByCodebar(request.getParameter("codebar")).getAsset_id());
                     as.setAvaliable(Integer.parseInt(request.getParameter("available")));
                     as.setStore_id(Integer.parseInt(request.getParameter("store_id")));
+                    //            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            Asset_storeDAO a = new Asset_storeDAO("AABGJJMO_BiStock_" + company_id);
                     Asset_storeDAO asset_store=new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
                     asset_store.createAsset_store(as);
                 } else {

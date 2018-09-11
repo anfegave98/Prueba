@@ -39,12 +39,16 @@ public class Admin_role_storeS extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
             if (op.equalsIgnoreCase("assign")) {
+                //            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
                 AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + 1);
                 Admin_role_store adrost = new Admin_role_store();
                 if (!a.getEmail(request.getParameter("email"))) {
                     out.println(false);
                 } else {
                     adrost.setAdmin_id((a.readAdmin(request.getParameter("email"))).getAdmin_id());
+                                    //            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            Admin_role_storeDAO a = new Admin_role_storeDAO("AABGJJMO_BiStock_" + company_id);
                     Admin_role_storeDAO ars = new Admin_role_storeDAO("AABGJJMO_BiStock_" + 1);
                     adrost.setRole_admin_id(Integer.parseInt(request.getParameter("role_admin_id")));
                     adrost.setStore_id(Integer.parseInt(request.getParameter("store_id")));

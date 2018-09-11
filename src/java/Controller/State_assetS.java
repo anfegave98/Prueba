@@ -38,6 +38,8 @@ public class State_assetS extends HttpServlet {
             String op = request.getParameter("op");
             Gson g = new Gson();
             if (op.equalsIgnoreCase("report")) {
+                //            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
                 Asset_store_reportDAO dao = new Asset_store_reportDAO("AABGJJMO_BiStock_" + 1);
                 int store_id = Integer.parseInt(request.getParameter("store_id"));
                 ArrayList<Asset_store_report> reports = dao.Generate_asset_store_report(store_id);
@@ -61,6 +63,8 @@ public class State_assetS extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
+//            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            State_assetDAO a = new State_assetDAO("AABGJJMO_BiStock_" + company_id);
             State_assetDAO s = new State_assetDAO("AABGJJMO_BiStock_" + 1);
 
             if (op.equalsIgnoreCase("create")) {
@@ -71,7 +75,8 @@ public class State_assetS extends HttpServlet {
                 state_asset.setAdmin_id(Integer.parseInt(request.getParameter("admin_id")));
                 s.createState_asset(state_asset);
 
-                //int id_store = (int) request.getSession().getAttribute("store"); 
+//              int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//              Asset_storeDAO a = new Asset_storeDAO("AABGJJMO_BiStock_" + company_id);
                 Asset_storeDAO asset_storedao = new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
                 int id_store = asset_storedao.readAsset_store(Integer.parseInt(request.getParameter("asset_store_id"))).getStore_id();
 
@@ -94,6 +99,8 @@ public class State_assetS extends HttpServlet {
                     state_asset.setDeleted(true);
                 }
                 s.updateState_asset(state_asset);
+//            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//            Asset_storeDAO a = new Asset_storeDAO("AABGJJMO_BiStock_" + company_id);
                 Asset_storeDAO asset_storedao = new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
                 int id_store = asset_storedao.readAsset_store(Integer.parseInt(request.getParameter("asset_store_id"))).getStore_id();
                 Asset_store asset_store = asset_storedao.readAsset_store(asset_storedao.readAsset_store(Integer.parseInt(request.getParameter("asset_store_id"))).getAsset_id(), id_store);
