@@ -5,9 +5,11 @@
  */
 package Controller;
 
+import Dao.Asset_storeDAO;
 import Dao.ClientDAO;
 import Dao.LendDAO;
 import Dao.Lend_itemsDAO;
+import Model.Asset_store;
 import Model.Company;
 import Model.Lend;
 import Model.Lend_items;
@@ -40,6 +42,16 @@ public class LendS extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+         try (PrintWriter out = response.getWriter()) {
+            String op = request.getParameter("op");
+//          int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//          LendDAO a = new LendDAO("AABGJJMO_BiStock_" + company_id);
+            LendDAO ld = new LendDAO("AABGJJMO_BiStock_" + 1);
+            Gson g = new Gson();
+            
+         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
+            Logger.getLogger(LendS.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -67,12 +79,22 @@ public class LendS extends HttpServlet {
                     for(queryLend q: list_items){
                         Lend_items item=new Lend_items();
                         item.setLend_id(mayor);
+//                        int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//                        Lend_itemsDAO a = new Lend_itemsDAO("AABGJJMO_BiStock_" + company_id);
+                        Asset_storeDAO as=new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
+                        Asset_store asset_sencillo=as.readAsset_store(q.getAsset_store_id());
+                        asset_sencillo.setNo_avaliable(asset_sencillo.getNo_avaliable()+q.getLend_quantity());
+                        as.updateAsset_store(asset_sencillo);
                         item.setAsset_store_id(q.getAsset_store_id());
                         item.setLend_quantity(q.getLend_quantity());
                         ldi.createLend_items(item);
                     }
                     out.println("I did it");
                 }
+            }
+            if(op.equalsIgnoreCase("devolution")){
+                int lend_id=Integer.parseInt(request.getParameter("lend_id"));
+                
             }
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(LendS.class.getName()).log(Level.SEVERE, null, ex);

@@ -42,6 +42,8 @@ public class LendDAO {
         }
         return 0;
     }
+    
+    
 
     public Lend readLend(int lend_id) throws SQLException {
         Lend lend=new Lend();

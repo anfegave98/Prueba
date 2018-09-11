@@ -45,11 +45,10 @@ public class Asset_storeDAO {
     }
 
     public void updateAsset_store(Asset_store asset_store) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update asset_store set available=?,no_available=?" + " where asset_id=? and store_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("update asset_store set available=?,no_available=?" + " where asset_store_id=?");
         preparedStatement.setInt(1, asset_store.getAvaliable());
         preparedStatement.setInt(2, asset_store.getNo_avaliable());
-        preparedStatement.setInt(3, asset_store.getAsset_id());
-        preparedStatement.setInt(4, asset_store.getStore_id());
+        preparedStatement.setInt(3, asset_store.getAsset_store_id());
         preparedStatement.executeUpdate();
     }
     
@@ -59,7 +58,8 @@ public class Asset_storeDAO {
         Asset_store asset_store = new Asset_store();
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select * from asset_store where deleted=false and asset_id=" + asset_id + " and store_id=" + store_id);
-        while (rs.next()) {                                              
+        while (rs.next()) {
+            asset_store.setAsset_store_id(rs.getInt("asset_store_id"));
             asset_store.setAsset_id(rs.getInt("asset_id"));
             asset_store.setStore_id(rs.getInt("store_id"));
             asset_store.setAvaliable(rs.getInt("available"));
@@ -72,7 +72,8 @@ public class Asset_storeDAO {
         Asset_store asset_store = new Asset_store();
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select * from asset_store where deleted=false and asset_store_id=" + asset_store_id );
-        while (rs.next()) {                                              
+        while (rs.next()) {                              
+            asset_store.setAsset_store_id(rs.getInt("asset_store_id"));
             asset_store.setAsset_id(rs.getInt("asset_id"));
             asset_store.setStore_id(rs.getInt("store_id"));
             asset_store.setAvaliable(rs.getInt("available"));
@@ -87,6 +88,7 @@ public class Asset_storeDAO {
         ResultSet rs = statement.executeQuery("select * from asset_store where deleted=false");
         while (rs.next()) {
             Asset_store asset_store = new Asset_store();
+            asset_store.setAsset_store_id(rs.getInt("asset_store_id"));
             asset_store.setAsset_id(rs.getInt("asset_id"));
             asset_store.setStore_id(rs.getInt("store_id"));
             asset_store.setAvaliable(rs.getInt("avaliable"));

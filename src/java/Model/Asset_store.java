@@ -88,6 +88,11 @@ public class Asset_store {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+    @Override
+    public String toString() {
+        return "Asset_store{" + "asset_store_id=" + asset_store_id + ", asset_id=" + asset_id + ", store_id=" + store_id + ", avaliable=" + avaliable + ", no_avaliable=" + no_avaliable + ", creation_date=" + creation_date + ", elimnation_date=" + elimnation_date + ", deleted=" + deleted + '}';
+    }
     
     
     
