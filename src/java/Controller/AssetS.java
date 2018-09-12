@@ -9,6 +9,7 @@ import Dao.AssetDAO;
 import Dao.Asset_storeDAO;
 import Model.Asset;
 import Model.Asset_store;
+import Util.Asset_available_report;
 import Util.Encription;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -40,11 +41,10 @@ public class AssetS extends HttpServlet {
 //            AssetDAO a = new AssetDAO("AABGJJMO_BiStock_" + company_id);
             AssetDAO a = new AssetDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
-            if (op.equalsIgnoreCase("getall")) {
+            if (op.equalsIgnoreCase("get")) {
                 ArrayList<Asset> assets = a.getAllAsset();
                 String pasareEsto = g.toJson(assets);
                 out.print(pasareEsto);
-
             }
             if (op.equalsIgnoreCase("getById")) {
                 int asset_id = Integer.parseInt(request.getParameter("asset_id"));
@@ -58,6 +58,7 @@ public class AssetS extends HttpServlet {
                 String pasareEsto = g.toJson(e);
                 out.print(pasareEsto);
             }
+            
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(AdminS.class.getName()).log(Level.SEVERE, null, ex);
         }

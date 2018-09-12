@@ -6,6 +6,7 @@
 package Dao;
 
 import Model.Asset;
+import Util.Asset_available_report;
 import Util.DbUtil;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -121,6 +122,22 @@ public class AssetDAO {
         }
         return assets;
     }
+     public ArrayList<Asset_available_report> getAllAvailable() throws SQLException {
+        ArrayList<Asset_available_report> assets = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select asset.name as name, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false");
+        while (rs.next()) {
+            Asset_available_report asset = new Asset_available_report();
+            asset.setName(rs.getString("name"));
+            asset.setCodebar(rs.getString("codebar"));
+            asset.setPrincipal_picture(rs.getString("principal_picture"));
+            asset.setDescription(rs.getString("description"));
+            asset.setAvailable(rs.getInt("available"));
+            asset.setNo_available(rs.getInt("no_available"));
+            assets.add(asset);
+        }
+        return assets;
+    }
 
     public boolean getCodebar(String codebar) throws SQLException {
         Statement statement = connection.createStatement();
@@ -129,5 +146,21 @@ public class AssetDAO {
             return true;
         }
         return false;
+    }
+
+    public Asset_available_report getOneAvailable(int asset_id) throws SQLException {
+        Asset_available_report asset = new Asset_available_report();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select asset.name as name, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false and asset_store.asset_store_id="+asset_id);
+        while (rs.next()) {
+            
+            asset.setName(rs.getString("name"));
+            asset.setCodebar(rs.getString("codebar"));
+            asset.setPrincipal_picture(rs.getString("principal_picture"));
+            asset.setDescription(rs.getString("description"));
+            asset.setAvailable(rs.getInt("available"));
+            asset.setNo_available(rs.getInt("no_available"));
+        }
+        return asset;
     }
 }

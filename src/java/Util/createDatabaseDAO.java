@@ -266,6 +266,7 @@ public class createDatabaseDAO {
                 + "devolution_date timestamp,\n"
                 + "client_calification int,\n"
                 + "admin_calification int,\n"
+                + "deleted bool,\n"
                 + "foreign key(admin_role_store_id) references admin_role_store(admin_role_store_id),\n"
                 + "foreign key(client_id) references Client(client_id)\n"
                 + ");";
