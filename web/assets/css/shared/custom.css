@@ -59,7 +59,7 @@
 }*/
 
 .form-check .form-check-label input:checked + .input-helper:after {
-    line-height: 2px;
+        line-height: 15px;
 } 
 
 .jsgrid-pager-nav-button {
@@ -73,11 +73,6 @@
     width: 170px;
 }
 
-#register-form .wizard > .steps > ul > li {
-    width: 33.3%;
-    float: left;
-    text-align: center;
-}
 /*
 input {
     box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.22) !important;
@@ -132,4 +127,8 @@ input:hover {
 
 .asColorPicker-wrap:hover .asColorPicker-clear {
     margin-top: 9px;
+}
+
+.form-check .form-check-label input:checked + .input-helper:after {
+    line-height: 15px;
 }

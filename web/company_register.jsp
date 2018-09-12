@@ -11,6 +11,8 @@
     <head>
         <title>BI-Stock | Register your Business</title>
         <%@ include file="includes/stylesheet.jsp" %>
+        <link rel="stylesheet" href="assets/css/demo_1/style.css">
+        <link rel="stylesheet" href="assets/css/shared/awesome-bootstrap-checkbox.css">
     </head>
 
     <body>
@@ -44,48 +46,133 @@
                                                 <p>Comencemos por llenar los datos principales de tu empresa y configurar tu pantalla principal</p>
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="nit">NIT de la empresa</label>
-                                                <input id="nit" type="text" class="form-control" placeholder="Ingrese su NIT" required>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="nombre">Nombre de la empresa</label>
-                                                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su correo principal">
+                                                <label for="name">Nombre de la empresa</label>
+                                                <input value="empresa" id="name" type="text" placeholder="Ingrese el nombre de su empresa" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label>Sector</label><br>
-                                                <select class="selectpicker" style="width:100%" multiple>
-                                                    <option value="AL">Automóviles</option>
-                                                    <option value="WY">Tecnología</option>
-                                                    <option value="AM">Medicina</option>
-                                                    <option value="CA">Educación</option>
-                                                    <option value="RU">Almacenes</option>
+                                                <select id="sectors" class="selectpicker" data-dropup-auto="false" data-size="10" style="width:100%">
+                                                    <option value=""> </option>
+                                                    <option value="1">Automóviles</option>
+                                                    <option value="2">Tecnología</option>
+                                                    <option value="3">Medicina</option>
+                                                    <option value="4">Educación</option>
+                                                    <option value="5">Almacenes</option>
                                                 </select>
 
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Color principal</label>
-                                                <input type='text' class="color-picker" value="#3373ff" id="colorpicker"/>
+                                                <label for="primary_color">Color principal</label>
+                                                <input type='text' class="color-picker" value="#128bfc" id="primary_color"/>
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Color secundario</label>
-                                                <input type='text' class="color-picker" value="#31a8ce" id="colorpicker2"/>
+                                                <label for="accent_color">Color secundario</label>
+                                                <input type='text' class="color-picker" value="#15b67d" id="secondary_color"/>
                                             </div>
+
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Logo de la Empresa</label>
-                                                <input type="file" id="imgInp" class="dropify" data-height="80" data-max-file-size="3M" data-allowed-file-extensions="png jpg svg jpeg"/>
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="radio" value="light" name="basic_color" checked> Tema claro
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="radio" value="dark" name="basic_color">Tema oscuro
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-12">
+                                                <label for="logo">Logo de la Empresa</label>
+                                                <input type="file" id="logo" class="dropify" data-height="80" data-max-file-size="3M" data-allowed-file-extensions="png jpg svg jpeg"/>
                                                 <p class="small-text">Sube una imagen PNG, JPG o SVG de tu logo completo de forma horizontal. Peso máximo: 3 MB. Tamaño recomendado: 2500px *  56px</p>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-12">
                                             <div class="card dark-transparent-card">
                                                 <div class="card-body">
-                                                    <h3 >Color principal</h3>
-                                                    <div style="height: 30px" id="cambiarColor" class="form-group"></div>
-                                                    <h3 >Color secundario</h3>
-                                                    <div style="height: 30px" id="cambiarColor2" class="form-group"></div>
-                                                    <h3>Logo</h3>
-                                                    <img style="max-width: 100%; min-width: 50%" id="imageprev" />
+                                                    <div style="background-color: #e6e6e6" id="background-prev">
+                                                        <nav id="colorbar" class="navbar default-layout col-lg-12 col-12 p-0 d-flex flex-row">
+                                                            <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+                                                                <a class="navbar-brand brand-logo" href="index.html">
+                                                                    <img id="logoprev" src="assets/images/bistock_color.svg" alt="logo"> </a>
+                                                                <a class="navbar-brand brand-logo-mini" href="index.html">
+                                                                    <img src="assets/images/bistock_color_mini.svg" alt="logo"> </a>
+                                                            </div>
+                                                            <div class="navbar-menu-wrapper d-flex align-items-center">
+                                                                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                                                                    <span class="mdi mdi-menu"></span>
+                                                                </button>
 
+                                                            </div>
+                                                        </nav>
+                                                        <nav class="sidebar sidebar-offcanvas" style="min-height: 450px;" id="sidebar">
+                                                            <ul class="nav">
+                                                                <li class="nav-item nav-profile">
+                                                                    <div class="nav-link">
+                                                                        <div class="user-wrapper">
+                                                                            <div class="profile-image">
+                                                                                <img src="assets/images/faces/face1.jpg" alt="profile image"> </div>
+                                                                            <div class="text-wrapper">
+                                                                                <p class="profile-name">[Admin]</p>
+                                                                                <div>
+                                                                                    <small class="designation text-muted">SuperAdmin</small>
+                                                                                    <span class="status-indicator online"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <button id="colorbutton" class="btn btn-success btn-block">Nuevo préstamo
+                                                                            <i class="mdi mdi-plus"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </li>
+
+                                                                <li class="nav-item active">
+                                                                    <a id="colorlink" class="nav-link" href="dashboard.jsp" aria-expanded="true">
+                                                                        <i class="menu-icon mdi mdi-television"></i>
+                                                                        <span class="menu-title">Dashboard</span>
+                                                                    </a>
+                                                                </li>
+
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="bi.jsp">
+                                                                        <i class="menu-icon mdi mdi-lightbulb-outline"></i>
+                                                                        <span class="menu-title">Business Intelligence</span>
+                                                                    </a>
+                                                                </li>
+
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="prestamos.jsp">
+                                                                        <i class="menu-icon mdi mdi-notification-clear-all"></i>
+                                                                        <span class="menu-title">Préstamos</span>
+                                                                    </a>
+                                                                </li>
+
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="inventario.jsp">
+                                                                        <i class="menu-icon mdi mdi-table"></i>
+                                                                        <span class="menu-title">Inventario</span>
+                                                                    </a>
+                                                                </li>
+
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="clientes.jsp">
+                                                                        <i class="menu-icon mdi mdi-lightbulb-outline"></i>
+                                                                        <span class="menu-title">Clientes</span>
+                                                                    </a>
+                                                                </li>
+
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="administradores.jsp">
+                                                                        <i class="menu-icon mdi mdi-shield-outline"></i>
+                                                                        <span class="menu-title">Administradores</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,25 +188,26 @@
                                                 <p>Agrega los datos de tu sede principal, los cuales se mostrarán a tus clientes. <br>Puedes agregar otras sedes más adelante.</p>
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="nombresede">Nombre de la sede</label>
-                                                <input type="text" class="form-control" id="nombresede" placeholder="Ingrese su correo principal">
+                                                <label for="sedeName">Nombre de la sede *</label>
+                                                <input value="sede" id="sedeName" type="text" placeholder="Ingrese el nombre de la sede" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Dirección</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo principal">
+                                                <label for="address">Dirección *</label>
+                                                <input value="dir" id="address" type="text" placeholder="Ingrese la dirección" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Teléfono</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo principal">
+                                                <label for="phone_1">Teléfono 1 *</label>
+                                                <input value="p1" id="phone_1" type="text" placeholder="Ingrese el teléfono principal" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Teléfono 2</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo principal">
+                                                <label for="phone_2">Teléfono 2</label>
+                                                <input value="p2" id="phone_2" type="text" placeholder="Ingrese el teléfono secundario" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Email de Atención al Cliente</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo principal">
+                                                <label for="emailAtencion">Email de Atención al Cliente</label>
+                                                <input value="eAten" type="email" class="form-control" id="emailAtencion" placeholder="Ingrese el correo de atención">
                                             </div>
+                                            
                                         </div>
 
                                     </div>
@@ -130,30 +218,30 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="col-12">
                                                 <h4>Configura tu cuenta</h4>
-                                                <p>Datos del a cuenta.</p>
+                                                <p>Datos de la cuenta.</p>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-12">
 
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Nombres</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo principal">
+                                                <label for="adminName">Nombres</label>
+                                                <input value="nombres" type="text" class="form-control" id="adminName" placeholder="Ingrese sus nombres">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Apellidos</label>
-                                                <input type="email" class="form-control" id="test" placeholder="Ingrese su correo principal">
+                                                <label for="last_name">Apellidos</label>
+                                                <input value="apellidos" type="text" class="form-control" id="last_name" placeholder="Ingrese sus apellidos">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="veremail">Email</label>
-                                                <input type="email" class="form-control" id="veremail" placeholder="Ingrese su correo principal">
+                                                <label for="adminEmail">Email</label>
+                                                <input value="email de" type="email" class="form-control" id="adminEmail" placeholder="Ingrese su correo principal">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Contraseña</label>
-                                                <input type="email" class="form-control" id="contra" placeholder="Ingrese su correo principal">
+                                                <label for="pass">Contraseña</label>
+                                                <input type="password" class="form-control" id="pass" placeholder="Ingrese su contraseña">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Confirmar Contraseña</label>
-                                                <input type="email" class="form-control" id="contraver" placeholder="Ingrese su correo principal">
+                                                <label for="pass2">Confirmar Contraseña</label>
+                                                <input type="password" class="form-control" id="pass2" placeholder="Confirme su contraseña">
                                             </div>
                                         </div>
 
@@ -230,6 +318,7 @@
         <script src="assets/js/bootstrap-select-es_ES.js"></script>
         <!-- endinject -->
         <!-- Plugin js for this page-->
+        <script src="assets/js/companyRegister.js"></script>
         <!-- End plugin js for this page-->
         <!-- inject:js -->
         <script src="assets/js/shared/off-canvas.js"></script>
@@ -242,7 +331,6 @@
         <script src="assets/js/shared/dropify.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
-        <script src="assets/js/companyRegister.js"></script>
         <!-- End custom js for this page-->
     </body>
 
