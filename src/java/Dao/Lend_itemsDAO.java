@@ -23,6 +23,7 @@ import java.util.ArrayList;
  * @author FiJus
  */
 public class Lend_itemsDAO {
+
     private Connection connection;
 
     public Lend_itemsDAO(String database) throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
@@ -38,11 +39,11 @@ public class Lend_itemsDAO {
     }
 
     public ArrayList<Lend_items> readLend_items(int lend_id) throws SQLException {
-        ArrayList<Lend_items> lend_itemss=new ArrayList<>();
-        Statement statement= connection.createStatement();
-        ResultSet rs=statement.executeQuery("select * from lend_items where lend_id="+lend_id);
-        while(rs.next()){
-            Lend_items lend_items=new Lend_items();
+        ArrayList<Lend_items> lend_itemss = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from lend_items where lend_id=" + lend_id);
+        while (rs.next()) {
+            Lend_items lend_items = new Lend_items();
             lend_items.setLend_id(lend_id);
             lend_items.setAsset_store_id(rs.getInt("asset_store_id"));
             lend_items.setCalification(rs.getInt("calification"));
@@ -52,13 +53,13 @@ public class Lend_itemsDAO {
         }
         return lend_itemss;
     }
-    
+
     public ArrayList<Lend_items> getAllLend_items() throws SQLException {
-        ArrayList<Lend_items> lend_itemss=new ArrayList<>();
-        Statement statement= connection.createStatement();
-        ResultSet rs=statement.executeQuery("select * from lend_items");
-        while(rs.next()){
-            Lend_items lend_items=new Lend_items();
+        ArrayList<Lend_items> lend_itemss = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from lend_items");
+        while (rs.next()) {
+            Lend_items lend_items = new Lend_items();
             lend_items.setLend_id(rs.getInt("lend_id"));
             lend_items.setAsset_store_id(rs.getInt("asset_store_id"));
             lend_items.setCalification(rs.getInt("calification"));
@@ -67,5 +68,34 @@ public class Lend_itemsDAO {
             lend_itemss.add(lend_items);
         }
         return lend_itemss;
+    }
+
+    
+    public ArrayList<Lend_items> getAllLend_items(int lend_id) throws SQLException {
+        ArrayList<Lend_items> lend_itemss = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from lend_items where lend_id="+lend_id);
+        while (rs.next()) {
+            Lend_items lend_items = new Lend_items();
+            lend_items.setLend_id(rs.getInt("lend_id"));
+            lend_items.setAsset_store_id(rs.getInt("asset_store_id"));
+            lend_items.setCalification(rs.getInt("calification"));
+            lend_items.setLend_quantity(rs.getInt("lend_quantity"));
+            lend_items.setDevolution_quantity(rs.getInt("devolution_quantity"));
+            lend_itemss.add(lend_items);
+        }
+        return lend_itemss;
+    }
+    
+    public void devolution(int lend_id) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from lend_items where lend_id=" + lend_id);
+        while (rs.next()) {
+            int lend_quantity=rs.getInt("lend_quantity");
+            int asset_store_id=rs.getInt("asset_store_id");
+            PreparedStatement preparedStatement = connection.prepareStatement("update lend_items set devolution_quantity=? where lend_quantity="+lend_quantity+" and asset_store_id="+asset_store_id);
+            preparedStatement.setInt(1, lend_quantity);
+            preparedStatement.executeUpdate();
+        }
     }
 }

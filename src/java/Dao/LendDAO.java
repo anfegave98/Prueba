@@ -80,4 +80,10 @@ public class LendDAO {
         }
         return lends;
     }
+
+    public void finishLend(int lend_id) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("update lend set end_date=? where lend_id="+lend_id);
+        preparedStatement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+        preparedStatement.executeUpdate();
+    }
 }

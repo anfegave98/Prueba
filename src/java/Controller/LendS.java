@@ -48,7 +48,18 @@ public class LendS extends HttpServlet {
 //          LendDAO a = new LendDAO("AABGJJMO_BiStock_" + company_id);
             LendDAO ld = new LendDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
-            
+            if(op.equalsIgnoreCase("activeByClient")){
+                
+            }
+            if(op.equalsIgnoreCase("inactiveByClient")){
+                
+            }
+            if(op.equalsIgnoreCase("active")){
+                
+            }
+            if(op.equalsIgnoreCase("inactive")){
+                
+            }
          } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(LendS.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,7 +105,19 @@ public class LendS extends HttpServlet {
             }
             if(op.equalsIgnoreCase("devolution")){
                 int lend_id=Integer.parseInt(request.getParameter("lend_id"));
-                
+                Lend_itemsDAO li=new Lend_itemsDAO("AABGJJMO_BiStock_" + 1);
+                li.devolution(lend_id);
+                ArrayList<Lend_items> lends=li.getAllLend_items();
+                for(Lend_items led:lends){
+                    //                        int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
+//                        Lend_itemsDAO a = new Lend_itemsDAO("AABGJJMO_BiStock_" + company_id);
+                        Asset_storeDAO asdao=new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
+                    Asset_store as=asdao.readAsset_store(led.getAsset_store_id());
+                    as.setNo_avaliable(as.getNo_avaliable()-led.getDevolution_quantity());
+                    asdao.updateAsset_store(as);
+                }
+                ld.finishLend(lend_id);
+                out.println("true");
             }
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(LendS.class.getName()).log(Level.SEVERE, null, ex);
