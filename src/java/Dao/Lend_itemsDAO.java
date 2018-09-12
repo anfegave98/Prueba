@@ -7,6 +7,7 @@ package Dao;
 
 import Model.Lend_items;
 import Util.DbUtil;
+import Util.Lend_items_report;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -98,4 +99,21 @@ public class Lend_itemsDAO {
             preparedStatement.executeUpdate();
         }
     }
+    public ArrayList<Lend_items_report> getBorrowed_times_store(int store_id) throws SQLException {
+        ArrayList<Lend_items_report> lend_items_reports = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select asset.name,asset.codebar,sum(lend_items.lend_quantity) as borrowed_times from lend_items,asset_store,asset,store\n"
+                + "where asset.asset_id=asset_store.asset_id and asset_store.asset_store_id = lend_items.asset_store_id and\n"
+                + "store.store_id = asset_store.store_id and store.store_id=" + store_id +"\n"
+                + "group by lend_items.asset_store_id order by borrowed_times desc limit 5");
+        while (rs.next()) {
+            Lend_items_report lend_items_report = new Lend_items_report();
+            lend_items_report.setName(rs.getString("name"));
+            lend_items_report.setCodebar(rs.getString("codebar"));
+            lend_items_report.setBorrowed_times(rs.getInt("borrowed_times"));
+            lend_items_reports.add(lend_items_report);
+        }
+        return lend_items_reports;
+    }
+
 }
