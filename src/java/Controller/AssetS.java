@@ -45,7 +45,6 @@ public class AssetS extends HttpServlet {
                 ArrayList<Asset> assets = a.getAllAsset();
                 String pasareEsto = g.toJson(assets);
                 out.print(pasareEsto);
-
             }
             if (op.equalsIgnoreCase("getById")) {
                 int asset_id = Integer.parseInt(request.getParameter("asset_id"));
@@ -59,12 +58,7 @@ public class AssetS extends HttpServlet {
                 String pasareEsto = g.toJson(e);
                 out.print(pasareEsto);
             }
-            if (op.equalsIgnoreCase("getall")) {
-                ArrayList<Asset_available_report> assets = a.getAllAvailable();
-                String pasareEsto = g.toJson(assets);
-                out.print(pasareEsto);
-
-            }
+            
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(AdminS.class.getName()).log(Level.SEVERE, null, ex);
         }
