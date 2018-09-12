@@ -44,6 +44,9 @@ public class Asset_storeS extends HttpServlet {
                 int asset_id = Integer.parseInt(request.getParameter("asset_store_id"));
                 out.print(g.toJson(as.getOneAvailable(asset_id)));
             }
+            if (op.equalsIgnoreCase("getByCodebar")) {
+                out.print(g.toJson(as.getOneAvailable(request.getParameter("codebar"))));
+            }
             if (op.equalsIgnoreCase("getall")) {
                 ArrayList<Asset_available_report> assets = as.getAllAvailable();
                 String pasareEsto = g.toJson(assets);
