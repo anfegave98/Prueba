@@ -7,6 +7,7 @@ package Dao;
 
 import Model.Lend_items;
 import Util.DbUtil;
+import Util.Lend_items_report;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
  * @author FiJus
  */
 public class Lend_itemsDAO {
+
     private Connection connection;
 
     public Lend_itemsDAO(String database) throws SQLException, URISyntaxException, ClassNotFoundException, IOException {
@@ -38,11 +40,11 @@ public class Lend_itemsDAO {
     }
 
     public ArrayList<Lend_items> readLend_items(int lend_id) throws SQLException {
-        ArrayList<Lend_items> lend_itemss=new ArrayList<>();
-        Statement statement= connection.createStatement();
-        ResultSet rs=statement.executeQuery("select * from lend_items where lend_id="+lend_id);
-        while(rs.next()){
-            Lend_items lend_items=new Lend_items();
+        ArrayList<Lend_items> lend_itemss = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from lend_items where lend_id=" + lend_id);
+        while (rs.next()) {
+            Lend_items lend_items = new Lend_items();
             lend_items.setLend_id(lend_id);
             lend_items.setAsset_store_id(rs.getInt("asset_store_id"));
             lend_items.setCalification(rs.getInt("calification"));
@@ -52,13 +54,13 @@ public class Lend_itemsDAO {
         }
         return lend_itemss;
     }
-    
+
     public ArrayList<Lend_items> getAllLend_items() throws SQLException {
-        ArrayList<Lend_items> lend_itemss=new ArrayList<>();
-        Statement statement= connection.createStatement();
-        ResultSet rs=statement.executeQuery("select * from lend_items");
-        while(rs.next()){
-            Lend_items lend_items=new Lend_items();
+        ArrayList<Lend_items> lend_itemss = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select * from lend_items");
+        while (rs.next()) {
+            Lend_items lend_items = new Lend_items();
             lend_items.setLend_id(rs.getInt("lend_id"));
             lend_items.setAsset_store_id(rs.getInt("asset_store_id"));
             lend_items.setCalification(rs.getInt("calification"));
@@ -68,4 +70,22 @@ public class Lend_itemsDAO {
         }
         return lend_itemss;
     }
+
+    public ArrayList<Lend_items_report> getBorrowed_times_store(int store_id) throws SQLException {
+        ArrayList<Lend_items_report> lend_items_reports = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select asset.name,asset.codebar,sum(lend_items.lend_quantity) as borrowed_times from lend_items,asset_store,asset,store\n"
+                + "where asset.asset_id=asset_store.asset_id and asset_store.asset_store_id = lend_items.asset_store_id and\n"
+                + "store.store_id = asset_store.store_id and store.store_id=" + store_id +"\n"
+                + "group by lend_items.asset_store_id order by borrowed_times desc limit 5");
+        while (rs.next()) {
+            Lend_items_report lend_items_report = new Lend_items_report();
+            lend_items_report.setName(rs.getString("name"));
+            lend_items_report.setCodebar(rs.getString("codebar"));
+            lend_items_report.setBorrowed_times(rs.getInt("borrowed_times"));
+            lend_items_reports.add(lend_items_report);
+        }
+        return lend_items_reports;
+    }
+
 }
