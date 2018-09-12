@@ -34,7 +34,8 @@
                     </nav>
                     <div class="row">
                         <div class="col-md-8 mx-auto">
-                            <form id="register-form" class="" action="TEST" autocomplete="off">
+                            <form id="register-form" method="POST" autocomplete="off">
+
                                 <h3>Empresa</h3>
                                 <section>
                                     <div class="row">
@@ -43,51 +44,19 @@
                                                 <h4>Configura tu empresa</h4>
                                                 <p>Comencemos por llenar los datos principales de tu empresa y configurar tu pantalla principal</p>
                                             </div>
-                                            <div class="form-group col-12">
-                                                <label for="nit">NIT de la empresa</label>
-                                                <input id="nit" type="text" class="form-control" placeholder="Ingrese su NIT" required>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="nombre">Nombre de la empresa</label>
-                                                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su correo principal">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label>Sector</label><br>
-                                                <select class="selectpicker" style="width:100%" multiple>
-                                                    <option value="AL">Automóviles</option>
-                                                    <option value="WY">Tecnología</option>
-                                                    <option value="AM">Medicina</option>
-                                                    <option value="CA">Educación</option>
-                                                    <option value="RU">Almacenes</option>
-                                                </select>
+                                            <div class="form-group">
+                                                <label for="cname">Name (required, at least 2 characters)</label>
+                                                <input id="cname" class="form-control" name="name" minlength="2" type="text" required> </div>
+                                            <div class="form-group">
+                                                <label for="cemail">E-Mail (required)</label>
+                                                <input id="cemail" class="form-control" type="email" name="email" required> </div>
+                                            <div class="form-group">
+                                                <label for="curl">URL (optional)</label>
+                                                <input id="curl" class="form-control" type="url" name="url"> </div>
 
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Color principal</label>
-                                                <input type='text' class="color-picker" value="#3373ff" id="colorpicker"/>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Color secundario</label>
-                                                <input type='text' class="color-picker" value="#31a8ce" id="colorpicker2"/>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Logo de la Empresa</label>
-                                                <input type="file" id="imgInp" class="dropify" data-height="80" data-max-file-size="3M" data-allowed-file-extensions="png jpg svg jpeg"/>
-                                                <p class="small-text">Sube una imagen PNG, JPG o SVG de tu logo completo de forma horizontal. Peso máximo: 3 MB. Tamaño recomendado: 2500px *  56px</p>
-                                            </div>
                                         </div>
                                         <div class="col-lg-6 col-md-12">
-                                            <div class="card dark-transparent-card">
-                                                <div class="card-body">
-                                                    <h3 >Color principal</h3>
-                                                    <div style="height: 30px" id="cambiarColor" class="form-group"></div>
-                                                    <h3 >Color secundario</h3>
-                                                    <div style="height: 30px" id="cambiarColor2" class="form-group"></div>
-                                                    <h3>Logo</h3>
-                                                    <img style="max-width: 100%; min-width: 50%" id="imageprev" />
 
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -100,26 +69,24 @@
                                                 <h4>Configura tu sede principal</h4>
                                                 <p>Agrega los datos de tu sede principal, los cuales se mostrarán a tus clientes. <br>Puedes agregar otras sedes más adelante.</p>
                                             </div>
-                                            <div class="form-group col-12">
-                                                <label for="nombresede">Nombre de la sede</label>
-                                                <input type="text" class="form-control" id="nombresede" placeholder="Ingrese su correo principal">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Dirección</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo principal">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Teléfono</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo principal">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Teléfono 2</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo principal">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Email de Atención al Cliente</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo principal">
-                                            </div>
+                                            <div class="form-group">
+                                                <label for="firstname">Firstname</label>
+                                                <input id="firstname" class="form-control" name="firstname" type="text"> </div>
+                                            <div class="form-group">
+                                                <label for="lastname">Lastname</label>
+                                                <input id="lastname" class="form-control" name="lastname" type="text"> </div>
+                                            <div class="form-group">
+                                                <label for="username">Username</label>
+                                                <input id="username" class="form-control" name="username" type="text"> </div>
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input id="password" class="form-control" name="password" type="password"> </div>
+                                            <div class="form-group">
+                                                <label for="confirm_password">Confirm password</label>
+                                                <input id="confirm_password" class="form-control" name="confirm_password" type="password"> </div>
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input id="email" class="form-control" name="email" type="email"> </div>
                                         </div>
 
                                     </div>
@@ -133,27 +100,14 @@
                                                 <p>Datos del a cuenta.</p>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-12">
-
+                                        <div class="col-lg-6 col-md-12">                                               
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Nombres</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese su correo principal">
+                                                <label for="pass">Contraseña pass</label>
+                                                <input type="email" class="form-control" id="pass" placeholder="Ingrese su correo principal">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Apellidos</label>
-                                                <input type="email" class="form-control" id="test" placeholder="Ingrese su correo principal">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="veremail">Email</label>
-                                                <input type="email" class="form-control" id="veremail" placeholder="Ingrese su correo principal">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Contraseña</label>
-                                                <input type="email" class="form-control" id="contra" placeholder="Ingrese su correo principal">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="exampleInputEmail1">Confirmar Contraseña</label>
-                                                <input type="email" class="form-control" id="contraver" placeholder="Ingrese su correo principal">
+                                                <label for="passconfirm">Confirmar Contraseña</label>
+                                                <input type="email" class="form-control" id="passconfirm" placeholder="Ingrese su correo principal">
                                             </div>
                                         </div>
 
@@ -242,7 +196,7 @@
         <script src="assets/js/shared/dropify.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
-        <script src="assets/js/companyRegister.js"></script>
+        <script src="assets/js/companyRegisterVal.js"></script>
         <!-- End custom js for this page-->
     </body>
 
