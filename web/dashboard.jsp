@@ -13,6 +13,7 @@
     String email = "";
     String primary_color = "";
     String secondary_color = "";
+    String theme = "light";
     String logoScr = "";
 
     Company c = null;
@@ -180,7 +181,7 @@
                                   </div>
                                 </a>-->
                                 <a href="perfil.jsp" class="dropdown-item mt-2"> Mi perfil</a>
-                                <a href="logout" class="dropdown-item"> Cerrar sesión </a>
+                                <a onclick="logout();" style="cursor:pointer"class="dropdown-item"> Cerrar sesión </a>
                             </div>
                         </li>
                     </ul>
@@ -503,6 +504,7 @@
         <script src="assets/js/shared/misc.js"></script>
         <script src="assets/js/shared/settings.js"></script>
         <script src="assets/js/shared/todolist.js"></script>
+        <script src="assets/js/shared/logout.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
         <script src="assets/js/demo_1/dashboard.js"></script>

@@ -367,7 +367,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">Administradores</h4>
-                                            <button type="button" href="administradoresAdd.jsp" class="btn btn-primary btn-fw">Agregar</button>
+                                            <button type="button" class="btn btn-primary btn-fw">Agregar</button>
                                             
                                         
                                         <div class="table-responsive">

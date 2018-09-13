@@ -40,10 +40,10 @@
                                             <a class="nav-link btn btn-link" href="#">PLANES</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link btn btn-link" href="#">REGISTRO</a>
+                                            <a class="nav-link btn btn-link" href="company_register.jsp">REGISTRO</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link btn btn-link" href="#">INGRESAR</a>
+                                            <a class="nav-link btn btn-link" href="login.jsp">INGRESAR</a>
                                         </li>
                                     </ul>
                                 </div>
