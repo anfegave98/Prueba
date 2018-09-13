@@ -76,9 +76,9 @@ public class ClientS extends HttpServlet {
                     client.setEmail(request.getParameter("email"));
                     client.setName(request.getParameter("name"));
                     client.setLast_name(request.getParameter("last_name"));
-                    out.println(a.createClient(client));
+                    out.print(a.createClient(client));
                 } else {
-                    out.println("Email ya existente");
+                    out.print("Email ya existente");
                 }
             }
             if (op.equalsIgnoreCase("deleted")) {

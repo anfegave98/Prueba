@@ -1,3 +1,5 @@
+var table;
+
 $(document).ready(function () {
     table = $('#lend_table').DataTable({
         ajax: {
@@ -5,7 +7,7 @@ $(document).ready(function () {
             type: "GET",
             dataSrc: '',
             data: {
-                'op': "active"
+                'op': "activeNormal"
             }
         },
         columns: [
@@ -30,14 +32,35 @@ $(document).ready(function () {
         order: [[ 1, "desc" ]]
     });
 
-    $('#lend_table tbody').on('click', 'button', function () {
+    $('#lend_table tbody').on('click', 'a', function () {
         var data = table.row($(this).parents('tr')).data();
-        abrir(data.id_demanda);
+        devolver(data.lend_id);
     });
 
 });
 
-function abrir(id_demanda) {
-    localStorage.setItem("id_demanda",id_demanda);
-    document.location.href='redaccion_editar';
+
+function devolver(id) {
+    var parametrosClientAdd = {
+        "op": "devolution",
+        "lend_id": id
+    };
+
+    $.ajax({
+        data: parametrosClientAdd,
+        url: "LendS",
+        type: "POST"
+
+    }).done(function (response) {
+        console.log(response);
+        if (response == 'true') {
+            console.log(true);
+            table.ajax.reload();
+        } else {
+            alert("No se devolvio");
+        }
+
+    }).fail(function () {
+        alert("error");
+    });
 }

@@ -57,6 +57,9 @@ public class LendS extends HttpServlet {
             if(op.equalsIgnoreCase("active")){
                 out.print(g.toJson(ld.getActiveLendsFull()));
             }
+            if(op.equalsIgnoreCase("activeNormal")){
+                out.print(g.toJson(ld.getActiveLends()));
+            }
             if(op.equalsIgnoreCase("inactive")){
                 out.println(g.toJson(ld.getInactiveLends()));
             }
@@ -103,7 +106,7 @@ public class LendS extends HttpServlet {
                         item.setLend_quantity(q.getLend_quantity());
                         ldi.createLend_items(item);
                     }
-                    out.println("I did it");
+                    out.print("true");
                 }
             }
             if(op.equalsIgnoreCase("devolution")){
@@ -120,7 +123,7 @@ public class LendS extends HttpServlet {
                     asdao.updateAsset_store(as);
                 }
                 ld.finishLend(lend_id);
-                out.println("true");
+                out.print("true");
             }
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(LendS.class.getName()).log(Level.SEVERE, null, ex);

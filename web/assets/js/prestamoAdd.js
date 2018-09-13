@@ -20,14 +20,24 @@ $(document).ready(function () {
             {
                 targets: -1,
                 data: null,
-                defaultContent: '<a style="cursor: pointer; "><i class="menu-icon mdi mdi-lightbulb-outline"></i>></a>'
+                defaultContent: '<a class="plus" style="cursor: pointer; "><i class="menu-icon mdi mdi-cart-plus"></i></a><a class="less" style="cursor: pointer; "><i class="menu-icon mdi mdi-minus-circle"></i>></a>'
             }
         ],
         language: {
             url: 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json'
         },
         responsive: true,
-        order: [[1, "desc"]]
+        order: [[ 1, "desc" ]]
+    });
+
+    $('#items_table tbody').on('click', 'a.less', function () {
+        var data = table.row($(this).parents('tr')).data();
+        reduceQuantity(data.asset_store_id);
+    });
+    
+     $('#items_table tbody').on('click', 'a.plus', function () {
+        var data = table.row($(this).parents('tr')).data();
+        addQuantity(data.asset_store_id);
     });
 
 });
@@ -48,13 +58,10 @@ function sendLend() {
 
     }).done(function (response) {
         console.log(response);
-        var obj = JSON.parse(response);
-        if (obj.name != undefined) {
+        if (response == 'true') {
             console.log(true);
-
-            $('#client_name_show').text(obj.name);
-            $('#client_last_name_show').text(obj.last_name);
-            $('#client_email_show').text(obj.email);
+            window.location.href = "prestamos.jsp";
+            
 
         } else {
             alert("Cliente no existe");
