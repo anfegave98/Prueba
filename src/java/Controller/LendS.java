@@ -49,19 +49,17 @@ public class LendS extends HttpServlet {
             LendDAO ld = new LendDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
             if(op.equalsIgnoreCase("activeByClient")){
-                System.out.println(request.getParameter("client_id"));
                 out.println(g.toJson(ld.getActiveLendByClient(Integer.parseInt(request.getParameter("client_id")))));
             }
             if(op.equalsIgnoreCase("inactiveByClient")){
                 out.println(g.toJson(ld.getInactiveLendByClient(Integer.parseInt(request.getParameter("client_id")))));
             }
             if(op.equalsIgnoreCase("active")){
-                out.println(g.toJson(ld.getActiveLends()));
+                out.print(g.toJson(ld.getActiveLendsFull()));
             }
             if(op.equalsIgnoreCase("inactive")){
                 out.println(g.toJson(ld.getInactiveLends()));
             }
-             System.out.println(op);
             if(op.equalsIgnoreCase("count_report")){
                 out.println(g.toJson(ld.getAll_lends_ended()));
             }
