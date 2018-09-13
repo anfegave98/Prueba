@@ -310,7 +310,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-success btn-accent btn-block">Nuevo préstamo
+                                <button onclick="window.location.href='prestamoAdd.jsp'" class="btn btn-success btn-accent btn-block">Nuevo préstamo
                                     <i class="mdi mdi-plus"></i>
                                 </button>
                             </div>

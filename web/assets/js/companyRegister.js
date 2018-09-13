@@ -93,6 +93,9 @@ $('#colorbar').css('background', '#128bfc');
 $('#colorlink').css('color', '#128bfc');
 $('#colorbutton').css('background-color', '#15b67d');
 
+
+nombre_update
+
 $('#primary_color').on('asColorPicker::change', function (e) {
     var color = $('#primary_color').asColorPicker('val');
     $('#colorbar').css('background', color);

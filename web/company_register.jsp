@@ -111,7 +111,7 @@
                                                                             <div class="profile-image">
                                                                                 <img src="assets/images/faces/face1.jpg" alt="profile image"> </div>
                                                                             <div class="text-wrapper">
-                                                                                <p class="profile-name">[Admin]</p>
+                                                                                <p class="profile-name"><span id="nombre_update">[Admin]</span></p>
                                                                                 <div>
                                                                                     <small class="designation text-muted">SuperAdmin</small>
                                                                                     <span class="status-indicator online"></span>
