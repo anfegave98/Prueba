@@ -363,26 +363,34 @@
                 <div class="main-panel">
                     <div class="content-wrapper">
                         <div class="row">
-                            <div class="col-lg-12 grid-margin">
+                            <div class="col-md-6 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Administradores</h4>
-                                            <button type="button" class="btn btn-primary btn-fw">Agregar</button>
-                                            
-                                        
-                                        <div class="table-responsive">
-                                            <table id="admin_table" class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Nombres</th>
-                                                        <th>Apellidos</th>
-                                                        <th>Email</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>                                        
+                                        <h4 class="card-title">Agregar Administrador</h4>
+                                        <form id="administradorAdd" class="forms-sample">
+                                            <div class="form-group col-12">
+                                                <label for="adminName">Nombres</label>
+                                                <input type="text" class="form-control" id="adminName" placeholder="Ingrese sus nombres">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="last_name">Apellidos</label>
+                                                <input type="text" class="form-control" id="last_name" placeholder="Ingrese sus apellidos">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="adminEmail">Email</label>
+                                                <input  type="email" class="form-control" id="adminEmail" placeholder="Ingrese su correo principal">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="pass">Contraseña</label>
+                                                <input type="password" class="form-control" id="pass" placeholder="Ingrese su contraseña">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="pass2">Confirmar Contraseña</label>
+                                                <input type="password" class="form-control" id="pass2" placeholder="Confirme su contraseña">
+                                            </div>
+                                            <button type="submit" class="btn btn-success mr-2">Agregar</button>
+                                            <button class="btn btn-light">Cancel</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -423,7 +431,7 @@
         <script src="assets/js/shared/logout.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
-        <script src="assets/js/administradores.js"></script>
+        <script src="assets/js/administradoresAdd.js"></script>
         <!-- End custom js for this page-->
     </body>
 </html>

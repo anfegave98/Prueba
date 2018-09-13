@@ -55,10 +55,10 @@ public class StoreS extends HttpServlet {
                     store.setPhone_2(request.getParameter("phone_2"));
                     store.setEmail(request.getParameter("email"));
                     store.setPrincipal(true);
-                    out.println(s.createStore(store));
+                    out.print(s.createStore(store));
                 }
             }else{
-                out.println("Ya existe tienda principal");
+                out.print("Ya existe tienda principal");
             }
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(StoreS.class.getName()).log(Level.SEVERE, null, ex);

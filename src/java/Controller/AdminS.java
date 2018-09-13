@@ -78,7 +78,21 @@ public class AdminS extends HttpServlet {
                     admin.setEmail(request.getParameter("email"));
                     admin.setName(request.getParameter("name"));
                     admin.setLast_name(request.getParameter("last_name"));
-                    out.print(a.createAdmin(admin));
+
+                    boolean exito = a.createAdmin(admin);
+
+                    // INCRUSTADO DE ADMIN ROLE STORE S
+                    if (exito) {
+                        Admin_role_store adrost = new Admin_role_store();
+                        adrost.setAdmin_id((a.readAdmin(request.getParameter("email"))).getAdmin_id());
+                        Admin_role_storeDAO ars = new Admin_role_storeDAO("AABGJJMO_BiStock" + 1);
+                        adrost.setRole_admin_id(1);
+                        adrost.setStore_id(1);
+                        out.print(ars.createAdmin_role_store(adrost));
+                    } else {
+                        out.print(false);
+                    }
+
                 } else {
                     out.print(false);
                 }

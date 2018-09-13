@@ -1,42 +1,42 @@
 $(document).ready(function () {
-    table = $('#admin_table').DataTable({
-        ajax: {
-            url: "AdminS",
-            type: "GET",
-            dataSrc: '',
-            data: {
-                'op': "getall"
-            }
-        },
-        columns: [
-            {data: 'admin_id'},
-            {data: 'name'},
-            {data: 'last_name'},
-            {data: 'email'},
-            {data: null}
-        ],
-        columnDefs: [
-            {
-                targets: -1,
-                data: null,
-                defaultContent: '<a style="cursor: pointer; "><i class="menu-icon mdi mdi-lightbulb-outline"></i>></a>'
-            }
-        ],
-        language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json'
-        },
-        responsive: true,
-        order: [[ 1, "desc" ]]
-    });
-
-    $('#admin_table tbody').on('click', 'button', function () {
-        var data = table.row($(this).parents('tr')).data();
-        abrir(data.id_demanda);
-    });
-
+    
 });
 
-function abrir(id_demanda) {
-    localStorage.setItem("id_demanda",id_demanda);
-    document.location.href='redaccion_editar';
+$('#administradorAdd').on('submit', function () {
+    submitForm()
+});
+
+function submitForm() {
+    // PAGINA 3
+    var adminName = document.getElementById('adminName').value;
+    var last_name = document.getElementById('last_name').value;
+    var adminEmail = document.getElementById('adminEmail').value;
+    var password = document.getElementById('pass2').value;
+
+    var parametrosAdminAdd = {
+        "op": "create",
+        "name": adminName,
+        "last_name": last_name,
+        "email": adminEmail,
+        "password": password
+    };
+
+    $.ajax({
+        data: parametrosAdminAdd,
+        url: "AdminS",
+        type: "POST",
+        async: false
+
+    }).done(function (response) {
+        console.log(response);
+        if (response2 == 'true') {
+            exito = true;
+        } else {
+            alert("Este email ya se ha registrado en nuestra base de datos");
+        }
+
+    }).fail(function () {
+        alert("error");
+    });
+
 }

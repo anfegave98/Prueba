@@ -229,6 +229,16 @@ function submitForm() {
         "password": password,
         "basic_color": basicColor
     };
+    
+    var parametrosStoreAdd = {
+        "op": "create",
+        "company": 1,
+        "name": nameSede,
+        "address": address,
+        "phone_1": phone_1,
+        "phone_2": phone_2,
+        "email": emailAtention
+    };
 
     var parametrosAdminAdd = {
         "op": "create",
@@ -237,7 +247,7 @@ function submitForm() {
         "email": adminEmail,
         "password": password
     };
-    
+
     var exito = false;
 
     $.ajax({
@@ -252,8 +262,8 @@ function submitForm() {
 
 
             $.ajax({
-                data: parametrosAdminAdd,
-                url: "AdminS",
+                data: parametrosStoreAdd,
+                url: "StoreS",
                 type: "POST",
                 async: false
 
@@ -261,7 +271,25 @@ function submitForm() {
                 console.log(response2);
                 if (response2 == 'true') {
 
-                    exito = true;
+                    $.ajax({
+                        data: parametrosAdminAdd,
+                        url: "AdminS",
+                        type: "POST",
+                        async: false
+
+                    }).done(function (response3) {
+                        console.log(response3);
+                        if (response3 == 'true') {
+
+                            exito = true;
+
+                        } else {
+                            alert("Este email ya se ha registrado en nuestra base de datos");
+                        }
+
+                    }).fail(function () {
+                        alert("error");
+                    });
 
                 } else {
                     alert("Este email ya se ha registrado en nuestra base de datos");
