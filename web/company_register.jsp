@@ -35,7 +35,7 @@
                         </div>
                     </nav>
                     <div class="row">
-                        <div class="col-md-8 mx-auto">
+                        <div class="col-md-8 mx-auto" style="margin-bottom: 40px;">
                             <form id="register-form" class="" action="TEST" autocomplete="off">
                                 <h3>Empresa</h3>
                                 <section>
@@ -47,26 +47,21 @@
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="name">Nombre de la empresa</label>
-                                                <input value="empresa" id="name" type="text" placeholder="Ingrese el nombre de su empresa" class="form-control">
+                                                <input value="Jenno's Pizza" id="name" type="text" placeholder="Ingrese el nombre de su empresa" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label>Sector</label><br>
                                                 <select id="sectors" class="selectpicker" data-dropup-auto="false" data-size="10" style="width:100%">
                                                     <option value=""> </option>
-                                                    <option value="1">Automóviles</option>
-                                                    <option value="2">Tecnología</option>
-                                                    <option value="3">Medicina</option>
-                                                    <option value="4">Educación</option>
-                                                    <option value="5">Almacenes</option>
                                                 </select>
 
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="primary_color">Color principal</label>
+                                                <label for="primary_color">Color principal</label> <!--#128bfc-->
                                                 <input type='text' class="color-picker" value="#128bfc" id="primary_color"/>
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="accent_color">Color secundario</label>
+                                                <label for="secondary_color">Color secundario</label> <!--#15b67d-->
                                                 <input type='text' class="color-picker" value="#15b67d" id="secondary_color"/>
                                             </div>
 
@@ -189,23 +184,23 @@
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="sedeName">Nombre de la sede *</label>
-                                                <input value="sede" id="sedeName" type="text" placeholder="Ingrese el nombre de la sede" class="form-control">
+                                                <input value="Jenno's Sergio" id="sedeName" type="text" placeholder="Ingrese el nombre de la sede" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="address">Dirección *</label>
-                                                <input value="dir" id="address" type="text" placeholder="Ingrese la dirección" class="form-control">
+                                                <input value="Calle 27A # 30" id="address" type="text" placeholder="Ingrese la dirección" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="phone_1">Teléfono 1 *</label>
-                                                <input value="p1" id="phone_1" type="text" placeholder="Ingrese el teléfono principal" class="form-control">
+                                                <input value="3212596548" id="phone_1" type="text" placeholder="Ingrese el teléfono principal" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="phone_2">Teléfono 2</label>
-                                                <input value="p2" id="phone_2" type="text" placeholder="Ingrese el teléfono secundario" class="form-control">
+                                                <input value="4896541" id="phone_2" type="text" placeholder="Ingrese el teléfono secundario" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="emailAtencion">Email de Atención al Cliente</label>
-                                                <input value="eAten" type="email" class="form-control" id="emailAtencion" placeholder="Ingrese el correo de atención">
+                                                <input value="sergio@jennos.com" type="email" class="form-control" id="emailAtencion" placeholder="Ingrese el correo de atención">
                                             </div>
                                             
                                         </div>
@@ -225,23 +220,23 @@
 
                                             <div class="form-group col-12">
                                                 <label for="adminName">Nombres</label>
-                                                <input value="nombres" type="text" class="form-control" id="adminName" placeholder="Ingrese sus nombres">
+                                                <input value="Juan Sebastián" type="text" class="form-control" id="adminName" placeholder="Ingrese sus nombres">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="last_name">Apellidos</label>
-                                                <input value="apellidos" type="text" class="form-control" id="last_name" placeholder="Ingrese sus apellidos">
+                                                <input value="Leyva" type="text" class="form-control" id="last_name" placeholder="Ingrese sus apellidos">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="adminEmail">Email</label>
-                                                <input value="email de" type="email" class="form-control" id="adminEmail" placeholder="Ingrese su correo principal">
+                                                <input value="gerente@jennos.com" type="email" class="form-control" id="adminEmail" placeholder="Ingrese su correo principal">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="pass">Contraseña</label>
-                                                <input type="password" class="form-control" id="pass" placeholder="Ingrese su contraseña">
+                                                <input val="1234" type="password" class="form-control" id="pass" placeholder="Ingrese su contraseña">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="pass2">Confirmar Contraseña</label>
-                                                <input type="password" class="form-control" id="pass2" placeholder="Confirme su contraseña">
+                                                <input val="1234" type="password" class="form-control" id="pass2" placeholder="Confirme su contraseña">
                                             </div>
                                         </div>
 
@@ -251,63 +246,14 @@
                         </div>
                     </div>
                 </div>
-            </div> 
-            <footer class="container-fluid footer">
-                <div class="row pb-5 text-white footer-top">
-                    <div class="col-md-8 mx-auto">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <img src="assets/images/bistock_white.svg" class="brand-logo" alt="logo"/>
-                                <div class="d-flex flex-row footer-social-icons">
-                                    <i class="ti-facebook bg-facebook"></i>
-                                    <i class="ti-google bg-google"></i>
-                                    <i class="ti-twitter-alt bg-twitter"></i>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row contact-details">
-                                    <div class="col-12 d-flex mb-3">
-                                        <i class="ti-mobile mr-4"></i>
-                                        <h6 class="font-weight-normal">(0000) 1234 5678</h6>
-                                    </div>
-                                    <div class="col-12 d-flex mb-3">
-                                        <i class="ti-settings mr-4"></i>
-                                        <h6 class="font-weight-normal">support@bistock.com</h6>
-                                    </div>
-                                </div>
-                                <ul class="nav mt-3">
-                                    <li class="nav-item">
-                                        <a class="nav-link btn btn-link" href="#">CARACTERÍSTCAS</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link btn btn-link" href="#">PLANES</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link btn btn-link" href="#">REGISTRO</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link btn btn-link" href="#">INGRESAR</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <h6>Suscríbete</h6>
-                                <p>Conoce nuestros beneficios.</p>
-                                <div class="mt-3">
-                                    <input type="email" class="form-control" placeholder="Enter your email"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row py-4 footer-bottom">
+            </div>              
+                <footer class="row py-4 footer text-white" style=" background: #2a445a;border: none;">
                     <div class="col-md-8 mx-auto">
                         <div class="container-fluid clearfix">
                             <span class="d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="#">BiStock Colombia</a>. Todos los derechos reservados.</span>
                         </div>
                     </div>
-                </div>
-            </footer>
+                </footer>
         </div>
         <!-- container-scroller -->
         <!-- plugins:js -->
@@ -331,6 +277,7 @@
         <script src="assets/js/shared/dropify.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
+        
         <!-- End custom js for this page-->
     </body>
 

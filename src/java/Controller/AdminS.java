@@ -78,9 +78,9 @@ public class AdminS extends HttpServlet {
                     admin.setEmail(request.getParameter("email"));
                     admin.setName(request.getParameter("name"));
                     admin.setLast_name(request.getParameter("last_name"));
-                    out.println(a.createAdmin(admin));
+                    out.print(a.createAdmin(admin));
                 } else {
-                    out.println("Email ya existente");
+                    out.print(false);
                 }
             }
             if (op.equalsIgnoreCase("deleted")) {

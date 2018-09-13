@@ -49,21 +49,21 @@ public class Login extends HttpServlet {
                 if (c.is(company_id,email, password)) {
                     request.getSession().setAttribute("company", c.readCompany(email));
                     request.getSession().setAttribute("company_id", company_id);
-                    out.println("Company");
+                    out.print("Company");
                 } else {
                     AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
                     if (a.is(email, password)) {
                         request.getSession().setAttribute("admin", a.readAdmin(email));
                         request.getSession().setAttribute("company_id", company_id);
-                        out.println("Admin");
+                        out.print("Admin");
                     } else {
                         ClientDAO cl = new ClientDAO("AABGJJMO_BiStock_" + company_id);
                         if (cl.is(email, password)) {
                             request.getSession().setAttribute("client", cl.readClient(email));
                             request.getSession().setAttribute("company_id", company_id);
-                            out.println("Client");
+                            out.print("Client");
                         } else {
-                            out.println(false);
+                            out.print(false);
                         }
                     }
                 }

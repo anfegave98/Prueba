@@ -77,9 +77,9 @@ public class CompanyS extends HttpServlet {
                     String baseDeDatos = "AABGJJMO_BiStock_" + company.getCompany_id();
                     createDatabaseDAO cd = new createDatabaseDAO(baseDeDatos);
                     request.getSession().setAttribute("company", company);
-                    out.println(cd.createDatabase("AABGJJMO_BiStock_" + company.getCompany_id()));
+                    out.print(cd.createDatabase("AABGJJMO_BiStock_" + company.getCompany_id()));
                 } else {
-                    out.println(false);
+                    out.print(false);
                 }
             }
             if (op.equalsIgnoreCase("deleted")) {

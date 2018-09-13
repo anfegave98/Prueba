@@ -17,11 +17,11 @@
           <div class="row w-100 mx-auto">
             <div class="col-lg-4 mx-auto">
               <div class="auto-form-wrapper">
-                <form action="#">
+                <form id="login-form" action="#">
                   <div class="form-group">
-                    <label class="label">Username</label>
+                    <label class="label">Correo</label>
                     <div class="input-group">
-                      <input id="user" type="text" class="form-control" placeholder="Username">
+                      <input id="user" type="text" class="form-control" placeholder="Correo o ID">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-account"></i>
@@ -30,7 +30,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="label">Password</label>
+                    <label class="label">Contraseña</label>
                     <div class="input-group">
                       <input id="pass" type="password" class="form-control" placeholder="*********">
                       <div class="input-group-append">
@@ -41,7 +41,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <button class="btn btn-primary submit-btn btn-block">Login</button>
+                    <button class="btn btn-primary submit-btn btn-block">Ingresar</button>
                   </div>
                     <!--
                   <div class="form-group d-flex justify-content-between">
@@ -56,8 +56,8 @@
                       <img class="mr-3" src="assets/images/file-icons/icon-google.svg" alt="">Log in with Google</button>
                   </div> -->
                   <div class="text-block text-center my-3">
-                    <span class="text-small font-weight-semibold">Not a member ?</span>
-                    <a href="company_register.jsp" class="text-black text-small">Create new account</a>
+                    <span class="text-small font-weight-semibold">¿No eres miembro?</span>
+                    <a href="company_register.jsp" class="text-black text-small">Registra tu empresa</a>
                   </div>
                 </form>
               </div><!--
@@ -85,6 +85,7 @@
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
     <!-- endinject -->
+    <script src="assets/js/login.js"></script>
     <!-- inject:js -->
     <script src="assets/js/shared/off-canvas.js"></script>
     <script src="assets/js/shared/hoverable-collapse.js"></script>

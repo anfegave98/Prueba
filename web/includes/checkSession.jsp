@@ -1,12 +1,7 @@
-<%@page import=""%>
+<%@page import="Model.Company"%>
 <%
-                            if (request.getSession().getAttribute("usuario") != null) {
-                                Usuario u = (Usuario) request.getSession().getAttribute("usuario");
-                                if(u.getTipo().equals("1")){
-                                    
-                                }if(u.getTipo().equals("2")){
-                                    response.sendRedirect("organizador.jsp");
-                                }
+                            if (request.getSession().getAttribute("company") != null) {
+                                Company u = (Company) request.getSession().getAttribute("usuario");
                             }
                             else{
                                 response.sendRedirect("signin.jsp");

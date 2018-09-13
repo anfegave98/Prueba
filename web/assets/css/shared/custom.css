@@ -8,7 +8,7 @@
 }
 
 .landing-page .top-banner-overlay {
-    background: url(../images/topbanneroverlay2.svg) no-repeat center;
+    background: url(../../images/topbanneroverlay2.svg) no-repeat center;
     background-size: cover;
     margin-left: -20px;
     margin-right: -20px;
@@ -131,4 +131,17 @@ input:hover {
 
 .form-check .form-check-label input:checked + .input-helper:after {
     line-height: 15px;
+}
+
+.btn-outline-primary, .wizard > .actions .disabled a {
+    color: #2196f3;
+    background-color: white;
+    background-image: none;
+    border-color: #2196f3;
+}
+
+.btn-primary, .wizard > .actions a {
+    color: #fff;
+    background-color: #61c2f5;
+    border-color: #2196f3;
 }

@@ -1,93 +1,3 @@
-$(document).ready(function () {
-    getSectors();
-});
-
-var form = $('#register-form').show();
-form.steps({
-    headerTag: "h3",
-    bodyTag: "section",
-    transitionEffect: "slideLeft",
-    labels:
-            {
-                current: "Página actual:",
-                pagination: "Paginación",
-                finish: "Comenzar",
-                next: "Siguiente",
-                previous: "Anterior",
-                loading: "Cargando ..."
-            },
-    onInit: function (event, currentIndex) {
-
-        //Set tab width
-        var $tab = $(event.currentTarget).find('ul[role="tablist"] li');
-        var tabCount = $tab.length;
-        $tab.css('width', (100 / tabCount) + '%');
-    },
-    onStepChanging: function (event, currentIndex, newIndex) {
-        if (currentIndex > newIndex) {
-            return true;
-        }
-
-        if (currentIndex < newIndex) {
-            //form.find('.body:eq(' + newIndex + ') label.error').remove();
-            //form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
-        }
-
-        //form.validate().settings.ignore = ':disabled,:hidden';
-        //return form.valid();
-        return true;
-    },
-    onFinishing: function (event, currentIndex) {
-        //form.validate().settings.ignore = ':disabled';
-        //return form.valid();
-        var exito = submitForm();
-        if (exito) {
-            window.location.href = "login.jsp";
-            return true;
-        } else {
-            console.log('error detectado');
-            return false;
-        }
-    }
-});
-
-$.validator.setDefaults({
-    submitHandler: function (form, event) {
-
-        // Ajax code for submission
-        var form = $(form);
-        event.preventDefault();
-        $.ajax({
-            type: form.attr('method'),
-            data: form.serialize(),
-            url: form.attr('action'),
-            success: function (data) {
-                //success message
-            },
-            error: function (data) {
-                //error message
-            }
-        });
-    }
-});
-
-$("#register-form").validate({
-    rules: {
-        address: "required"
-    },
-    messages: {
-        address: "mensaje para nombre sede"
-    },
-    errorPlacement: function (label, element) {
-        label.addClass('mt-2 text-danger');
-        label.insertAfter(element);
-    },
-    highlight: function (element, errorClass) {
-        $(element).parent().addClass('has-danger')
-        $(element).addClass('form-control-danger')
-    }
-});
-
 
 $('#colorbar').css('background', '#128bfc');
 $('#colorlink').css('color', '#128bfc');
@@ -103,53 +13,6 @@ $('#secondary_color').on('asColorPicker::change', function (e) {
     var color = $('#secondary_color').asColorPicker('val');
     $('#colorbutton').css('background-color', color);
     $('#colorbutton').css('border-color', color);
-});
-
-function getSectors() {
-    var parametros = {
-        "op": "getAll"
-    };
-
-    $.ajax({
-        data: parametros,
-        url: "SectorS",
-        type: "GET",
-        success: function (data) {
-
-            sectors = $.parseJSON(data);
-
-            $('select#sectors').children().remove();
-            $('select#sectors').append("<option value=\"\"> </option>");
-            $.each(sectors, function (i, item) {
-                $('select#sectors')
-                        .append($("<option></option>")
-                                .attr("value", item.sector_id)
-                                .text(item.name));
-            });
-            $('select#sectors').selectpicker('refresh');
-
-            $('select#sectors').val(7);
-            $('select#sectors').selectpicker('refresh')
-
-        }
-
-    })
-}
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#logoprev').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$("#logo").change(function () {
-    readURL(this);
 });
 
 //background constants
@@ -237,8 +100,6 @@ function submitForm() {
         "email": adminEmail,
         "password": password
     };
-    
-    var exito = false;
 
     $.ajax({
         data: parametrosCompany,
@@ -248,28 +109,9 @@ function submitForm() {
 
     }).done(function (response) {
         console.log(response);
-        if (response == 'true') {
+        if (response) {
 
-
-            $.ajax({
-                data: parametrosAdminAdd,
-                url: "AdminS",
-                type: "POST",
-                async: false
-
-            }).done(function (response2) {
-                console.log(response2);
-                if (response2 == 'true') {
-
-                    exito = true;
-
-                } else {
-                    alert("Este email ya se ha registrado en nuestra base de datos");
-                }
-
-            }).fail(function () {
-                alert("error");
-            });
+            return true;
 
         } else {
             alert("Este email ya se ha registrado en nuestra base de datos");
@@ -279,7 +121,26 @@ function submitForm() {
         alert("error");
     });
 
-    return exito;
+    $.ajax({
+        data: parametrosAdminAdd,
+        url: "AdminS",
+        type: "POST",
+        async: false
+
+    }).done(function (response) {
+        console.log(response);
+        if (response) {
+            return true;
+
+        } else {
+            alert("Este email ya se ha registrado en nuestra base de datos");
+        }
+
+    }).fail(function () {
+        alert("error");
+    });
+
+
 }
 
 function validateRegister() {
