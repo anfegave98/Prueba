@@ -366,7 +366,7 @@
                             <div class="col-lg-12 grid-margin">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Clientes</h4>
+                                        <h4 class="card-title">Inventario</h4>
                                             <button type="button" onclick="window.location.href='inventarioAdd.jsp'" class="btn btn-primary btn-fw">Agregar</button> 
                                             
                                         
