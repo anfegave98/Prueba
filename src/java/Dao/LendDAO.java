@@ -7,6 +7,7 @@ package Dao;
 
 import Model.Lend;
 import Util.DbUtil;
+import Util.Lend_report;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -113,6 +114,23 @@ public class LendDAO {
 //            lend.setEnd_date(new Date(((Timestamp)rs.getObject("end_date")).getTime()));
             lend.setClient_calification(rs.getInt("client_calification"));
             lend.setAdmin_calification(rs.getInt("admin_calification"));
+            lends.add(lend);
+        }
+        return lends;
+    }
+    
+    public ArrayList<Lend_report> getActiveLendsFull() throws SQLException {
+        ArrayList<Lend_report> lends = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select client.name,client.last_name,lend.start_date,COUNT(lend_items.asset_store_id) as cuenta "
+                + "from client,lend,lend_items where lend.deleted=false and client.client_id=lend.client_id and lend.lend_id=lend_items.lend_id "
+                + "group by lend_items.lend_id");
+        while (rs.next()) {
+            Lend_report lend = new Lend_report();
+            lend.setName(rs.getString("name"));
+            lend.setLast_name(rs.getString("last_name"));
+            lend.setStart_date(new Date(((Timestamp) rs.getObject("start_date")).getTime()));
+            lend.setCuenta(rs.getInt("cuenta"));
             lends.add(lend);
         }
         return lends;

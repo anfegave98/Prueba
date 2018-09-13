@@ -364,7 +364,7 @@
                     <div class="content-wrapper">
                         <p></p>
                         <div class="row">
-                            <div class="col-lg-12 grid-margin">
+                            <div class="col-lg-9 grid-margin">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">Top 5</h4>
@@ -375,55 +375,93 @@
                                                         <th> Codebar </th>
                                                         <th> Name </th>
                                                         <th> Cantidad </th>
-                                                        
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                   
+
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3>Cantidad de prestamos hechos:</h3>
+                                        <p id="cantidad" style="color: blue; font-size: 30px">
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
 
-                    </div>
-                    <!-- content-wrapper ends -->
-                    <!-- partial:partials/_footer.html -->
-                    <footer class="footer">
-                        <div class="container-fluid clearfix">
-                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-                                <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
-                                <i class="mdi mdi-heart text-danger"></i>
-                            </span>
+                        <div class="col-lg-9 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3>Cantidad de prestamos</h3>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="tablaactivos">
+                                            <thead>
+                                                <tr>
+                                                    <th> Nombre </th>
+                                                    <th> Apellido  </th>
+                                                    <th> Fecha inicio </th>
+                                                    <th> Cantidad de items </th>
+
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                </div>
+                            </div>
                         </div>
-                    </footer>
-                    <!-- partial -->
+                    </div>
+
                 </div>
-                <!-- main-panel ends -->
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="container-fluid clearfix">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                            <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
+                            <i class="mdi mdi-heart text-danger"></i>
+                        </span>
+                    </div>
+                </footer>
+                <!-- partial -->
             </div>
-            <!-- page-body-wrapper ends -->
+            <!-- main-panel ends -->
         </div>
-        <!-- container-scroller -->
-        <!-- plugins:js -->
-        <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-        <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page-->
-        <!-- End plugin js for this page-->
-        <!-- inject:js -->
-        <script src="assets/js/shared/off-canvas.js"></script>
-        <script src="assets/js/shared/hoverable-collapse.js"></script>
-        <script src="assets/js/shared/misc.js"></script>
-        <script src="assets/js/shared/settings.js"></script>
-        <script src="assets/js/shared/todolist.js"></script>
-        <script src="assets/js/shared/logout.js"></script>
-        <!-- endinject -->
-        <!-- Custom js for this page-->
-        <script src="assets/js/demo_1/dashboard.js"></script>
-        <script src="assets/js/demo_1/top5.js"></script>
-        <!-- End custom js for this page-->
-    </body>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="assets/js/shared/off-canvas.js"></script>
+    <script src="assets/js/shared/hoverable-collapse.js"></script>
+    <script src="assets/js/shared/misc.js"></script>
+    <script src="assets/js/shared/settings.js"></script>
+    <script src="assets/js/shared/todolist.js"></script>
+    <script src="assets/js/shared/logout.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="assets/js/top5.js"></script>
+    <script src="assets/js/demo_1/dashboard.js"></script>
+    <!-- End custom js for this page-->
+</body>
 </html>
