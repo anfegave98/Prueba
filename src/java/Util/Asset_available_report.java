@@ -10,15 +10,24 @@ package Util;
  * @author Labing
  */
 public class Asset_available_report {
-    
+
     private String name;
     private String codebar;
     private String principal_picture;
     private String description;
+    private int asset_store_id;
     private int available;
     private int no_available;
 
     public Asset_available_report() {
+    }
+
+    public int getAsset_store_id() {
+        return asset_store_id;
+    }
+
+    public void setAsset_store_id(int asset_store_id) {
+        this.asset_store_id = asset_store_id;
     }
 
     public String getName() {
@@ -68,6 +77,5 @@ public class Asset_available_report {
     public void setNo_available(int no_available) {
         this.no_available = no_available;
     }
-    
-    
+
 }

@@ -41,7 +41,7 @@ public class Asset_storeS extends HttpServlet {
             AssetDAO as = new AssetDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
             if (op.equalsIgnoreCase("getById")) {
-                int asset_id = Integer.parseInt(request.getParameter("asset_store_id"));
+                int asset_id = Integer.parseInt(request.getParameter("asset_id"));
                 out.print(g.toJson(as.getOneAvailable(asset_id)));
             }
             if (op.equalsIgnoreCase("getall")) {
