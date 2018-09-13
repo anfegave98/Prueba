@@ -316,7 +316,7 @@
                             </div>
                         </li>
 
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="menu-icon mdi mdi-television"></i>
                                 <span class="menu-title">Dashboard</span>
@@ -337,7 +337,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="inventario.jsp">
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">Inventario</span>
@@ -362,27 +362,27 @@
                 <!-- start -->
                 <div class="main-panel">
                     <div class="content-wrapper">
-                        <p></p>
                         <div class="row">
                             <div class="col-lg-12 grid-margin">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Top 5</h4>
+                                        <h4 class="card-title">Inventario</h4>
+                                            <button type="button" onclick="window.location.href='inventarioAdd.jsp'" class="btn btn-primary btn-fw">Agregar</button> 
+                                            
+                                        
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" id="tabletop5">
+                                            <table id="client_table" class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                 <thead>
                                                     <tr>
-                                                        <th> Codebar </th>
-                                                        <th> Name </th>
-                                                        <th> Cantidad </th>
-                                                        
+                                                        <th>#</th>
+                                                        <th>Nombres</th>
+                                                        <th>Código de Barras</th>
+                                                        <th>Descripción</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                   
-                                                </tbody>
                                             </table>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                             </div>
@@ -412,6 +412,7 @@
         <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
         <!-- endinject -->
         <!-- Plugin js for this page-->
+        <script src="assets/js/demo_1/dashboard.js"></script>
         <!-- End plugin js for this page-->
         <!-- inject:js -->
         <script src="assets/js/shared/off-canvas.js"></script>
@@ -422,8 +423,7 @@
         <script src="assets/js/shared/logout.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
-        <script src="assets/js/demo_1/dashboard.js"></script>
-        <script src="assets/js/demo_1/top5.js"></script>
+        <script src="assets/js/inventario.js"></script>
         <!-- End custom js for this page-->
     </body>
 </html>
