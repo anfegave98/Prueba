@@ -1,49 +1,64 @@
+var table;
+var items = [];
+var client;
+
 $(document).ready(function () {
 
-    var item = {
-        asset_store_id: 1,
-        lend_quantity: 1,
-        name: "",
-        codebar: "",
-        description: "",
-        available: 5
-    }
-    addItem(item);
-
-    var item2 = {
-        asset_store_id: 2,
-        lend_quantity: 2,
-        name: "",
-        codebar: "",
-        description: "",
-        available: 5
-    }
-    addItem(item2);
-
+    table = $('#items_table').DataTable({
+        data: items,
+        columns: [
+            {data: 'codebar'},
+            {data: 'name'},
+            {data: 'description'},
+            {data: null, render: function (data, type, row) {
+                    // Combine the first and last names into a single table field
+                    return data.lend_quantity + '/' + data.available;
+                }},
+            {data: null}
+        ],
+        columnDefs: [
+            {
+                targets: -1,
+                data: null,
+                defaultContent: '<a style="cursor: pointer; "><i class="menu-icon mdi mdi-lightbulb-outline"></i>></a>'
+            }
+        ],
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json'
+        },
+        responsive: true,
+        order: [[1, "desc"]]
+    });
 
 });
-var items = [];
 
-function addById(asset_id) {
-    
-    var par = {
-        "op": "getById",
-        "asset_id": asset_id
+
+function sendLend() {
+    var parametrosAssetAdd = {
+        "op": "create",
+        "admin_role_store_id": 1,
+        "client_id": client.client_id,
+        "lend_items": JSON.stringify(items)
     };
-    
+
     $.ajax({
-        data: par,
-        url: "Asset_storeS",
-        type: "GET",
-        async: false
+        data: parametrosAssetAdd,
+        url: "LendS",
+        type: "POST"
 
     }).done(function (response) {
         console.log(response);
-        if (response == 'true') {
+        var obj = JSON.parse(response);
+        if (obj.name != undefined) {
             console.log(true);
-            window.location.href = "inventario.jsp";
+
+            $('#client_name_show').text(obj.name);
+            $('#client_last_name_show').text(obj.last_name);
+            $('#client_email_show').text(obj.email);
+
         } else {
-            alert("Asset ya existe");
+            alert("Cliente no existe");
+            return null;
         }
 
     }).fail(function () {
@@ -52,9 +67,54 @@ function addById(asset_id) {
 }
 
 
+function addById(asset_id) {
 
-function addItem(item) {
-    items.push(item);
+    var exists = false;
+
+
+    for (i = 0; i < items.length; i++) {
+        if (items[i].asset_store_id == asset_id) {
+            exists = true;
+        }
+    }
+
+    if (exists) {
+        addQuantity(asset_id);
+    } else {
+
+        var par = {
+            "op": "getById",
+            "asset_id": asset_id
+        };
+
+        $.ajax({
+            data: par,
+            url: "Asset_storeS",
+            type: "GET",
+            async: false
+
+        }).done(function (response) {
+            console.log(response);
+            var res = JSON.parse(response);
+            if (res.name != undefined) {
+                console.log(true);
+                res.lend_quantity = 1;
+                items.push(res);
+                updateTable();
+            } else {
+                alert("Asset no existe");
+            }
+
+        }).fail(function () {
+            alert("error");
+        });
+    }
+}
+
+function updateTable() {
+    table.clear();
+    table.rows.add(items);
+    table.draw();
 }
 
 function addQuantity(asset_store_id) {
@@ -66,6 +126,7 @@ function addQuantity(asset_store_id) {
                 items[i].lend_quantity++;
         }
     }
+    updateTable();
 }
 
 function reduceQuantity(asset_store_id) {
@@ -77,12 +138,53 @@ function reduceQuantity(asset_store_id) {
                 items[i].lend_quantity--;
         }
     }
+    updateTable();
 }
 
 
 
-$('#prestamoAdd').on('submit', function () {
-    submitForm();
+$('#findClient').on('submit', function () {
+
+    var parametrosAssetAdd = {
+        "op": "get",
+        "email": $('#client_email').val()
+    };
+
+    $.ajax({
+        data: parametrosAssetAdd,
+        url: "ClientS",
+        type: "GET",
+        async: false
+
+    }).done(function (response) {
+        console.log(response);
+        client = JSON.parse(response);
+        if (client.name != undefined) {
+            console.log(true);
+
+            $('#client_name_show').text(client.name);
+            $('#client_last_name_show').text(client.last_name);
+            $('#client_email_show').text(client.email);
+
+        } else {
+            alert("Cliente no existe");
+            return null;
+        }
+
+    }).fail(function () {
+        alert("error");
+    });
+
+
+
+
+    return false;
+});
+
+$('#assetAdd').on('submit', function () {
+    addById($('#asset_id').val());
+
+
     return false;
 });
 

@@ -152,7 +152,7 @@ public class AssetDAO {
     public Asset_available_report getOneAvailable(int asset_id) throws SQLException {
         Asset_available_report asset = new Asset_available_report();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select asset.name as name, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false and asset_store.asset_store_id="+asset_id);
+        ResultSet rs = statement.executeQuery("select asset.name as name, asset_store.asset_store_id, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false and asset_store.asset_store_id="+asset_id);
         while (rs.next()) {
             
             asset.setName(rs.getString("name"));
@@ -161,6 +161,7 @@ public class AssetDAO {
             asset.setDescription(rs.getString("description"));
             asset.setAvailable(rs.getInt("available"));
             asset.setNo_available(rs.getInt("no_available"));
+            asset.setAsset_store_id(rs.getInt("asset_store_id"));
         }
         return asset;
     }

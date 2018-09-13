@@ -363,30 +363,62 @@
                 <div class="main-panel">
                     <div class="content-wrapper">
                         <div class="row">
-                            <div class="col-md-6 grid-margin stretch-card">
+                            <div class="col-md-12 grid-margin stretch-card" id="div_search_client">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Buscar cliente</h4>
+                                        <form id="findClient" class="forms-sample">
+                                            <div class="input-group col-12">
+
+                                                <input type="text" class="form-control" id="client_email" placeholder="Email del Cliente">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-success mr-2">Buscar</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8 grid-margin stretch-card" id="div_prestamo">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">Agregar Prestamo</h4>
                                         <form id="assetAdd" class="forms-sample">
-                                            <div class="form-group col-12">
-                                                <label for="assetName">Nombre</label>
-                                                <input type="text" class="form-control" id="assetName" placeholder="Nombre">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="bar_code">Código de barras</label>
-                                                <input type="text" class="form-control" id="bar_code" placeholder="Código de barras">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="asset_description">Descripción</label>
-                                                <input  type="text" class="form-control" id="asset_description" placeholder="Descripción">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="units">Unidades Disponibles</label>
-                                                <input type="number" class="form-control" id="units" placeholder="Unidades disponibles">
-                                            </div>
-                                            <button type="submit" class="btn btn-success mr-2">Agregar</button>
-                                            <button class="btn btn-light">Cancel</button>
+                                            <div class="input-group col-12">
+
+                                                <input type="text" class="form-control" id="asset_id" placeholder="ID del Activo">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-success mr-2">Agregar</button>
+                                                </div>
+                                            </div>                                            
                                         </form>
+
+                                        <div class="table-responsive">
+                                            <table id="items_table" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Código</th>
+                                                        <th>Nombre</th>
+                                                        <th>Descripcion</th>
+                                                        <th>Solicitados</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>   
+                                        <button type="button" onclick="sendLend()" class="btn btn-primary btn-fw">Hacer préstamo</button> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 grid-margin stretch-card" id="div_client">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title" >Datos del cliente</h3>
+                                        <p>Nombre: <span id="client_name_show"></span></p>
+                                        <p>Apellidos: <span id="client_last_name_show"></span></p>
+                                        <p>Email: <span id="client_email_show"></span></p>
+
                                     </div>
                                 </div>
                             </div>
