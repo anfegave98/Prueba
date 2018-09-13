@@ -82,14 +82,14 @@ public class AssetS extends HttpServlet {
                         asset.setCodebar(request.getParameter("codebar"));
                         asset.setPrincipal_picture(request.getParameter("principal_picture"));
                         asset.setDescription(request.getParameter("description"));
-                        out.println(a.createAsset(asset));
+                        out.print(a.createAsset(asset));
                     } else {
                         asset.setAsset_parent_id(Integer.parseInt(request.getParameter("asset_parent_id")));
                         asset.setName(request.getParameter("name"));
                         asset.setCodebar(request.getParameter("codebar"));
                         asset.setPrincipal_picture(request.getParameter("principal_picture"));
                         asset.setDescription(request.getParameter("description"));
-                        out.println(a.createAsset(asset));
+                        out.print(a.createAsset(asset));
                     }
                     Asset_store as=new Asset_store();
                     as.setAsset_id(a.readAssetByCodebar(request.getParameter("codebar")).getAsset_id());

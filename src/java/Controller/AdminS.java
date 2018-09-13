@@ -85,7 +85,7 @@ public class AdminS extends HttpServlet {
                     if (exito) {
                         Admin_role_store adrost = new Admin_role_store();
                         adrost.setAdmin_id((a.readAdmin(request.getParameter("email"))).getAdmin_id());
-                        Admin_role_storeDAO ars = new Admin_role_storeDAO("AABGJJMO_BiStock" + 1);
+                        Admin_role_storeDAO ars = new Admin_role_storeDAO("AABGJJMO_BiStock_" + 1);
                         adrost.setRole_admin_id(1);
                         adrost.setStore_id(1);
                         out.print(ars.createAdmin_role_store(adrost));

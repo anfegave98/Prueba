@@ -68,6 +68,7 @@ public class ClientS extends HttpServlet {
 //            ClientDAO a = new ClientDAO("AABGJJMO_BiStock_" + company_id);
             ClientDAO a = new ClientDAO("AABGJJMO_BiStock_" + 1);
             Encription e = new Encription();
+            System.out.println(op+"-----------" + request.getParameter("email"));
             if (op.equalsIgnoreCase("create")) {
                 if (!a.getEmail(request.getParameter("email"))) {
                     Client client = new Client();
