@@ -337,7 +337,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="inventario.jsp">
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">Inventario</span>

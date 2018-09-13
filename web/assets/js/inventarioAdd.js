@@ -4,6 +4,7 @@ $(document).ready(function () {
 
 $('#assetAdd').on('submit', function () {
     submitForm();
+    return false;
 });
 
 function submitForm() {
@@ -32,8 +33,9 @@ function submitForm() {
 
     }).done(function (response) {
         console.log(response);
-        if (response) {
+        if (response == 'true') {
             console.log(true);
+            window.location.href = "inventario.jsp";
         } else {
             alert("Asset ya existe");
         }

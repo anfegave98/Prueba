@@ -344,7 +344,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="clientes.jsp">
                                 <i class="menu-icon mdi mdi-lightbulb-outline"></i>
                                 <span class="menu-title">Clientes</span>

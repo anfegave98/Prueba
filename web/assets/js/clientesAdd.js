@@ -4,6 +4,7 @@ $(document).ready(function () {
 
 $('#clientAdd').on('submit', function () {
     submitForm();
+    return false;
 });
 
 function submitForm() {
@@ -29,8 +30,9 @@ function submitForm() {
 
     }).done(function (response) {
         console.log(response);
-        if (response) {
+        if (response == 'true') {
             console.log(true);
+            window.location.href = "clientes.jsp";
         } else {
             alert("Este email ya se ha registrado en nuestra base de datos");
         }

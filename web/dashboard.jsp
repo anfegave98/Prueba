@@ -316,7 +316,7 @@
                             </div>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="menu-icon mdi mdi-television"></i>
                                 <span class="menu-title">Dashboard</span>

@@ -3,7 +3,8 @@ $(document).ready(function () {
 });
 
 $('#administradorAdd').on('submit', function () {
-    submitForm()
+    submitForm();
+    return false;
 });
 
 function submitForm() {
@@ -29,8 +30,9 @@ function submitForm() {
 
     }).done(function (response) {
         console.log(response);
-        if (response2 == 'true') {
+        if (response == 'true') {
             exito = true;
+            window.location.href = "administradores.jsp";
         } else {
             alert("Este email ya se ha registrado en nuestra base de datos");
         }
