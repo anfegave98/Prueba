@@ -99,6 +99,9 @@ $(document).ready(function () {
             {targets: 6, render: $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'DD/MM/YYYY hh:mm:ss a', 'es')},
             {targets: 4, render: $.fn.dataTable.render.check()}
         ],
+        fixedColumns:   {
+            rightColumns: 1
+        },
         language: {
             url: 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json'
         },

@@ -249,6 +249,7 @@
         <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
         <script src="assets/js/shared/data-table-ellipsis.js"></script>
         <script src="assets/js/shared/data-table-datetime.js"></script>
+        <script src="assets/js/shared/dataTables.fixedColumns.min.js"></script>
         <script src="assets/vendors/wait-me/waitMe.min.js"></script>
         <script src="assets/js/shared/moment-with-locales.js"></script>
         <!-- endinject -->
