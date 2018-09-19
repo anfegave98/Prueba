@@ -6,6 +6,66 @@
     </welcome-file-list>
     
     <servlet>
+        <servlet-name>dash</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+	
+    <servlet-mapping>
+        <servlet-name>dash</servlet-name>
+        <url-pattern>/dash</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>movs</servlet-name>
+        <jsp-file>/common/rmovs.jsp</jsp-file>
+    </servlet>
+	
+    <servlet-mapping>
+        <servlet-name>movs</servlet-name>
+        <url-pattern>/movs</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>assets</servlet-name>
+        <jsp-file>/common/rassets.jsp</jsp-file>
+    </servlet>
+	
+    <servlet-mapping>
+        <servlet-name>assets</servlet-name>
+        <url-pattern>/assets</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>admins</servlet-name>
+        <jsp-file>/common/radmins.jsp</jsp-file>
+    </servlet>
+	
+    <servlet-mapping>
+        <servlet-name>admins</servlet-name>
+        <url-pattern>/admins</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>clients</servlet-name>
+        <jsp-file>/common/rclients.jsp</jsp-file>
+    </servlet>
+	
+    <servlet-mapping>
+        <servlet-name>clients</servlet-name>
+        <url-pattern>/clients</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>h</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+	
+    <servlet-mapping>
+        <servlet-name>h</servlet-name>
+        <url-pattern>/h</url-pattern>
+    </servlet-mapping>
+        
+    <servlet>
         <servlet-name>CompanyS</servlet-name>
         <servlet-class>Controller.CompanyS</servlet-class>
     </servlet>
