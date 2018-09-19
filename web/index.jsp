@@ -250,6 +250,7 @@
         <script src="assets/js/shared/data-table-ellipsis.js"></script>
         <script src="assets/js/shared/data-table-datetime.js"></script>
         <script src="assets/vendors/wait-me/waitMe.min.js"></script>
+        <script src="assets/js/shared/moment-with-locales.js"></script>
         <!-- endinject -->
         <!-- Plugin js for this page-->
         <!-- End plugin js for this page-->
