@@ -48,23 +48,23 @@
 
     if (type.equalsIgnoreCase("empresa")) {
         role = "Empresa";
-        menu.add(new MenuItem("dash", "mdi-television", "Dashboard", "dash"));
-        menu.add(new MenuItem("movs", "mdi-notification-clear-all", "Préstamos", "movs"));
-        menu.add(new MenuItem("assets", "mdi-table", "Activos", "assets"));
-        menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes", "clients"));
-        menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores", "admins"));
+        menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
+        menu.add(new MenuItem("movs", "mdi-notification-clear-all", "Préstamos"));
+        menu.add(new MenuItem("assets", "mdi-table", "Activos"));
+        menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes"));
+        menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores"));
     } else if (type.equalsIgnoreCase("admin")) {
         role = "Administrador";
-        menu.add(new MenuItem("dash", "mdi-television", "Dashboard", "dash"));
-        menu.add(new MenuItem("movs", "mdi-notification-clear-all", "Préstamos", "movs"));
-        menu.add(new MenuItem("assets", "mdi-table", "Activos", "assets"));
-        menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes", "clients"));
-        menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores", "admins"));
+        menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
+        menu.add(new MenuItem("movs", "mdi-notification-clear-all", "Préstamos"));
+        menu.add(new MenuItem("assets", "mdi-table", "Activos"));
+        menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes"));
+        menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores"));
     } else if (type.equalsIgnoreCase("client")) {
         role = "Cliente";
-        menu.add(new MenuItem("dash", "mdi-television", "Dashboard", "dash"));
-        menu.add(new MenuItem("movs", "mdi-notification-clear-all", "Préstamos", "movs"));
-        menu.add(new MenuItem("assets", "mdi-table", "Activos", "assets"));
+        menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
+        menu.add(new MenuItem("movs", "mdi-notification-clear-all", "Préstamos"));
+        menu.add(new MenuItem("assets", "mdi-table", "Activos"));
     }
 %>
 
@@ -210,7 +210,7 @@
 
                         <% for (MenuItem item : menu) {%>
                         <li id="<%=item.getRef()%>" class="nav-item<%=(activeRef.equals(item.getRef())) ? " active" : ""%>">
-                            <a style="cursor: pointer;" class="nav-link" onclick="openURL('<%=item.getAddress()%>')">
+                            <a style="cursor: pointer;" class="nav-link" onclick="openURL('<%=item.getRef()%>')">
                                 <i class="menu-icon mdi <%=item.getMdi_icon()%>"></i>
                                 <span class="menu-title"><%=item.getTitle()%></span>
                             </a>
@@ -222,8 +222,8 @@
 
                 <div class="main-panel" id="loader">
                     <div class="content-wrapper" id="load_content">
-                        
-                        
+
+
                     </div>
                     <!-- content-wrapper ends -->
                     <!-- partial:partials/_footer.html -->
@@ -247,6 +247,8 @@
         <!-- plugins:js -->
         <script src="assets/vendors/js/vendor.bundle.base.js"></script>
         <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
+        <script src="assets/js/shared/data-table-ellipsis.js"></script>
+        <script src="assets/js/shared/data-table-datetime.js"></script>
         <script src="assets/vendors/wait-me/waitMe.min.js"></script>
         <!-- endinject -->
         <!-- Plugin js for this page-->
@@ -258,6 +260,7 @@
         <script src="assets/js/shared/settings.js"></script>
         <script src="assets/js/shared/todolist.js"></script>
         <script src="assets/js/shared/logout.js"></script>
+        <script src="assets/js/shared/tooltips.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
         <script src="index.js"></script>

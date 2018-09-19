@@ -35,7 +35,6 @@ function openURL(href) {
 }
 function openJS(href) {
     $.getScript(href + ".js", function () {
-        alert("loaded");
     });
 }
 

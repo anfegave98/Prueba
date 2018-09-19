@@ -59,7 +59,7 @@
 }*/
 
 .form-check .form-check-label input:checked + .input-helper:after {
-        line-height: 15px;
+    line-height: 15px;
 } 
 
 .jsgrid-pager-nav-button {
@@ -144,4 +144,13 @@ input:hover {
     color: #fff;
     background-color: #61c2f5;
     border-color: #2196f3;
+}
+
+.dataTables_wrapper .dataTable .btn {
+    padding: 0.3rem 0.6rem;
+    min-width: 40px;
+}
+
+td {
+    word-wrap: break-word
 }
