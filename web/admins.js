@@ -203,3 +203,36 @@ function addShow() {
     $('#addModal').modal('show');
     $('#addModal').modal('handleUpdate')
 }
+
+
+
+function getDataModal(){
+    var textocorto = $('#textocorto').val();
+    var textolargo = $('#textolargo').val();
+    var numeroentero = $('#numeroentero').val();
+    var numerodecimal = $('#numerodecimal').val();
+    var bool = $('input[type=checkbox][id=bool]:checked').val();
+    var fecha = $('#fecha').val();
+    var fechahora = $('#fechahora').val();
+    var contabilidad = $('#contabilidad').val();
+    var despunico = $('select#despunico').val();
+    var despmultiple = $('select#despmultiple').val();    
+    var boolean = false;
+    if(bool=='on'){
+        boolean = true;        
+    }
+    var radioValue = $('input[name=r1]:checked').val();
+    
+    var check1 = $('input[type=checkbox][id=check1]:checked').val();
+    var check2 = $('input[type=checkbox][id=check2]:checked').val();
+    var check3 = $('input[type=checkbox][id=check3]:checked').val();
+    
+    
+    
+    
+    
+    
+    
+    
+
+}

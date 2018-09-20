@@ -73,7 +73,7 @@
                                 <i class="mdi mdi-help"></i></button>
                         </div>
                         <div class="col-lg-8">
-                            <input id="textocorto" value="10" min="0" max="25" class="form-control" type="number"> 
+                            <input id="numeroentero" value="10" min="0" max="25" class="form-control" type="number"> 
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@
                                 <i class="mdi mdi-help"></i></button>
                         </div>                        
                         <div class="col-lg-8">
-                            <input id="textocorto" step="any" value="10" min="0" max="25" class="form-control" type="number"> 
+                            <input id="numerodecimal" step="any" value="10" min="0" max="25" class="form-control" type="number"> 
                         </div>
                     </div>
 
@@ -97,7 +97,7 @@
                                 <i class="mdi mdi-help"></i></button>
                         </div>
                         <div class="col-lg-8">
-                            <label class="form-check-label"><input type="checkbox" class="form-check-input"> Default </label>
+                            <label class="form-check-label"><input id="bool" type="checkbox" class="form-check-input"> Default </label>
                         </div>
                     </div>
 
@@ -144,7 +144,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                 </div>
-                                <input type="number" step="any" value="10000" min="1" class="form-control" aria-label="Amount (to the nearest dollar)"> 
+                                <input id="contabilidad" type="number" step="any" value="10000" min="1" class="form-control" aria-label="Amount (to the nearest dollar)"> 
                             </div>
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                                 <i class="mdi mdi-help"></i></button>
                         </div>                        
                         <div class="col-lg-8">
-                            <select id="despunico" class="selectpicker" multiple data-dropup-auto="false" data-size="10" style="width:100%">
+                            <select id="despmultiple" class="selectpicker" multiple data-dropup-auto="false" data-size="10" style="width:100%">
                                 <option disabled value=""> </option>
                                 <option value="1">Opcion 1</option>
                                 <option value="2">Opcion 2</option>
@@ -191,9 +191,9 @@
                                 <i class="mdi mdi-help"></i></button>
                         </div>                        
                         <div class="col-lg-8">
-                            <label class="form-check-label"><input type="radio" name="r1" class="form-check-input"> Opción 1 </label>
-                            <label class="form-check-label"><input type="radio" name="r1" class="form-check-input"> Opción 2 </label>
-                            <label class="form-check-label"><input type="radio" name="r1" class="form-check-input"> Opción 3 </label>
+                            <label class="form-check-label"><input type="radio"  name="r1" value="1" class="form-check-input"> Opción 1 </label>
+                            <label class="form-check-label"><input type="radio" name="r1" value="2" class="form-check-input"> Opción 2 </label>
+                            <label class="form-check-label"><input type="radio" name="r1" value="3" class="form-check-input"> Opción 3 </label>
                         </div>
                     </div>
                     
@@ -204,9 +204,9 @@
                                 <i class="mdi mdi-help"></i></button>
                         </div>                        
                         <div class="col-lg-8">
-                            <label class="form-check-label"><input type="checkbox" class="form-check-input"> Opción 1 </label>
-                            <label class="form-check-label"><input type="checkbox" class="form-check-input"> Opción 2 </label>
-                            <label class="form-check-label"><input type="checkbox" class="form-check-input"> Opción 3 </label>
+                            <label class="form-check-label"><input type="checkbox" id="check1" class="form-check-input"> Opción 1 </label>
+                            <label class="form-check-label"><input type="checkbox" id="check2" class="form-check-input"> Opción 2 </label>
+                            <label class="form-check-label"><input type="checkbox" id="check3" class="form-check-input"> Opción 3 </label>
                         </div>
                     </div>
                     
@@ -237,7 +237,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Agregar entidad</button>
+                <button onclick="getDataModal()" type="button" class="btn btn-primary">Agregar entidad</button>
             </div>
         </div>
     </div>
