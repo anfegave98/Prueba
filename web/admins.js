@@ -1,7 +1,10 @@
+var entity = admins;
+
+
 $(document).ready(function () {
 
     var cols = [
-        {title: 'Texto Corto', data: 'textocorto', required: pk, },
+        {title: 'Texto Corto', data: 'textocorto', type: 'textocorto', description: 'desc', required: true, identifier: true, table: true},
         {title: 'Texto Largo', data: 'textolargo'},
         {title: 'Número Entero', data: 'entero'},
         {title: 'Número Decimal', data: 'decimal'},
@@ -230,6 +233,25 @@ function editShow(id_edit) {
     $('#viewEditModal').modal('handleUpdate')
 }
 
+function getCols() {
+    $.ajax({
+        url: "Attributes",
+        type: 'GET',
+        dataType: "text",
+        data: {
+            'action': "get" + entity,
+            'pk': dateS
+        },
+        success: function (data) {
+
+            cols = $.parseJSON(data);
+            return cols;
+
+        }
+    });
+    return false;
+}
+
 function preFill(id) {
     $.ajax({
         url: "ObjectS",
@@ -243,43 +265,6 @@ function preFill(id) {
 
             eventos = $.parseJSON(data);
             console.log(eventos);
-            // limpiar horario
-            wipeEvents();
-
-            var prevDate;
-            var cardcontainer = $('#events-container-list');
-            // ubicar eventos            
-            for (var i = 0; i < eventos.length; ++i) {
-                var currentDate = new Date(eventos[i].fecha_ini);
-
-                if (prevDate == null || !(prevDate.getFullYear() == currentDate.getFullYear() &&
-                        prevDate.getMonth() == currentDate.getMonth() &&
-                        prevDate.getDay() == currentDate.getDay()))
-                {
-                    var text;
-                    // Si es hoy
-                    if ((today.getFullYear() == currentDate.getFullYear() &&
-                            today.getMonth() == currentDate.getMonth() &&
-                            today.getDay() == currentDate.getDay())) {
-                        text = "Hoy";
-                    } else if ((today.getFullYear() == currentDate.getFullYear() &&
-                            today.getMonth() == currentDate.getMonth() &&
-                            today.getDay() == currentDate.getDay() - 1)) {
-                        text = "Mañana";
-                    } else {
-                        text = formatDateShort(currentDate);
-                    }
-                    prevDate = currentDate;
-                    cardcontainer.append("<h3 style=\"color: #b7b7b7;\">" + text + "</h3>");
-                }
-
-                drawEvent(i);
-            }
-
-
-
-            $('#events-container').waitMe("hide");
-            $('#date-loader').waitMe("hide");
 
         }
     });
@@ -307,6 +292,30 @@ function cleanForm(formid) {
     $('.dropify-clear').click();
 }
 
+function preload(){
+    
+}
+
+function getDataModal() {
+
+    var textocorto = $('#textocorto').val();
+    var textolargo = $('#textolargo').val();
+    var numeroentero = $('#numeroentero').val();
+    var numerodecimal = $('#numerodecimal').val();
+    var bool = $('input[type=checkbox][id=bool]:checked').val();
+    var fecha = $('#fecha').val();
+    var fechahora = $('#fechahora').val();
+    var contabilidad = $('#contabilidad').val();
+    var despunico = $('select#despunico').val();
+    var despmultiple = $('select#despmultiple').val();
+    var boolean = (bool == 'on');
+    var radioValue = $('input[name=r1]:checked').val();
+    var check1 = $('input[type=checkbox][id=check1]:checked').val();
+    var check2 = $('input[type=checkbox][id=check2]:checked').val();
+    var check3 = $('input[type=checkbox][id=check3]:checked').val();
+
+}
+
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -326,33 +335,4 @@ $("#logo").change(function () {
 
 
 
-function getDataModal(){
-    var textocorto = $('#textocorto').val();
-    var textolargo = $('#textolargo').val();
-    var numeroentero = $('#numeroentero').val();
-    var numerodecimal = $('#numerodecimal').val();
-    var bool = $('input[type=checkbox][id=bool]:checked').val();
-    var fecha = $('#fecha').val();
-    var fechahora = $('#fechahora').val();
-    var contabilidad = $('#contabilidad').val();
-    var despunico = $('select#despunico').val();
-    var despmultiple = $('select#despmultiple').val();    
-    var boolean = false;
-    if(bool=='on'){
-        boolean = true;        
-    }
-    var radioValue = $('input[name=r1]:checked').val();
-    
-    var check1 = $('input[type=checkbox][id=check1]:checked').val();
-    var check2 = $('input[type=checkbox][id=check2]:checked').val();
-    var check3 = $('input[type=checkbox][id=check3]:checked').val();
-    
-    
-    
-    
-    
-    
-    
-    
 
-}
