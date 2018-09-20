@@ -154,3 +154,82 @@ input:hover {
 td {
     word-wrap: break-word
 }
+
+.modal-md {
+    max-width: 900px;
+}
+
+.form-check-label{
+    font-size: 0.8rem !important;
+    line-height: 1.8 !important;
+    padding-left: 25px !important;
+    padding-right: 5px !important;
+    padding-top: 10px;  
+}
+.form-check-input {
+    margin-left: -1.5rem;
+}
+
+.popover {
+    z-index: 1110;
+}
+
+.popover-primary .popover-body {
+    color: #fff;
+    background: #3c3c3c;
+}
+
+.form-group .btn-light {
+    color: #7b7b7b;
+    background-color: #e6e6e6;
+    border-color: #fbfbfb;
+}
+
+.datepicker.datepicker-dropdown, .datepicker.datepicker-inline {
+    box-shadow: 0px 1px 15px 11px rgba(109, 109, 109, 0.19);
+    border-radius: 2px;
+}
+
+.datepicker-dropdown.datepicker-orient-top:before {
+    opacity: 0 !important;
+}
+
+.datepicker-dropdown.datepicker-orient-top:after {
+    opacity: 0 !important;
+}
+
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header {
+    background: #366698;
+}
+
+.dtp div.dtp-date, .dtp div.dtp-time {
+    background: #559ce4;
+}
+
+.dtp .p10 > a {
+    color: #ffffff;
+}
+
+.dtp div.dtp-actual-year {
+    color: #c8dded;
+}
+
+.dtp table.dtp-picker-days tr > td > a.selected {
+    background: #4ca6ca;
+}
+
+.dtp table.dtp-picker-days tr > td > a, .dtp .dtp-picker-time > a {
+    padding: 5px 8px !important;
+}
+
+.dtp-buttons .btn-flat{
+    margin-left: 10px;
+}
+
+.dropdown-menu.show {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.dropify-wrapper {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05), 0 2px 10px 0 rgba(0, 0, 0, 0.02);
+}

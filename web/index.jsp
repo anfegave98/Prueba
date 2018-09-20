@@ -81,6 +81,7 @@
 
         <!-- plugins:css -->
         <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="assets/vendors/iconfonts/puse-icons-feather/feather.css">
         <link rel="stylesheet" href="assets/vendors/iconfonts/ti-icons/css/themify-icons.css">
         <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
@@ -88,6 +89,7 @@
         <link rel="stylesheet" href="assets/vendors/bootstrap-select/bootstrap-select.min.css">
         <link rel="stylesheet" href="assets/vendors/bootstrap-checkbox/awesome-bootstrap-checkbox.css">
         <link rel="stylesheet" href="assets/vendors/wait-me/waitMe.min.css">
+        <link rel="stylesheet" href="assets/vendors/bootstrap-material-datepicker/bootstrap-material-datetimepicker.css">
 
         <!-- inject:css -->
         <link rel="stylesheet" href="assets/css/style.css">
@@ -111,7 +113,7 @@
 
     </head>
 
-    <body>
+    <body class="sidebar-fixed">
         <div class="container-scroller">
 
             <!-- partial:partials/_navbar.html -->
@@ -187,7 +189,7 @@
 
                 <!-- partial:partials/_sidebar.html -->
                 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                    <ul class="nav">
+                    <ul class="nav" accesskey="">
 
                         <li class="nav-item nav-profile">
                             <div class="nav-link">
@@ -251,6 +253,8 @@
         <script src="assets/js/shared/data-table-datetime.js"></script>
         <script src="assets/vendors/wait-me/waitMe.min.js"></script>
         <script src="assets/js/shared/moment-with-locales.js"></script>
+        <script src="assets/js/bootstrap-select.min.js"></script>
+        <script src="assets/js/bootstrap-select-es_ES.js"></script>
         <!-- endinject -->
         <!-- Plugin js for this page-->
         <!-- End plugin js for this page-->
@@ -262,6 +266,9 @@
         <script src="assets/js/shared/todolist.js"></script>
         <script src="assets/js/shared/logout.js"></script>
         <script src="assets/js/shared/tooltips.js"></script>
+        <script src="assets/js/shared/popover.js"></script>
+        <script src="assets/js/shared/dropify.js"></script> 
+        <script src="assets/vendors/bootstrap-material-datepicker/bootstrap-material-datetimepicker.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
         <script src="index.js"></script>

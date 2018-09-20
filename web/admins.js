@@ -92,10 +92,10 @@ $(document).ready(function () {
         data: data,
         columns: cols,
         autoWidth: true,
-        scrollY:        "300px",
-        scrollX:        true,
+        scrollY: "300px",
+        scrollX: true,
         scrollCollapse: true,
-        lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
         columnDefs: [
             {targets: -1, data: null, width: "100px", defaultContent: actions},
             {targets: 1, render: $.fn.dataTable.render.ellipsis(20)},
@@ -113,21 +113,55 @@ $(document).ready(function () {
         responsive: true,
         fnDrawCallback: function (oSettings) {
             $(".ellipsis").tooltip();
+            const datatableScroll = new PerfectScrollbar('.dataTables_scrollBody');
         }
 
     });
-    
-    var table = $('#example').DataTable( {
-        scrollY:        "300px",
-        scrollX:        true,
-        scrollCollapse: true,
-        paging:         false,
-        fixedColumns:   {
-            leftColumns: 1,
-            rightColumns: 1
-        }
-    } );
 
+    $('.maxlenght').maxlength({
+        alwaysShow: true,
+        warningClass: "badge mt-1 badge-success",
+        limitReachedClass: "badge mt-1 badge-danger"
+    });
+
+    addShow();
+    $('[data-toggle="popover"]').popover();
+
+    $('.btn').on('click', function (e) {
+        $('.btn').not(this).popover('hide');
+    });
+
+    if ($("#datepicker-popup").length) {
+        $('#datepicker-popup').datepicker({
+            enableOnReadonly: true,
+            todayHighlight: true,
+        });
+    }
+
+    $('.material-timedate').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY - hh:mm a', shortTime: true, lang: 'es', cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
+    $('.material-date').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY', lang: 'es', time: false, cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
+
+    $('.selectpicker').selectpicker();
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Arrastra un archivo o haz clic aquí',
+            'replace': 'Arrastra un archivo o haz clic aquí para reemplazar',
+            'remove': 'Eliminar',
+            'error': 'Ooops, algo salió mal.'
+        }
+    });
+    
+    var modalScroll = new PerfectScrollbar('.modal');
+    
+});
+
+$('body').on('click', function (e) {
+    $('[data-toggle=popover]').each(function () {
+        // hide any open popovers when the anywhere else in the body is clicked
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
 });
 
 $.fn.dataTable.render.moneda = function (sign) {
@@ -144,23 +178,28 @@ $.fn.dataTable.render.casilla = function (sign) {
 
 $.fn.dataTable.render.photo = function (sign) {
     return function (data, type, row) {
-        return '<button onclick="openInNewTab(\''+data+'\');" type="button" class="btn btn-warning btn-fw ml-2"><i class="mdi mdi-fullscreen"></i>Ver Imagen</button>'
+        return '<button onclick="openInNewTab(\'' + data + '\');" type="button" class="btn btn-warning btn-fw ml-2"><i class="mdi mdi-fullscreen"></i>Ver Imagen</button>'
     };
 };
 
 $.fn.dataTable.render.file = function (sign) {
     return function (data, type, row) {
-        return '<button onclick="openInNewTab(\''+data+'\');" type="button" class="btn btn-success btn-fw ml-2"><i class="mdi mdi-cloud-download"></i>Descargar</button>'
+        return '<button onclick="openInNewTab(\'' + data + '\');" type="button" class="btn btn-success btn-fw ml-2"><i class="mdi mdi-cloud-download"></i>Descargar</button>'
     };
 };
 
 $.fn.dataTable.render.color = function (sign) {
     return function (data, type, row) {
-        return '<div style="background-color:'+data+', border-color:#fff" class="badge badge-danger">'+data+'</div>'
+        return '<div style="background-color:' + data + ', border-color:#fff" class="badge badge-danger">' + data + '</div>'
     };
 };
 
 function openInNewTab(url) {
-  var win = window.open(url, '_blank');
-  win.focus();
+    var win = window.open(url, '_blank');
+    win.focus();
+}
+
+function addShow() {
+    $('#addModal').modal('show');
+    $('#addModal').modal('handleUpdate')
 }

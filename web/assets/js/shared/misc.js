@@ -9,6 +9,7 @@
 
     //Add active class to nav-link based on url dynamically
     //Active class can be hard coded directly in html file also as required
+    /*
     var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
     $('.nav li a', sidebar).each(function () {
       var $this = $(this);
@@ -36,7 +37,7 @@
         }
       }
     })
-
+*/
     //Close other submenu in sidebar on opening any
 
     sidebar.on('show.bs.collapse', '.collapse', function () {

@@ -51,6 +51,7 @@ $(document).ready(function () {
         if (e.state)
             openURL(e.state.href);
     });
+    var demoDiv = $('sidebar');
 
 }
 );
