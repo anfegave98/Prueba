@@ -15,6 +15,17 @@
         <url-pattern>/dash</url-pattern>
     </servlet-mapping>
     
+    
+    <servlet>
+        <servlet-name>signup</servlet-name>
+        <jsp-file>/signup.jsp</jsp-file>
+    </servlet>
+	
+    <servlet-mapping>
+        <servlet-name>signup</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>movs</servlet-name>
         <jsp-file>/common/rmovs.jsp</jsp-file>
