@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var cols = [
-        {title: 'Texto Corto', data: 'textocorto'},
+        {title: 'Texto Corto', data: 'textocorto', required: pk, },
         {title: 'Texto Largo', data: 'textolargo'},
         {title: 'Número Entero', data: 'entero'},
         {title: 'Número Decimal', data: 'decimal'},
@@ -105,7 +105,9 @@ $(document).ready(function () {
             {targets: 14, render: $.fn.dataTable.render.file()},
             {targets: 5, render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY')},
             {targets: 6, render: $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'DD/MM/YYYY hh:mm:ss a', 'es')},
-            {targets: 4, render: $.fn.dataTable.render.casilla('test')}
+            {targets: 4, render: $.fn.dataTable.render.casilla('test')},
+            {targets: 9, render: $.fn.dataTable.render.renderespecial()}
+
         ],
         language: {
             url: 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json'
@@ -150,9 +152,9 @@ $(document).ready(function () {
             'error': 'Ooops, algo salió mal.'
         }
     });
-    
+
     var modalScroll = new PerfectScrollbar('.modal');
-    
+
 });
 
 $('body').on('click', function (e) {
@@ -194,15 +196,133 @@ $.fn.dataTable.render.color = function (sign) {
     };
 };
 
+$.fn.dataTable.render.renderespecial = function () {
+    return function (data, type, row) {
+        return 'test ' + data + ' %'
+    };
+};
+
 function openInNewTab(url) {
     var win = window.open(url, '_blank');
     win.focus();
 }
 
 function addShow() {
-    $('#addModal').modal('show');
-    $('#addModal').modal('handleUpdate')
+    enableForm('entityForm');
+    cleanForm('entityForm');
+    $('#viewEditModal').modal('show');
+    $('#viewEditModal').modal('handleUpdate')
 }
+
+function editShow(id_edit) {
+    enableForm('entityForm');
+    cleanForm('entityForm');
+    prefillForm(id_edit);
+    $('#viewEditModal').modal('show');
+    $('#viewEditModal').modal('handleUpdate')
+}
+
+function editShow(id_edit) {
+    enableForm('entityForm');
+    cleanForm('entityForm');
+    prefillForm(id_edit);
+    $('#viewEditModal').modal('show');
+    $('#viewEditModal').modal('handleUpdate')
+}
+
+function preFill(id) {
+    $.ajax({
+        url: "ObjectS",
+        type: 'GET',
+        dataType: "text",
+        data: {
+            'action': "get",
+            'pk': dateS
+        },
+        success: function (data) {
+
+            eventos = $.parseJSON(data);
+            console.log(eventos);
+            // limpiar horario
+            wipeEvents();
+
+            var prevDate;
+            var cardcontainer = $('#events-container-list');
+            // ubicar eventos            
+            for (var i = 0; i < eventos.length; ++i) {
+                var currentDate = new Date(eventos[i].fecha_ini);
+
+                if (prevDate == null || !(prevDate.getFullYear() == currentDate.getFullYear() &&
+                        prevDate.getMonth() == currentDate.getMonth() &&
+                        prevDate.getDay() == currentDate.getDay()))
+                {
+                    var text;
+                    // Si es hoy
+                    if ((today.getFullYear() == currentDate.getFullYear() &&
+                            today.getMonth() == currentDate.getMonth() &&
+                            today.getDay() == currentDate.getDay())) {
+                        text = "Hoy";
+                    } else if ((today.getFullYear() == currentDate.getFullYear() &&
+                            today.getMonth() == currentDate.getMonth() &&
+                            today.getDay() == currentDate.getDay() - 1)) {
+                        text = "Mañana";
+                    } else {
+                        text = formatDateShort(currentDate);
+                    }
+                    prevDate = currentDate;
+                    cardcontainer.append("<h3 style=\"color: #b7b7b7;\">" + text + "</h3>");
+                }
+
+                drawEvent(i);
+            }
+
+
+
+            $('#events-container').waitMe("hide");
+            $('#date-loader').waitMe("hide");
+
+        }
+    });
+}
+
+
+function disableForm(formid) {
+    $("#" + formid + " :input").prop("disabled", true);
+    $("#" + formid + " .dropify-wrapper").addClass('hidden');
+    $("#" + formid + " .dropify-display").removeClass('hidden');
+
+}
+
+function enableForm(formid) {
+    $("#" + formid + " :input").prop("disabled", false);
+    $("#" + formid + " .dropify-wrapper").removeClass('hidden');
+    $("#" + formid + " .dropify-display").addClass('hidden');
+}
+
+function cleanForm(formid) {
+    $("#" + formid + " :input").val("");
+    $("#" + formid + " :checkbox").prop('checked', false);
+    $("#" + formid + " :radio").prop('checked', false);
+    $("#" + formid + " .selectpicker").selectpicker('val', '');
+    $('.dropify-clear').click();
+}
+
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#logoprev').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#logo").change(function () {
+    readURL(this);
+});
 
 
 

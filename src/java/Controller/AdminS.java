@@ -50,7 +50,7 @@ public class AdminS extends HttpServlet {
 
             }
             if (op.equalsIgnoreCase("get")) {
-                String email = request.getParameter("email");
+                String email = request.getParameter("pk");
                 Admin e = a.getByEmail(email);
                 String pasareEsto = g.toJson(e);
                 out.print(pasareEsto);
