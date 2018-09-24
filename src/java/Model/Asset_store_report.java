@@ -11,11 +11,21 @@ package Model;
  */
 public class Asset_store_report {
     
+    private int state_asset_id;
     private String name;
+    private String codebar;
     private int available;
     private int no_available;
     private String description;
 
+    public int getState_asset_id() {
+        return state_asset_id;
+    }
+
+    public void setState_asset_id(int state_asset_id) {
+        this.state_asset_id = state_asset_id;
+    }
+    
     public String getName() {
         return name;
     }
@@ -46,6 +56,14 @@ public class Asset_store_report {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCodebar() {
+        return codebar;
+    }
+
+    public void setCodebar(String codebar) {
+        this.codebar = codebar;
     }
     
     

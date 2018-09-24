@@ -320,7 +320,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="prestamos.jsp">
                                 <i class="menu-icon mdi mdi-notification-clear-all"></i>
                                 <span class="menu-title">Préstamos</span>
@@ -334,7 +334,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="clientes.jsp">
                                 <i class="menu-icon mdi mdi-lightbulb-outline"></i>
                                 <span class="menu-title">Clientes</span>
@@ -353,26 +353,62 @@
                 <div class="main-panel">
                     <div class="content-wrapper">
                         <div class="row">
-                            <div class="col-lg-12 grid-margin">
+                            <div class="col-md-12 grid-margin stretch-card" id="div_search_client">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Clientes</h4>
-                                            <button type="button" onclick="window.location.href='clientesAdd.jsp'" class="btn btn-primary btn-fw">Agregar</button> 
-                                            
-                                        
+                                        <h4 class="card-title">Buscar cliente</h4>
+                                        <form id="findClient" class="forms-sample">
+                                            <div class="input-group col-12">
+
+                                                <input type="text" class="form-control" id="client_email" placeholder="Email del Cliente">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-success mr-2">Buscar</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8 grid-margin stretch-card" id="div_prestamo">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Agregar Prestamo</h4>
+                                        <form id="assetAdd" class="forms-sample">
+                                            <div class="input-group col-12">
+
+                                                <input type="text" class="form-control" id="asset_id" placeholder="ID del Activo">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-success mr-2">Agregar</button>
+                                                </div>
+                                            </div>                                            
+                                        </form>
+
                                         <div class="table-responsive">
-                                            <table id="client_table" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                            <table id="items_table" class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Nombres</th>
-                                                        <th>Apellidos</th>
-                                                        <th>Email</th>
+                                                        <th>Código</th>
+                                                        <th>Nombre</th>
+                                                        <th>Descripcion</th>
+                                                        <th>Solicitados</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
                                             </table>
-                                        </div>                                        
+                                        </div>   
+                                        <button type="button" onclick="sendLend()" class="btn btn-primary btn-fw">Hacer préstamo</button> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 grid-margin stretch-card" id="div_client">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title" >Datos del cliente</h3>
+                                        <p>Nombre: <span id="client_name_show"></span></p>
+                                        <p>Apellidos: <span id="client_last_name_show"></span></p>
+                                        <p>Email: <span id="client_email_show"></span></p>
+
                                     </div>
                                 </div>
                             </div>
@@ -413,7 +449,7 @@
         <script src="assets/js/shared/logout.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
-        <script src="assets/js/clientes.js"></script>
+        <script src="assets/js/prestamoAdd.js"></script>
         <!-- End custom js for this page-->
     </body>
 </html>
