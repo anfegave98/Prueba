@@ -6,6 +6,7 @@
 package Dao;
 
 import Model.Asset;
+import Model.Asset_store;
 import Util.Asset_available_report;
 import Util.DbUtil;
 import java.io.IOException;
@@ -106,6 +107,17 @@ public class AssetDAO {
         return asset;
     }
 
+    public int rASidBCS(String codebar,int store_id) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select asset_store.asset_store_id from asset,asset_store where asset.asset_id=asset_store.asset_id"
+                + " and asset.codebar='"+codebar+"' and asset.store_id="+store_id);
+        while (rs.next()) {
+            return rs.getInt("asset_store_id");
+        }
+        
+        return 0;
+    }
+    
     public ArrayList<Asset> getAllAsset() throws SQLException {
         ArrayList<Asset> assets = new ArrayList<>();
         Statement statement = connection.createStatement();

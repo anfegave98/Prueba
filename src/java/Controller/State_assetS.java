@@ -84,7 +84,7 @@ public class State_assetS extends HttpServlet {
                 //asset_store.setAvaliable(asset_store.getAvaliable() - state_asset.getQuantity());
                 asset_store.setNo_avaliable(asset_store.getNo_avaliable() + state_asset.getQuantity());
                 asset_storedao.updateAsset_store(asset_store);
-                out.println("ok");
+                out.print(true);
             }
             if (op.equalsIgnoreCase("remove")) {
                 State_asset state_asset = s.readState_asset(Integer.parseInt(request.getParameter("state_asset_id")));

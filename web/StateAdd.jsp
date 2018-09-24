@@ -16,7 +16,7 @@
     String theme = "light";
     String logoScr = "";
 
-    
+
 %>
 
 <!DOCTYPE html>
@@ -300,7 +300,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button onclick="window.location.href='prestamoAdd.jsp'" class="btn btn-success btn-accent btn-block">Nuevo préstamo
+                                <button onclick="window.location.href = 'prestamoAdd.jsp'" class="btn btn-success btn-accent btn-block">Nuevo préstamo
                                     <i class="mdi mdi-plus"></i>
                                 </button>
                             </div>
@@ -356,62 +356,38 @@
                             <div class="col-md-12 grid-margin stretch-card" id="div_search_client">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Buscar cliente</h4>
-                                        <form id="findClient" class="forms-sample">
+                                        <h4 class="card-title">Buscar Activo</h4>
+                                        <form id="findAsset" class="forms-sample">
                                             <div class="input-group col-12">
 
-                                                <input type="text" class="form-control" id="client_email" placeholder="Email del Cliente">
+                                                <input type="text" class="form-control" id="codebar" placeholder="Codigo de barras">
                                                 <div class="input-group-append">
                                                     <button type="submit" class="btn btn-success mr-2">Buscar</button>
                                                 </div>
                                             </div>
 
                                         </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8 grid-margin stretch-card" id="div_prestamo">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Agregar Prestamo</h4>
-                                        <form id="assetAdd" class="forms-sample">
-                                            <div class="input-group col-12">
+                                        <div class="col-md-4 grid-margin stretch-card" id="div_asset">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h3 class="card-title" >Datos del Activo</h3>
+                                                    <p>Nombre: <span id="asset_name_show"></span></p>
+                                                    <p>Codebar: <span id="asset_codebar_show"></span></p>
+                                                    <p>Descripcion: <span id="asset_description_show"></span></p>
+                                                    <p>Disponibles: <span id="asset_available_show"></span></p>
+                                                    <p>Cantidad: <input type="text" class="form-control" id="cantidad" placeholder="Cantidad"> </p>
+                                                    <p>Descripcion: <input type="text" class="form-control" id="descripcion" placeholder="Razon del mantenimiento"></p>
+                                  
+                                                    <button type="button" onclick="sendState()" class="btn btn-primary btn-fw">Hacer Cambio</button> 
 
-                                                <input type="text" class="form-control" id="asset_id" placeholder="ID del Activo">
-                                                <div class="input-group-append">
-                                                    <button type="submit" class="btn btn-success mr-2">Agregar</button>
                                                 </div>
-                                            </div>                                            
-                                        </form>
-
-                                        <div class="table-responsive">
-                                            <table id="items_table" class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Código</th>
-                                                        <th>Nombre</th>
-                                                        <th>Descripcion</th>
-                                                        <th>Solicitados</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>   
-                                        <button type="button" onclick="sendLend()" class="btn btn-primary btn-fw">Hacer préstamo</button> 
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 grid-margin stretch-card" id="div_client">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h3 class="card-title" >Datos del cliente</h3>
-                                        <p>Nombre: <span id="client_name_show"></span></p>
-                                        <p>Apellidos: <span id="client_last_name_show"></span></p>
-                                        <p>Email: <span id="client_email_show"></span></p>
 
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
                     </div>
@@ -449,7 +425,7 @@
         <script src="assets/js/shared/logout.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
-        <script src="assets/js/prestamoAdd.js"></script>
+        <script src="assets/js/StateAdd.js"></script>
         <!-- End custom js for this page-->
     </body>
 </html>
