@@ -93,6 +93,7 @@ public class LendS extends HttpServlet {
                     Lend_itemsDAO ldi = new Lend_itemsDAO("AABGJJMO_BiStock_" + 1);
                     String lend_items = request.getParameter("lend_items");
                     List<queryLend> list_items = new Gson().fromJson(lend_items, new TypeToken<List<queryLend>>() {}.getType());
+                    System.out.println(list_items.toString()+"sdfewfwefwefwe");
                     for(queryLend q: list_items){
                         Lend_items item=new Lend_items();
                         item.setLend_id(mayor);

@@ -40,6 +40,7 @@ public class Asset_storeS extends HttpServlet {
             Asset_storeDAO a = new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
             AssetDAO as = new AssetDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
+            System.out.println("hola perrras");
             if (op.equalsIgnoreCase("getById")) {
                 int asset_id = Integer.parseInt(request.getParameter("asset_id"));
                 out.print(g.toJson(as.getOneAvailable(asset_id)));

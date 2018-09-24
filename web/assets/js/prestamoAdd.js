@@ -90,8 +90,8 @@ function addById(asset_id) {
     } else {
 
         var par = {
-            "op": "getById",
-            "asset_id": asset_id
+            "op": "getByCodebar",
+            "codebar": asset_id
         };
 
         $.ajax({

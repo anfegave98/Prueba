@@ -9,24 +9,14 @@
 <%@page import="Model.Company"%>
 <%
 
-    String name = "";
-    String email = "";
-    String primary_color = "";
-    String secondary_color = "";
+    String name = "Oscar";
+    String email = "aa";
+    String primary_color = "541345";
+    String secondary_color = "FFFFFF";
     String theme = "light";
     String logoScr = "";
 
-    Company c = null;
-    if (request.getSession().getAttribute("company") != null) {
-        c = (Company) request.getSession().getAttribute("company");
-        name = c.getName();
-        email = c.getEmail();
-        primary_color = c.getPrimary_color();
-        secondary_color = c.getAccent_color();
-        logoScr = c.getLogo();
-    } else {
-        response.sendRedirect("login.jsp");
-    }
+    
 %>
 
 <!DOCTYPE html>
