@@ -32,7 +32,7 @@ function sendState() {
 }
 
 $('#findAsset').on('submit', function () {
-
+     $('#sub_div_asset').attr('style','display:none;');
     var parametrosAssetAdd = {
         "op": "getByCodebar",
         "codebar": $('#codebar').val()
@@ -70,6 +70,28 @@ $('#findAsset').on('submit', function () {
     return false;
 });
 
+function showDetails() {
+    var parametrosAssetAdd = {
+        "op": "showDetails",
+        "asset_store_id": asset.asset_store_id
+    };
+
+    $.ajax({
+        data: parametrosAssetAdd,
+        url: "AssetS",
+        type: "GET"
+
+    }).done(function (response) {
+        console.log(response);
+        var jason=$.parseJSON(response);
+        $('#sub_div_asset').removeAttr('style');
+        $('#asset_in_state_show').append(jason.store_id);
+        $('#asset_in_lend_show').append(jason.asset_id);
+
+    }).fail(function () {
+        alert("error");
+    });
+}
 
 
 
