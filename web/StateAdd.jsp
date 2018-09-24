@@ -367,7 +367,7 @@
                                             </div>
 
                                         </form>
-                                        <div class="col-md-8 grid-margin stretch-card" id="div_asset">
+                                        <div class="col-md-4 grid-margin stretch-card" id="div_asset">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h3 class="card-title" >Datos del Activo</h3>
@@ -377,27 +377,12 @@
                                                     <p>Disponibles: <span id="asset_available_show"></span></p>
                                                     <p>Cantidad: <input type="text" class="form-control" id="cantidad" placeholder="Cantidad"> </p>
                                                     <p>Descripcion: <input type="text" class="form-control" id="descripcion" placeholder="Razon del mantenimiento"></p>
-
+                                  
                                                     <button type="button" onclick="sendState()" class="btn btn-primary btn-fw">Hacer Cambio</button> 
-                                                    <button type="button" onclick="showDetails()" class="btn btn-primary btn-fw">Ver mas</button>
 
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8 grid-margin stretch-card" id="sub_div_asset" style="display: none;">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h3 class="card-title" >Datos del Activo</h3>
-                                                    <p>En mantenimiento: <span id="asset_in_state_show"></span></p>
-                                                    <p>En prestamo: <span id="asset_in_lend_show"></span></p>
-
-
-                                                     
-
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>

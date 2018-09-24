@@ -71,10 +71,11 @@ public class Lend_itemsDAO {
         return lend_itemss;
     }
 
+    
     public ArrayList<Lend_items> getAllLend_items(int lend_id) throws SQLException {
         ArrayList<Lend_items> lend_itemss = new ArrayList<>();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from lend_items where lend_id=" + lend_id);
+        ResultSet rs = statement.executeQuery("select * from lend_items where lend_id="+lend_id);
         while (rs.next()) {
             Lend_items lend_items = new Lend_items();
             lend_items.setLend_id(rs.getInt("lend_id"));
@@ -86,25 +87,24 @@ public class Lend_itemsDAO {
         }
         return lend_itemss;
     }
-
+    
     public void devolution(int lend_id) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select * from lend_items where lend_id=" + lend_id);
         while (rs.next()) {
-            int lend_quantity = rs.getInt("lend_quantity");
-            int asset_store_id = rs.getInt("asset_store_id");
-            PreparedStatement preparedStatement = connection.prepareStatement("update lend_items set devolution_quantity=? where lend_quantity=" + lend_quantity + " and asset_store_id=" + asset_store_id);
+            int lend_quantity=rs.getInt("lend_quantity");
+            int asset_store_id=rs.getInt("asset_store_id");
+            PreparedStatement preparedStatement = connection.prepareStatement("update lend_items set devolution_quantity=? where lend_quantity="+lend_quantity+" and asset_store_id="+asset_store_id);
             preparedStatement.setInt(1, lend_quantity);
             preparedStatement.executeUpdate();
         }
     }
-
     public ArrayList<Lend_items_report> getBorrowed_times_store(int store_id) throws SQLException {
         ArrayList<Lend_items_report> lend_items_reports = new ArrayList<>();
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select asset.name,asset.codebar,sum(lend_items.lend_quantity) as borrowed_times from lend_items,asset_store,asset,store\n"
                 + "where asset.asset_id=asset_store.asset_id and asset_store.asset_store_id = lend_items.asset_store_id and\n"
-                + "store.store_id = asset_store.store_id and store.store_id=" + store_id + "\n"
+                + "store.store_id = asset_store.store_id and store.store_id=" + store_id +"\n"
                 + "group by lend_items.asset_store_id order by borrowed_times desc limit 5");
         while (rs.next()) {
             Lend_items_report lend_items_report = new Lend_items_report();
@@ -114,19 +114,6 @@ public class Lend_itemsDAO {
             lend_items_reports.add(lend_items_report);
         }
         return lend_items_reports;
-    }
-
-    public int Lend_Items_quantity_by_ASID(int asset_store_id) throws SQLException {
-        int quantity = 0;
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select sum(lend_items.lend_quantity) - sum(lend_items.devolution_quantity) as 'in_lend' from asset_store,lend_items\n"
-                + "where asset_store.asset_store_id = lend_items.asset_store_id and asset_store.asset_store_id ="+ asset_store_id);
-        while (rs.next()) {
-            quantity = rs.getInt("in_lend");
-            
-        }
-        return quantity;
-
     }
 
 }

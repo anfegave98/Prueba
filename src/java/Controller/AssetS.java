@@ -7,8 +7,6 @@ package Controller;
 
 import Dao.AssetDAO;
 import Dao.Asset_storeDAO;
-import Dao.Lend_itemsDAO;
-import Dao.State_assetDAO;
 import Model.Asset;
 import Model.Asset_store;
 import Util.Asset_available_report;
@@ -59,17 +57,6 @@ public class AssetS extends HttpServlet {
                 Asset e = a.readAssetByCodebar(codebar);
                 String pasareEsto = g.toJson(e);
                 out.print(pasareEsto);
-            }
-            if(op.equalsIgnoreCase("showDetails")){
-                State_assetDAO dao_asset = new State_assetDAO("AABGJJMO_BiStock_" + 1);
-                int maintenance = dao_asset.State_asset_quantity_by_ASID(Integer.parseInt(request.getParameter("asset_store_id")));
-                Lend_itemsDAO dao_lend = new Lend_itemsDAO("AABGJJMO_BiStock_" + 1);
-                int in_lend = dao_lend.Lend_Items_quantity_by_ASID(Integer.parseInt(request.getParameter("asset_store_id")));
-                Asset_store x = new Asset_store();
-                x.setAsset_id(in_lend);
-                x.setStore_id(maintenance);
-                out.print(new Gson().toJson(x));
-                
             }
             
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
