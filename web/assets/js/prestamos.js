@@ -14,8 +14,7 @@ $(document).ready(function () {
             {data: 'lend_id'},
             {data: 'client_id'},
             {data: 'start_date'},
-            {data: 'end_date',
-            defaultContent: "waiting"},
+            {data: 'end_date'},
             {data: null}
         ],
         columnDefs: [

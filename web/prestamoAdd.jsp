@@ -16,7 +16,7 @@
     String theme = "light";
     String logoScr = "";
 
-    
+
 %>
 
 <!DOCTYPE html>
@@ -300,7 +300,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button onclick="window.location.href='prestamoAdd.jsp'" class="btn btn-success btn-accent btn-block">Nuevo préstamo
+                                <button onclick="window.location.href = 'prestamoAdd.jsp'" class="btn btn-success btn-accent btn-block">Nuevo préstamo
                                     <i class="mdi mdi-plus"></i>
                                 </button>
                             </div>
@@ -396,7 +396,21 @@
                                                     </tr>
                                                 </thead>
                                             </table>
-                                        </div>   
+                                        </div>  
+                                        <br>
+                                        <h3 class="card-title" >Dia maximo de devolucion</h3>
+                                        <div class="row">
+                                            <div class='col-sm-6'>
+                                                <div class="form-group">
+                                                    <div class='input-group date'  id='datetimepicker' >
+                                                        <input  id="end_date" name="fecha" type='text' class="form-control datetimepicker" placeholder="DD/MM/AAAA" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <button type="button" onclick="sendLend()" class="btn btn-primary btn-fw">Hacer préstamo</button> 
                                     </div>
                                 </div>
