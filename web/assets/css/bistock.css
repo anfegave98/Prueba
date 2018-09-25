@@ -8,7 +8,7 @@
 }
 
 .landing-page .top-banner-overlay {
-    background: url(../../images/topbanneroverlay2.svg) no-repeat center;
+    background: url(../../assets/images/topbanneroverlay2.svg) no-repeat center;
     background-size: cover;
     margin-left: -20px;
     margin-right: -20px;
@@ -240,4 +240,26 @@ td {
 
 .img-fluid {
     max-height: 350px;
+}
+
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(../../assets/images/loader-64x/Preloader_2.gif) center no-repeat #fff;
+}
+
+.toggle-handle{
+    background-color: white;
+    padding: 6px;
+    background-color: #63bdf5;
+}
+
+.switchspecial>.form-check-label {
+    padding-left: 0px !important;
 }

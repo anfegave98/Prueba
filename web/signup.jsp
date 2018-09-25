@@ -10,8 +10,6 @@
 
     <head>
         <title>BI-Stock | Register your Business</title>
-        <%@ include file="common/stylesheet.jsp" %>
-        <link rel="stylesheet" href="assets/css/demo_1/style.css">       <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -22,7 +20,7 @@
         <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
         <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.addons.css">
         <link rel="stylesheet" href="assets/vendors/bootstrap-select/bootstrap-select.min.css">
-        <link rel="stylesheet" href="assets/vendors/bootstrap-checkbox/awesome-bootstrap-checkbox.css"> 
+        <link rel="stylesheet" href="assets/vendors/bootstrap-checkbox/awesome-bootstrap-checkbox.css">
         <!-- endinject -->
         <!-- plugin css for this page -->
         <!-- End plugin css for this page -->
@@ -30,6 +28,8 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/demo.css">
         <link rel="stylesheet" href="assets/css/bistock.css">
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> 
+        <link rel="stylesheet" href="assets/vendors/wait-me/waitMe.min.css">
         <!-- endinject -->
         <link rel="shortcut icon" href="assets/images/favicon.png" />
 
@@ -39,6 +39,8 @@
             }
         </style>
     </head>
+
+    <div class="se-pre-con"></div>
 
     <body>
         <div class="container-scroller landing-page">
@@ -72,7 +74,7 @@
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="name">Nombre de la empresa</label>
-                                                <input value="Jenno's Pizza" id="name" type="text" placeholder="Ingrese el nombre de su empresa" class="form-control">
+                                                <input value="Jenno's Pizza" id="name" maxlength="18" type="text" placeholder="Ingrese el nombre de su empresa" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label>Sector</label><br>
@@ -91,15 +93,9 @@
                                             </div>
 
                                             <div class="form-group col-12">
-                                                <div class="form-check-inline">
+                                                <div class="form-check-inline switchspecial">
                                                     <label class="form-check-label">
-                                                        <input type="radio" value="light" name="basic_color" checked> Tema claro
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" value="dark" name="basic_color">Tema oscuro
+                                                        <input id="theme" type="checkbox" checked data-on="Tema Claro" data-off="Tema Oscuro" data-toggle="toggle" data-onstyle="secondary" data-offstyle="dark">
                                                     </label>
                                                 </div>
                                             </div>
@@ -284,14 +280,17 @@
         <!-- plugins:js -->
         <script src="assets/vendors/js/vendor.bundle.base.js"></script>
         <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="assets/js/bootstrap-select.min.js"></script>
         <script src="assets/js/bootstrap-select-es_ES.js"></script>
+        <script src="assets/vendors/wait-me/waitMe.min.js"></script>
         <!-- endinject -->
         <!-- Plugin js for this page-->
         <script src="signup.js"></script>
         <!-- End plugin js for this page-->
         <!-- inject:js -->
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         <script src="assets/js/shared/off-canvas.js"></script>
         <script src="assets/js/shared/hoverable-collapse.js"></script>
         <script src="assets/js/shared/misc.js"></script>

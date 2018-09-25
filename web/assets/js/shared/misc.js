@@ -1,3 +1,7 @@
+$(window).on('load', function(){
+    $(".se-pre-con").fadeOut("slow");
+});
+
 (function ($) {
   'use strict';
   $(function () {

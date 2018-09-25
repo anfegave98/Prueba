@@ -9,12 +9,12 @@
 <html lang="en">
 
     <head>
-        
+
         <title>BI-Stock | Intelligence for your Business</title>
-                <!-- Required meta tags -->
+        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
+
         <!-- plugins:css -->
         <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="assets/vendors/iconfonts/puse-icons-feather/feather.css">
@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="assets/css/bistock.css">
         <!-- endinject -->
         <link rel="shortcut icon" href="assets/images/favicon.png" />
-        
+
     </head>
 
     <body>
@@ -80,7 +80,7 @@
                                     </h3>
                                     <div class="mt-5">
                                         <button class="btn btn-primary btn-lg mr-2">CONOCE MÁS</button>
-                                        <button onclick="window.location.href='signup'" class="btn btn-warning btn-lg ml-2">REGISTRATE AHORA</button>
+                                        <button onclick="window.location.href = 'signup'" class="btn btn-warning btn-lg ml-2">REGISTRATE AHORA</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-5">
@@ -140,8 +140,8 @@
                                     <p class="feature-description">Maneja los datos de tu empresa con gran eficiencia y seguridad.</p>
                                 </div>
                             </div>
-                        <h3 style="margin-bottom: 35px">y mucho más...</h3>
-                        <button onclick="window.location.href='company_register.jsp'" class="btn btn-primary btn-lg ml-2">REGISTRATE AHORA</button>
+                            <h3 style="margin-bottom: 35px">y mucho más...</h3>
+                            <button onclick="window.location.href = 'signup'" class="btn btn-primary btn-lg ml-2">REGISTRATE AHORA</button>
                         </div>
                     </div>
                 </div>
@@ -211,11 +211,12 @@
         <!-- Plugin js for this page-->
         <!-- End plugin js for this page-->
         <!-- inject:js -->
-        <script src="assets/js/off-canvas.js"></script>
-        <script src="assets/js/hoverable-collapse.js"></script>
-        <script src="assets/js/misc.js"></script>
-        <script src="assets/js/settings.js"></script>
-        <script src="assets/js/todolist.js"></script>
+        <script src="assets/js/shared/off-canvas.js"></script>
+        <script src="assets/js/shared/hoverable-collapse.js"></script>
+        <script src="assets/js/shared/misc.js"></script>
+        <script src="assets/js/shared/settings.js"></script>
+        <script src="assets/js/shared/todolist.js"></script>
+
         <!-- endinject -->
         <!-- Custom js for this page-->
         <!-- End custom js for this page-->

@@ -40,6 +40,14 @@ form.steps({
     onFinishing: function (event, currentIndex) {
         //form.validate().settings.ignore = ':disabled';
         //return form.valid();
+
+        $('#register-form').waitMe({
+            effect: 'win8_linear',
+            text: 'Creando cuenta...',
+            bg: 'rgba(255, 255, 255, 0.7)',
+            color: '#128bfc'
+        });
+
         var exito = submitForm();
         if (exito) {
             window.location.href = "login.jsp";
@@ -93,8 +101,10 @@ $('#colorbar').css('background', '#128bfc');
 $('#colorlink').css('color', '#128bfc');
 $('#colorbutton').css('background-color', '#15b67d');
 
+$("#name").on("change paste keyup", function () {
+    $("#nombre_update").text($("#name").val());
+});
 
-nombre_update
 
 $('#primary_color').on('asColorPicker::change', function (e) {
     var color = $('#primary_color').asColorPicker('val');
@@ -160,7 +170,16 @@ var navbar_classes = "navbar-danger navbar-success navbar-warning navbar-dark na
 var sidebar_classes = "sidebar-light sidebar-dark";
 var $body = $("body");
 
-$('input[type=radio][name=basic_color]').change(function () {
+$(function () {
+    $('#theme').change(function () {
+        if ($(this).prop('checked'))
+            setLight();
+        else
+            setDark();
+    })
+})
+
+$('input[type=checkbox][name=theme]:checked').change(function () {
     if (this.value == 'light') {
         setLight();
     } else if (this.value == 'dark') {
@@ -191,16 +210,19 @@ function setDark() {
 
 function submitForm() {
 
+    $('#register-form').waitMe({
+        effect: 'win8_linear',
+        text: 'Creando cuenta...',
+        bg: 'rgba(255, 255, 255, 0.7)',
+        color: '#128bfc'
+    });
+
     // PAGINA 1
     var name = document.getElementById('name').value;
     var primary_color = $('#primary_color').asColorPicker('val');
     var secondary_color = $('#secondary_color').asColorPicker('val');
     // Theme selected
-    var theme = document.querySelector('input[name="basic_color"]:checked').value;
-    var basicColor = false;
-    if (theme == 'dark') {
-        basicColor = true;
-    }
+    var darktheme = !$("#theme").is(':checked');
     var sector = $('select#sectors').val();
 
     // presenta error
@@ -230,9 +252,9 @@ function submitForm() {
         "logo": "gg",
         "email": adminEmail,
         "password": password,
-        "basic_color": basicColor
+        "basic_color": darktheme
     };
-    
+
     var parametrosStoreAdd = {
         "op": "create",
         "company": 1,
@@ -257,7 +279,16 @@ function submitForm() {
         data: parametrosCompany,
         url: "CompanyS",
         type: "POST",
-        async: false
+        async: false,
+        beforeSend: function () {
+
+            $('#register-form').waitMe({
+                effect: 'win8_linear',
+                text: 'Creando cuenta...',
+                bg: 'rgba(255, 255, 255, 0.7)',
+                color: '#128bfc'
+            });
+        }
 
     }).done(function (response) {
         console.log(response);
@@ -287,26 +318,32 @@ function submitForm() {
                             exito = true;
 
                         } else {
+                            $('#register-form').waitMe('hide');
                             alert("Este email ya se ha registrado en nuestra base de datos");
                         }
 
                     }).fail(function () {
+                        $('#register-form').waitMe('hide');
                         alert("error");
                     });
 
                 } else {
+                    $('#register-form').waitMe('hide');
                     alert("Este email ya se ha registrado en nuestra base de datos");
                 }
 
             }).fail(function () {
+                $('#register-form').waitMe('hide');
                 alert("error");
             });
 
         } else {
+            $('#register-form').waitMe('hide');
             alert("Este email ya se ha registrado en nuestra base de datos");
         }
 
     }).fail(function () {
+        $('#register-form').waitMe('hide');
         alert("error");
     });
 
