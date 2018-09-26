@@ -41,7 +41,7 @@
                     <nav class="navbar navbar-expand-lg bg-transparent">
                         <div class="row flex-grow">
                             <div class="col-md-8 d-lg-flex flex-row mx-auto">
-                                <a class="navbar-brand" href="index.html">
+                                <a class="navbar-brand" href="#">
                                     <img src="assets/images/bistock_white.svg" alt="logo"/>
                                 </a>
                                 <button class="navbar-toggler collapsed float-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav ml-auto">
                                         <li class="nav-item">
-                                            <a class="nav-link btn btn-link" href="index.html">INICIO</a>
+                                            <a class="nav-link btn btn-link" href="#">INICIO</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link btn btn-link" href="#">CARACTERÍSTCAS</a>

@@ -263,3 +263,19 @@ td {
 .switchspecial>.form-check-label {
     padding-left: 0px !important;
 }
+
+#register-form > .steps a {
+    display: block;
+    width: auto;
+    margin: 0 0.5em 0.5em;
+    padding: 0.4em;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.auth.auth-bg-1 {
+    background: url(../../assets/images/auth/login_1.jpg);
+    background-size: cover;
+}

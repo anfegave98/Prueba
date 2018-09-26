@@ -31,15 +31,15 @@ function submitForm() {
         switch (response) {
             case 'Company':
                 console.log("ingresa company");
-                window.location.href = "dashboard.jsp";
+                window.location.href = "app";
                 break;
             case 'Admin':
                 console.log("ingresa admin");
-                window.location.href = "dashboard.jsp";
+                window.location.href = "app";
                 break;
             case 'Client':
                 console.log("ingresa client");
-                window.location.href = "dashboard.jsp";
+                window.location.href = "app";
                 break;
             default:
                 alert("No se encuentra este usuario. Intente otra vez");

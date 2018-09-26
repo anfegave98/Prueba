@@ -49,7 +49,7 @@
                     <nav class="navbar navbar-expand-lg bg-transparent">
                         <div class="row flex-grow">
                             <div class="col-md-8 d-lg-flex flex-row mx-auto">
-                                <a class="navbar-brand" href="index.html">
+                                <a class="navbar-brand" href=".">
                                     <img src="assets/images/bistock_white.svg" alt="logo"/>
                                 </a>
                                 <button class="navbar-toggler collapsed float-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,48 +62,51 @@
                         </div>
                     </nav>
                     <div class="row">
-                        <div class="col-md-8 mx-auto" style="margin-bottom: 40px;">
+                        <div class="col-md-10 col-xl-8 col-lg-10 mx-auto mx-auto" style="margin-bottom: 40px;">
                             <form id="register-form" class="" action="TEST" autocomplete="off">
                                 <h3>Empresa</h3>
                                 <section>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-12">
-                                            <div class="col-12">
-                                                <h4>Configura tu empresa</h4>
-                                                <p>Comencemos por llenar los datos principales de tu empresa y configurar tu pantalla principal</p>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="name">Nombre de la empresa</label>
-                                                <input value="Jenno's Pizza" id="name" maxlength="18" type="text" placeholder="Ingrese el nombre de su empresa" class="form-control">
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label>Sector</label><br>
-                                                <select id="sectors" class="selectpicker" data-dropup-auto="false" data-size="10" style="width:100%">
-                                                    <option value=""> </option>
-                                                </select>
-
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="primary_color">Color principal</label> <!--#128bfc-->
-                                                <input type='text' class="color-picker" value="#128bfc" id="primary_color"/>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <label for="secondary_color">Color secundario</label> <!--#15b67d-->
-                                                <input type='text' class="color-picker" value="#15b67d" id="secondary_color"/>
-                                            </div>
-
-                                            <div class="form-group col-12">
-                                                <div class="form-check-inline switchspecial">
-                                                    <label class="form-check-label">
-                                                        <input id="theme" type="checkbox" checked data-on="Tema Claro" data-off="Tema Oscuro" data-toggle="toggle" data-onstyle="secondary" data-offstyle="dark">
-                                                    </label>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h4>Configura tu empresa</h4>
+                                                    <p>Comencemos por llenar los datos principales de tu empresa y configurar tu pantalla principal</p>
                                                 </div>
-                                            </div>
+                                                <div class="form-group col-12">
+                                                    <label for="name">Nombre de la empresa</label>
+                                                    <input value="Jenno's Pizza" id="name" maxlength="18" type="text" placeholder="Ingrese el nombre de su empresa" class="form-control">
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <label>Sector</label><br>
+                                                    <select id="sectors" class="selectpicker" data-dropup-auto="false" data-size="10" style="width:100%">
+                                                        <option value=""> </option>
+                                                    </select>
 
-                                            <div class="form-group col-12">
-                                                <label for="logo">Logo de la Empresa</label>
-                                                <input type="file" id="logo" class="dropify" data-height="80" data-max-file-size="3M" data-allowed-file-extensions="png jpg svg jpeg"/>
-                                                <p class="small-text">Sube una imagen PNG, JPG o SVG de tu logo completo de forma horizontal. Peso máximo: 3 MB. Tamaño recomendado: 2500px *  56px</p>
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <label for="primary_color">Color principal</label> <!--#128bfc-->
+                                                    <input type='text' class="color-picker" value="#128bfc" id="primary_color"/>
+                                                </div>
+                                                
+                                                <div class="form-group col-6">
+                                                    <label for="secondary_color">Color secundario</label> <!--#15b67d-->
+                                                    <input type='text' class="color-picker" value="#15b67d" id="secondary_color"/>
+                                                </div>
+
+                                                <div class="form-group col-12">
+                                                    <div class="form-check-inline switchspecial">
+                                                        <label class="form-check-label">
+                                                            <input id="theme" data-width="437" type="checkbox" checked data-on="Tema Claro" data-off="Tema Oscuro" data-toggle="toggle" data-onstyle="secondary" data-offstyle="dark">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-12">
+                                                    <label for="logo">Logo de la Empresa</label>
+                                                    <input type="file" id="logo" class="dropify" data-height="80" data-max-file-size="3M" data-allowed-file-extensions="png jpg svg jpeg"/>
+                                                    <p class="small-text">Sube una imagen PNG, JPG o SVG de tu logo completo de forma horizontal. Peso máximo: 3 MB. Tamaño recomendado: 2500px *  56px</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-12">
@@ -112,9 +115,9 @@
                                                     <div style="background-color: #e6e6e6" id="background-prev">
                                                         <nav id="colorbar" class="navbar default-layout col-lg-12 col-12 p-0 d-flex flex-row">
                                                             <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-                                                                <a class="navbar-brand brand-logo" href="index.html">
+                                                                <a class="navbar-brand brand-logo" href="#">
                                                                     <img id="logoprev" src="assets/images/bistock_color.svg" alt="logo"> </a>
-                                                                <a class="navbar-brand brand-logo-mini" href="index.html">
+                                                                <a class="navbar-brand brand-logo-mini" href="#">
                                                                     <img src="assets/images/bistock_color_mini.svg" alt="logo"> </a>
                                                             </div>
                                                             <div class="navbar-menu-wrapper d-flex align-items-center">
@@ -146,42 +149,42 @@
                                                                 </li>
 
                                                                 <li class="nav-item active">
-                                                                    <a id="colorlink" class="nav-link" href="dashboard.jsp" aria-expanded="true">
+                                                                    <a id="colorlink" class="nav-link" href="#" aria-expanded="true">
                                                                         <i class="menu-icon mdi mdi-television"></i>
                                                                         <span class="menu-title">Dashboard</span>
                                                                     </a>
                                                                 </li>
 
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="bi.jsp">
+                                                                    <a class="nav-link" href="#">
                                                                         <i class="menu-icon mdi mdi-lightbulb-outline"></i>
                                                                         <span class="menu-title">Business Intelligence</span>
                                                                     </a>
                                                                 </li>
 
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="prestamos.jsp">
+                                                                    <a class="nav-link" href="#">
                                                                         <i class="menu-icon mdi mdi-notification-clear-all"></i>
                                                                         <span class="menu-title">Préstamos</span>
                                                                     </a>
                                                                 </li>
 
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="inventario.jsp">
+                                                                    <a class="nav-link" href="#">
                                                                         <i class="menu-icon mdi mdi-table"></i>
                                                                         <span class="menu-title">Inventario</span>
                                                                     </a>
                                                                 </li>
 
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="clientes.jsp">
+                                                                    <a class="nav-link" href="#">
                                                                         <i class="menu-icon mdi mdi-lightbulb-outline"></i>
                                                                         <span class="menu-title">Clientes</span>
                                                                     </a>
                                                                 </li>
 
                                                                 <li class="nav-item">
-                                                                    <a class="nav-link" href="administradores.jsp">
+                                                                    <a class="nav-link" href="#">
                                                                         <i class="menu-icon mdi mdi-shield-outline"></i>
                                                                         <span class="menu-title">Administradores</span>
                                                                     </a>

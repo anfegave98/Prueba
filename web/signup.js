@@ -1,7 +1,7 @@
 $(document).ready(function () {
     getSectors();
 });
-
+ 
 var form = $('#register-form').show();
 form.steps({
     headerTag: "h3",
@@ -50,7 +50,7 @@ form.steps({
 
         var exito = submitForm();
         if (exito) {
-            window.location.href = "login.jsp";
+            window.location.href = "login";
             return true;
         } else {
             console.log('error detectado');

@@ -21,13 +21,12 @@
 
     String type = "empresa";
     String role = "";
-    String activeRef = "movs";
+    String activeRef = "dash";
 
     String buttonText = "Nuevo Préstamo";
     String buttonFunction = "prestamo";
 
 
-    /*
     Company c = null;
     if (request.getSession().getAttribute("company") != null) {
         c = (Company) request.getSession().getAttribute("company");
@@ -37,9 +36,8 @@
         secondary_color = c.getAccent_color();
         logoScr = c.getLogo();
     } else {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("login");
     }
-     */
 
 %>
 
@@ -119,9 +117,9 @@
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-                    <a class="navbar-brand brand-logo" href="index.html">
+                    <a class="navbar-brand brand-logo" href="app">
                         <img src="assets/images/bistock_color.svg" alt="logo" /> </a>
-                    <a class="navbar-brand brand-logo-mini" href="index.html">
+                    <a class="navbar-brand brand-logo-mini" href="app">
                         <img src="assets/images/bistock_color_mini.svg" alt="logo" /> </a>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-center">
@@ -174,7 +172,7 @@
                                 <span class="profile-text">Hola, <span id="display_name" ><%=name%></span> !</span>
                                 <img class="img-xs rounded-circle" src="assets/images/faces/face1.jpg" alt="Profile image"> </a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                                <a href="perfil.jsp" class="dropdown-item mt-2"> Mi perfil</a>
+                                <a href="profile" class="dropdown-item mt-2"> Mi perfil</a>
                                 <a onclick="logout();" style="cursor:pointer"class="dropdown-item"> Cerrar sesión </a>
                             </div>
                         </li>
@@ -271,7 +269,7 @@
         <script src="assets/vendors/bootstrap-material-datepicker/bootstrap-material-datetimepicker.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
-        <script src="index.js"></script>
+        <script src="app.js"></script>
         <!-- End custom js for this page-->
 
 

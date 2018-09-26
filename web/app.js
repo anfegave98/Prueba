@@ -31,7 +31,8 @@ function openURL(href) {
     });
     $(".nav-item").removeClass('active');
     $("#" + href).addClass('active');
-    window.history.pushState({href: href}, '', href);
+    //window.history.pushState({href: href}, '', '/' + localStorage.getItem('url') + '/app/' + href);
+    window.history.pushState({href: href}, '', '/' + href); 
 }
 function openJS(href) {
     $.getScript(href + ".js", function () {
@@ -39,6 +40,8 @@ function openJS(href) {
 }
 
 $(document).ready(function () {
+
+    //localStorage.setItem('url', window.location.pathname.split('/')[(window.location.pathname.split('/').indexOf('app'))-1]);
 
     if (localStorage.getItem("redirect") != null) {
         openURL(localStorage.getItem("redirect"));
