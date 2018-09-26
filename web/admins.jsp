@@ -32,6 +32,7 @@
 
 
 <!-- Modal -->
+<!-- 
 <div class="modal fade" id="addModal" style="padding-left:17px" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
@@ -97,7 +98,7 @@
                                 <i class="mdi mdi-help"></i></button>
                         </div>
                         <div class="col-lg-8">
-                            <label class="form-check-label"><input id="bool" type="checkbox" class="form-check-input"> Default </label>
+                            <label class="form-check-label"><input id="bool" type="checkbox" class="form-check-input"> Estoy deacuerdo </label>
                         </div>
                     </div>
 
@@ -241,7 +242,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>  -->
 
 <!-- Modal -->
 <div class="modal fade" id="viewEditModal" style="padding-left:17px" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -285,7 +286,7 @@
                                     <i class="mdi mdi-help"></i></button>
                             </div>
                             <div class="col-lg-8">
-                                <input id="textocorto" value="10" min="0" max="25" class="form-control" type="number"> 
+                                <input id="entero" value="10" min="0" max="25" class="form-control" type="number"> 
                             </div>
                         </div>
 
@@ -296,7 +297,7 @@
                                     <i class="mdi mdi-help"></i></button>
                             </div>                        
                             <div class="col-lg-8">
-                                <input id="textocorto" step="any" value="10" min="0" max="25" class="form-control" type="number"> 
+                                <input id="decimal" step="any" value="10" min="0" max="25" class="form-control" type="number"> 
                             </div>
                         </div>
 
@@ -309,7 +310,7 @@
                                     <i class="mdi mdi-help"></i></button>
                             </div>
                             <div class="col-lg-8">
-                                <label class="form-check-label"><input type="checkbox" class="form-check-input"> Default </label>
+                                <label class="form-check-label"><input type="checkbox" id="bool" class="form-check-input"> Default </label>
                             </div>
                         </div>
 
@@ -356,8 +357,20 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="number" step="any" value="10000" min="1" class="form-control" aria-label="Amount (to the nearest dollar)"> 
+                                    <input id="contabilidad" type="number" step="any" value="10000" min="1" class="form-control" aria-label="Amount (to the nearest dollar)"> 
                                 </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-lg-3 d-flex justify-content-between align-items-center">
+                                <label class="col-form-label">Color</label>
+                                <button type="button" class="btn btn-icons btn-rounded btn-light" data-toggle="popover" title="Contabilidad" data-content="Aquí va el texto de ayuda para el elemento." data-custom-class="popover-primary">
+                                    <i class="mdi mdi-help"></i></button>
+                            </div>                        
+                            <div class="col-lg-8">
+                                <input type="text" class="color-picker" value="#11111" id="color"> 
                             </div>
                         </div>
 
@@ -386,8 +399,7 @@
                                     <i class="mdi mdi-help"></i></button>
                             </div>                        
                             <div class="col-lg-8">
-                                <select id="despunico" class="selectpicker" multiple data-dropup-auto="false" data-size="10" style="width:100%">
-                                    <option disabled value=""> </option>
+                                <select id="despmultiple" class="selectpicker" multiple data-dropup-auto="false" data-size="10" style="width:100%">
                                     <option value="1">Opcion 1</option>
                                     <option value="2">Opcion 2</option>
                                     <option value="3">Opcion 3</option>
@@ -403,9 +415,9 @@
                                     <i class="mdi mdi-help"></i></button>
                             </div>                        
                             <div class="col-lg-8">
-                                <label class="form-check-label"><input type="radio" name="r1" class="form-check-input"> Opción 1 </label>
-                                <label class="form-check-label"><input type="radio" name="r1" class="form-check-input"> Opción 2 </label>
-                                <label class="form-check-label"><input type="radio" name="r1" class="form-check-input"> Opción 3 </label>
+                                <label class="form-check-label"><input type="radio" class="form-check-input" name="e1" id="v1"> Opción 1 </label>
+                                <label class="form-check-label"><input type="radio" class="form-check-input" name="e1" id="v2"> Opción 2 </label>
+                                <label class="form-check-label"><input type="radio" class="form-check-input" name="e1" id="v3"> Opción 3 </label>
                             </div>
                         </div>
 
@@ -416,9 +428,9 @@
                                     <i class="mdi mdi-help"></i></button>
                             </div>                        
                             <div class="col-lg-8">
-                                <label class="form-check-label"><input type="checkbox" class="form-check-input"> Opción 1 </label>
-                                <label class="form-check-label"><input type="checkbox" class="form-check-input"> Opción 2 </label>
-                                <label class="form-check-label"><input type="checkbox" class="form-check-input"> Opción 3 </label>
+                                <label class="form-check-label"><input type="checkbox" id="check1" class="form-check-input"> Opción 1 </label>
+                                <label class="form-check-label"><input type="checkbox" id="check2" class="form-check-input"> Opción 2 </label>
+                                <label class="form-check-label"><input type="checkbox" id="check3" class="form-check-input"> Opción 3 </label>
                             </div>
                         </div>
 
@@ -455,3 +467,4 @@
         </div>
     </div>
 </div>
+

@@ -1,8 +1,29 @@
-var entity = admins;
-
+var entity = 'admins';
+var servlet = 'Attributes';
+var cols;
 
 $(document).ready(function () {
 
+    // Traer columnas y tipos de dato de la entidad
+    cols = getCols();
+
+    // Generar tabla de lista con datos obtenidos
+    generateTable();
+
+    // Generar formulario con columnas obtenidas    
+    generateForm();
+
+    initializePlugins();
+
+    addShow();
+
+
+    //var modalScroll = new PerfectScrollbar('.modal');
+
+});
+
+
+function generateTable() {
     var cols = [
         {title: 'Texto Corto', data: 'textocorto', type: 'textocorto', description: 'desc', required: true, identifier: true, table: true},
         {title: 'Texto Largo', data: 'textolargo'},
@@ -122,43 +143,8 @@ $(document).ready(function () {
         }
 
     });
+}
 
-    $('.maxlenght').maxlength({
-        alwaysShow: true,
-        warningClass: "badge mt-1 badge-success",
-        limitReachedClass: "badge mt-1 badge-danger"
-    });
-
-    addShow();
-    $('[data-toggle="popover"]').popover();
-
-    $('.btn').on('click', function (e) {
-        $('.btn').not(this).popover('hide');
-    });
-
-    if ($("#datepicker-popup").length) {
-        $('#datepicker-popup').datepicker({
-            enableOnReadonly: true,
-            todayHighlight: true,
-        });
-    }
-
-    $('.material-timedate').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY - hh:mm a', shortTime: true, lang: 'es', cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
-    $('.material-date').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY', lang: 'es', time: false, cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
-
-    $('.selectpicker').selectpicker();
-    $('.dropify').dropify({
-        messages: {
-            'default': 'Arrastra un archivo o haz clic aquí',
-            'replace': 'Arrastra un archivo o haz clic aquí para reemplazar',
-            'remove': 'Eliminar',
-            'error': 'Ooops, algo salió mal.'
-        }
-    });
-
-    var modalScroll = new PerfectScrollbar('.modal');
-
-});
 
 $('body').on('click', function (e) {
     $('[data-toggle=popover]').each(function () {
@@ -169,58 +155,9 @@ $('body').on('click', function (e) {
     });
 });
 
-$.fn.dataTable.render.moneda = function (sign) {
-    return function (data, type, row) {
-        return (parseFloat(data) > 0) ? (sign + ' ' + data) : ('-(' + sign + ' ' + -1 * data + ')');
-    };
-};
-
-$.fn.dataTable.render.casilla = function (sign) {
-    return function (data, type, row) {
-        return data ? '<input type="checkbox" disabled checked/>' : '<input type="checkbox" disabled/>'
-    };
-};
-
-$.fn.dataTable.render.photo = function (sign) {
-    return function (data, type, row) {
-        return '<button onclick="openInNewTab(\'' + data + '\');" type="button" class="btn btn-warning btn-fw ml-2"><i class="mdi mdi-fullscreen"></i>Ver Imagen</button>'
-    };
-};
-
-$.fn.dataTable.render.file = function (sign) {
-    return function (data, type, row) {
-        return '<button onclick="openInNewTab(\'' + data + '\');" type="button" class="btn btn-success btn-fw ml-2"><i class="mdi mdi-cloud-download"></i>Descargar</button>'
-    };
-};
-
-$.fn.dataTable.render.color = function (sign) {
-    return function (data, type, row) {
-        return '<div style="background-color:' + data + ', border-color:#fff" class="badge badge-danger">' + data + '</div>'
-    };
-};
-
-$.fn.dataTable.render.renderespecial = function () {
-    return function (data, type, row) {
-        return 'test ' + data + ' %'
-    };
-};
-
-function openInNewTab(url) {
-    var win = window.open(url, '_blank');
-    win.focus();
-}
-
 function addShow() {
     enableForm('entityForm');
     cleanForm('entityForm');
-    $('#viewEditModal').modal('show');
-    $('#viewEditModal').modal('handleUpdate')
-}
-
-function editShow(id_edit) {
-    enableForm('entityForm');
-    cleanForm('entityForm');
-    prefillForm(id_edit);
     $('#viewEditModal').modal('show');
     $('#viewEditModal').modal('handleUpdate')
 }
@@ -292,27 +229,65 @@ function cleanForm(formid) {
     $('.dropify-clear').click();
 }
 
-function preload(){
-    
+function preload() {
+    $('#textocorto').val('test');
 }
 
-function getDataModal() {
-
+function getDataForm() {
+    debugger;
     var textocorto = $('#textocorto').val();
     var textolargo = $('#textolargo').val();
-    var numeroentero = $('#numeroentero').val();
-    var numerodecimal = $('#numerodecimal').val();
-    var bool = $('input[type=checkbox][id=bool]:checked').val();
+    var entero = $('#entero').val();
+    var decimal = $('#decimal').val();
+    var bool = $("#bool").is(':checked');
     var fecha = $('#fecha').val();
     var fechahora = $('#fechahora').val();
     var contabilidad = $('#contabilidad').val();
+    var color = $('#color').val();
     var despunico = $('select#despunico').val();
     var despmultiple = $('select#despmultiple').val();
-    var boolean = (bool == 'on');
-    var radioValue = $('input[name=r1]:checked').val();
-    var check1 = $('input[type=checkbox][id=check1]:checked').val();
-    var check2 = $('input[type=checkbox][id=check2]:checked').val();
-    var check3 = $('input[type=checkbox][id=check3]:checked').val();
+    var radioValue = $('input[name=e1]:checked').attr('id');
+    var check1 = $("#check1").is(':checked');
+    var check2 = $("#check2").is(':checked');
+    var check3 = $("#check3").is(':checked');
+    var checkArray = [].push(check1).push(check2).push(check3);
+
+    var parametros = {
+        "textocorto": "in",
+        "company_id": 1,
+        "email": user,
+        "password": pass
+    };
+
+    $.ajax({
+        data: parametros,
+        url: "Login",
+        type: "POST",
+        async: false
+
+    }).done(function (response) {
+        console.log(response);
+        switch (response) {
+            case 'Company':
+                console.log("ingresa company");
+                window.location.href = "app";
+                break;
+            case 'Admin':
+                console.log("ingresa admin");
+                window.location.href = "app";
+                break;
+            case 'Client':
+                console.log("ingresa client");
+                window.location.href = "app";
+                break;
+            default:
+                alert("No se encuentra este usuario. Intente otra vez");
+                break;
+        }
+
+    }).fail(function () {
+        alert("error");
+    });
 
 }
 
@@ -333,6 +308,45 @@ $("#logo").change(function () {
     readURL(this);
 });
 
+function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
+}
 
+function initializePlugins() {
+    $('.maxlenght').maxlength({
+        alwaysShow: true,
+        warningClass: "badge mt-1 badge-success",
+        limitReachedClass: "badge mt-1 badge-danger"
+    });
 
+    $('[data-toggle="popover"]').popover();
 
+    $('.btn').on('click', function (e) {
+        $('.btn').not(this).popover('hide');
+    });
+
+    if ($("#datepicker-popup").length) {
+        $('#datepicker-popup').datepicker({
+            enableOnReadonly: true,
+            todayHighlight: true,
+        });
+    }
+
+    $('.material-timedate').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY - hh:mm a', shortTime: true, lang: 'es', cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
+    $('.material-date').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY', lang: 'es', time: false, cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
+
+    $('.selectpicker').selectpicker();
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Arrastra un archivo o haz clic aquí',
+            'replace': 'Arrastra un archivo o haz clic aquí para reemplazar',
+            'remove': 'Eliminar',
+            'error': 'Ooops, algo salió mal.'
+        }
+    });
+
+    if ($(".color-picker").length) {
+        $('.color-picker').asColorPicker();
+    }
+}

@@ -26,7 +26,6 @@
     String buttonText = "Nuevo Préstamo";
     String buttonFunction = "prestamo";
 
-
     Company c = null;
     if (request.getSession().getAttribute("company") != null) {
         c = (Company) request.getSession().getAttribute("company");
@@ -266,6 +265,7 @@
         <script src="assets/js/shared/tooltips.js"></script>
         <script src="assets/js/shared/popover.js"></script>
         <script src="assets/js/shared/dropify.js"></script> 
+        <script src="assets/js/shared/formpickers.js"></script>
         <script src="assets/vendors/bootstrap-material-datepicker/bootstrap-material-datetimepicker.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
