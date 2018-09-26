@@ -8,8 +8,12 @@
     <servlet-mapping>
         <servlet-name>signup</servlet-name>
         <url-pattern>/signup</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>    
     
+    <servlet>
+        <servlet-name>signup</servlet-name>
+        <jsp-file>/signup.jsp</jsp-file>
+    </servlet>
     
     <servlet>
         <servlet-name>login</servlet-name>
@@ -28,14 +32,19 @@
 	
     <servlet-mapping>
         <servlet-name>app</servlet-name>
-        <url-pattern>/app/*</url-pattern>
+        <url-pattern>/app</url-pattern>
     </servlet-mapping>
     
     
     <servlet>
-        <servlet-name>signup</servlet-name>
-        <jsp-file>/signup.jsp</jsp-file>
+        <servlet-name>dash</servlet-name>
+        <jsp-file>/common/rdash.jsp</jsp-file>
     </servlet>
+	
+    <servlet-mapping>
+        <servlet-name>dash</servlet-name>
+        <url-pattern>/dash</url-pattern>
+    </servlet-mapping>
     
     <servlet>
         <servlet-name>movs</servlet-name>
@@ -77,8 +86,6 @@
         <url-pattern>/clients</url-pattern>
     </servlet-mapping>
         
-        
-        -->
     <servlet>
         <servlet-name>CompanyS</servlet-name>
         <servlet-class>Controller.CompanyS</servlet-class>

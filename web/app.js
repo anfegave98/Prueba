@@ -32,7 +32,7 @@ function openURL(href) {
     $(".nav-item").removeClass('active');
     $("#" + href).addClass('active');
     //window.history.pushState({href: href}, '', '/' + localStorage.getItem('url') + '/app/' + href);
-    window.history.pushState({href: href}, '', '/' + href); 
+    window.history.pushState({href: href}, '', './' + href); 
 }
 function openJS(href) {
     $.getScript(href + ".js", function () {

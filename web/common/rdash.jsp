@@ -3,7 +3,7 @@
 <html lang="en">
     <body>
         <script>
-            localStorage.setItem("redirect", "movs");
+            localStorage.setItem("redirect", "dash");
             document.location.href = './app';
         </script>
     </body>

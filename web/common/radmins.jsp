@@ -4,7 +4,7 @@
     <body>
         <script>
             localStorage.setItem("redirect", "admins");
-            document.location.href = '.';
+            document.location.href = './app';
         </script>
     </body>
 </html>

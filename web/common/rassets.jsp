@@ -4,7 +4,7 @@
     <body>
         <script>
             localStorage.setItem("redirect", "assets");
-            document.location.href = '.';
+            document.location.href = './app';
         </script>
     </body>
 </html>
