@@ -158,6 +158,7 @@ function generateTable() {
 function triggerLoaderOut() {
     if (tableFinished && formFinished) { 
         $('#loader').waitMe("hide");
+        initializePlugins();
     }
 }
 
