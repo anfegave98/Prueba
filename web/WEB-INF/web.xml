@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    
     <!-- Redirecciones de FrontEnd -->
-    
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list> 
-    
-    <servlet>
-        <servlet-name>PS</servlet-name>
-        <servlet-class>Views.PS</servlet-class>
-    </servlet>
-    
+    </welcome-file-list>
     <servlet-mapping>
         <servlet-name>signup</servlet-name>
         <url-pattern>/signup</url-pattern>
@@ -76,9 +68,7 @@
         <servlet-name>clients</servlet-name>
         <url-pattern>/clients</url-pattern>
     </servlet-mapping>
-    
     <!-- Redirecciones de BackEnd -->
-    
     <servlet>
         <servlet-name>CompanyS</servlet-name>
         <servlet-class>Controller.CompanyS</servlet-class>
@@ -286,10 +276,6 @@
     <servlet-mapping>
         <servlet-name>AttributesS</servlet-name>
         <url-pattern>/AttributesS</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PS</servlet-name>
-        <url-pattern>/PS</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
