@@ -31,6 +31,11 @@ public class queryLend {
     public void setLend_quantity(int lend_quantity) {
         this.lend_quantity = lend_quantity;
     }
+
+    @Override
+    public String toString() {
+        return "queryLend{" + "asset_store_id=" + asset_store_id + ", lend_quantity=" + lend_quantity + '}';
+    }
     
     
 }

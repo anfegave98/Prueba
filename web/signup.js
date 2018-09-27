@@ -1,5 +1,6 @@
 $(document).ready(function () {
     getSectors();
+    $("#nombre_update").text($("#name").val());
 });
  
 var form = $('#register-form').show();

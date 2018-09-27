@@ -279,3 +279,36 @@ td {
     background: url(../../assets/images/auth/login_1.jpg);
     background-size: cover;
 }
+
+.table-button {
+    margin: 0 !important;
+} 
+
+.close:not(:disabled):not(.disabled):hover, .close:not(:disabled):not(.disabled):focus {
+    opacity: 1 !important;
+}
+
+.close-success:hover {
+    color: #01c380 !important;
+}
+
+.close-info:hover {
+    color: #5e31c7 !important;
+}
+
+.close-danger:hover {
+    color: #da1515 !important;
+}
+
+.close-warning:hover {
+    color: #e8a100 !important;
+}
+
+.tooltip {
+    z-index: 2000;
+}
+
+.modal-header .close {
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    margin: -1rem 0 -1rem 0;
+}

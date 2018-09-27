@@ -43,7 +43,7 @@ public class AdminS extends HttpServlet {
 //            AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
             AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
-            if (op.equalsIgnoreCase("getall")) {
+            if (op.equalsIgnoreCase("getall")) { 
                 ArrayList<Admin> admins = a.getAllAdmins();
                 String pasareEsto = g.toJson(admins);
                 out.print(pasareEsto);
@@ -98,7 +98,7 @@ public class AdminS extends HttpServlet {
                 }
             }
             if (op.equalsIgnoreCase("deleted")) {
-                String email = request.getParameter("email");
+                String email = request.getParameter("pk");
                 a.deleteAdmin(email);
 
             }

@@ -1,312 +1,510 @@
-var entity = 'admins';
+// Entidad en singular y en primera mayúscula
+var entity = 'Admin';
+var entityPrettyPrintSingular = 'Administrador';
+var entityPrettyPrintPlural = 'Administradores';
 var servlet = 'Attributes';
+var tableDetails = true;
+var tableDelete = true;
+var tableModify = true;
+var formContainer = 'form-container';
+var formid = 'entity-form';
+var modalid = 'entityModal';
 var cols;
-
+var table;
 $(document).ready(function () {
 
-    // Traer columnas y tipos de dato de la entidad
-    cols = getCols();
+    $("#card-title").text(entityPrettyPrintPlural)
 
-    // Generar tabla de lista con datos obtenidos
-    generateTable();
-
-    // Generar formulario con columnas obtenidas    
-    generateForm();
-
-    initializePlugins();
-
-    addShow();
-
-
+    generatePage();
     //var modalScroll = new PerfectScrollbar('.modal');
 
 });
-
+function generatePage() {
+    $.ajax({
+        url: "AttributesS",
+        type: 'GET',
+        async: false,
+        dataType: "text",
+        data: {
+            'op': "get" + entity
+        }
+    }).done(function (data) {
+        cols = $.parseJSON(data);
+        // Generar tabla de lista con datos obtenidos
+        generateTable();
+        // Generar formulario con columnas obtenidas    
+        generateForm();
+        initializePlugins();
+    }).fail(function () {
+        alert('error')
+    });
+}
 
 function generateTable() {
-    var cols = [
-        {title: 'Texto Corto', data: 'textocorto', type: 'textocorto', description: 'desc', required: true, identifier: true, table: true},
-        {title: 'Texto Largo', data: 'textolargo'},
-        {title: 'Número Entero', data: 'entero'},
-        {title: 'Número Decimal', data: 'decimal'},
-        {title: 'Si / No', data: 'booleano'},
-        {title: 'Fecha', data: 'fecha'},
-        {title: 'Fecha y hora', data: 'fechahora'},
-        {title: 'Contabilidad', data: 'contabilidad'},
-        {title: 'Color', data: 'color'},
-        {title: 'Desplegable op. única', data: 'despunico'},
-        {title: 'Desplegable op. múltiple', data: 'despmultiple'},
-        {title: 'Opción única', data: 'opunica'},
-        {title: 'Opción múltiple', data: 'opmultiple'},
-        {title: 'Foto', data: 'foto'},
-        {title: 'Archivo', data: 'archivo'},
-        {title: "Actions", data: null}];
 
-    var data = [{
-            'textocorto': 'Item 1',
-            'textolargo': 'Descripción larga del item 1',
-            'entero': '15',
-            'decimal': '52,465789',
-            'booleano': true,
-            'fecha': '2018-09-19',
-            'fechahora': '2018-09-19 15:00:00',
-            'contabilidad': '25,63',
-            'color': '#15b67d',
-            'despunico': '2',
-            'despmultiple': '3',
-            'opunica': '1',
-            'opmultiple': '3',
-            'foto': './assets/images/product_images/apple-watch.jpg',
-            'archivo': './assets/files/testfile.pdf'
+    var btnPart1 = '<button type="button" class="btn btn-';
+    var btnPart2 = ' btn-fw ml-2 tooltip-delay" data-toggle="tooltip" data-placement="left" title="';
+    var btnPart3 = '"><i class="mdi ';
+    var btnPart4 = ' table-button"></i></button>';
+    var buttonDetails = (tableDetails) ? (btnPart1 + 'success details' + btnPart2 + 'Ver detalles' + btnPart3 + 'mdi-menu' + btnPart4) : '';
+    var buttonModify = (tableModify) ? (btnPart1 + 'info modify' + btnPart2 + 'Editar' + btnPart3 + 'mdi-pen' + btnPart4) : '';
+    var buttonDelete = (tableDelete) ? (btnPart1 + 'danger delete' + btnPart2 + 'Eliminar' + btnPart3 + 'mdi-delete' + btnPart4) : '';
+    // Dejar parametros de mostrar en la tabla
+    var colsTable = cols.filter(col => col.table == true);
+    var areActions = (tableDetails || tableModify || tableDelete);
+    // Si hay acciones, agregar la columna
+    if (areActions)
+        colsTable.push({title: "Acciones", data: null});
+    var actions = buttonDetails + buttonModify + buttonDelete;
+    // Establecer definiciones de columna
+    var defs = [];
+    if (areActions)
+        defs.push({targets: -1, data: null, width: "100px", defaultContent: actions});
+    // Definiciones de columna basada en formato de tipo de dato
+    for (var i = 0; i < cols.length; i++) {
+        switch (cols[i].type) {
+            case 'textolargo':
+                defs.push({targets: i, render: $.fn.dataTable.render.ellipsis(20)});
+                break;
+            case 'email':
+                defs.push({targets: i, render: $.fn.dataTable.render.ellipsis(30)});
+                break;
+            case 'contabilidad':
+                defs.push({targets: i, render: $.fn.dataTable.render.moneda('$')});
+                break;
+            case 'color':
+                defs.push({targets: i, render: $.fn.dataTable.render.color()});
+                break;
+            case 'foto':
+                defs.push({targets: i, render: $.fn.dataTable.render.photo()});
+                break;
+            case 'archivo':
+                defs.push({targets: i, render: $.fn.dataTable.render.file()});
+                break;
+            case 'fecha':
+                defs.push({targets: i, render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY')});
+                break;
+            case 'fechahora':
+                defs.push({targets: i, render: $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'DD/MM/YYYY hh:mm:ss a', 'es')});
+                break;
+            case 'checkbox':
+                defs.push({targets: i, render: $.fn.dataTable.render.checkbox('test')});
+                break;
+            case 'url':
+                defs.push({targets: i, render: $.fn.dataTable.render.ellipsisLink(20)});
+                break;
+            default:
+                break;
+        }
+    }
 
+    table = $('#entity_table').DataTable({
+
+        ajax: {
+            url: entity + "S",
+            type: "GET",
+            dataSrc: '',
+            data: {
+                'op': "getall"
+            }
         },
-        {
-
-            'textocorto': 'Item 2',
-            'textolargo': 'Descripción larga del item 2 es mucho pero muchísimo más larga que la anterior',
-            'entero': '-531',
-            'decimal': '17,465789',
-            'booleano': false,
-            'fecha': '2018-01-19',
-            'fechahora': '2018-09-19 14:00:00',
-            'contabilidad': '-50',
-            'color': '#15b67d',
-            'despunico': '1',
-            'despmultiple': '2',
-            'opunica': '0',
-            'opmultiple': '2',
-            'foto': 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjarNab1sfdAhUIiFQKHb5cDVoQjRx6BAgBEAU&url=https%3A%2F%2Fwww.youtube.com%2FGoogle&psig=AOvVaw3XXgnOwHDHZ8eU-D-UKvkb&ust=1537467315400289https://www.google.com/images/branding/googlelogo/2x/googlelogo_colorhttps://www.google.com/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png',
-            'archivo': 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwja'
-
-        },
-        {
-            'textocorto': 'Item 3',
-            'textolargo': 'Descripción larga del item 3 es mucho pero muchísimo más larga que la anterior  muchísimo más larga que la anterior',
-            'entero': '9816351',
-            'decimal': '15,18978545',
-            'booleano': true,
-            'fecha': '2018-01-01',
-            'fechahora': '2018-09-19 01:00:00',
-            'contabilidad': '652,326',
-            'color': '#15b67d',
-            'despunico': '2',
-            'despmultiple': '1',
-            'opunica': '1',
-            'opmultiple': '1',
-            'foto': 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjarNab1sfdAhUIiFQKHb5cDVoQjRx6BAgBEAU&url=https%3A%2F%2Fwww.youtube.com%2FGoogle&psig=AOvVaw3XXgnOwHDHZ8eU-D-UKvkb&ust=1537467315400289https://www.google.com/images/branding/googlelogo/2x/googlelogo_colorhttps://www.google.com/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png',
-            'archivo': 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwja'
-
-        }];
-    var buttonDetails = '<button type="button" class="btn btn-info btn-fw ml-2"><i class="mdi mdi-magnify"></i>Details</button>';
-    var buttonDelete = '<button type="button" class="btn btn-danger btn-fw ml-2"><i class="mdi mdi-delete"></i>Delete</button>';
-
-    var actions = buttonDetails + buttonDelete;
-    table = $('#id_de_tabla').DataTable({
-        /*
-         ajax: {
-         url: "Lend_itemsS",
-         type: "GET",
-         dataSrc: '',
-         data: {
-         'op': "report",
-         'store_id': 1
-         }
-         },
-         */
-        data: data,
-        columns: cols,
-        autoWidth: true,
-        scrollY: "300px",
+        columns: colsTable,
+        columnDefs: defs,
         scrollX: true,
-        scrollCollapse: true,
+        order: [],
         lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
-        columnDefs: [
-            {targets: -1, data: null, width: "100px", defaultContent: actions},
-            {targets: 1, render: $.fn.dataTable.render.ellipsis(20)},
-            {targets: 7, render: $.fn.dataTable.render.moneda('$')},
-            {targets: 8, render: $.fn.dataTable.render.color()},
-            {targets: 13, render: $.fn.dataTable.render.photo()},
-            {targets: 14, render: $.fn.dataTable.render.file()},
-            {targets: 5, render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY')},
-            {targets: 6, render: $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'DD/MM/YYYY hh:mm:ss a', 'es')},
-            {targets: 4, render: $.fn.dataTable.render.casilla('test')},
-            {targets: 9, render: $.fn.dataTable.render.renderespecial()}
-
-        ],
         language: {
             url: 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json'
         },
         responsive: true,
         fnDrawCallback: function (oSettings) {
             $(".ellipsis").tooltip();
-            const datatableScroll = new PerfectScrollbar('.dataTables_scrollBody');
+            $('.tooltip-delay').tooltip({
+                animation: true,
+                delay: {show: 700, hide: 100}
+            });
+            $('button').on('mousedown', function () {
+                $('[data-toggle="tooltip"]').tooltip('hide');
+            });
+            $('[data-toggle="tooltip"]').on('mouseleave', function () {
+                $('[data-toggle="tooltip"]').tooltip('hide');
+            });
+            //const datatableScroll = new PerfectScrollbar('.dataTables_scrollBody');
         }
 
+    });
+    $('#entity_table tbody').on('click', 'button.details', function () {
+        var data = table.row($(this).parents('tr')).data();
+        detailsShow(data.email);
+    });
+    $('#entity_table tbody').on('click', 'button.modify', function () {
+        var data = table.row($(this).parents('tr')).data();
+        modifyShow(data.email);
+    });
+    $('#entity_table tbody').on('click', 'button.delete', function () {
+        var data = table.row($(this).parents('tr')).data();
+        deleteRow(data.email);
     });
 }
 
+function refreshTable() {
+    table.ajax.reload();
+}
+function detailsShow(id) {
 
-$('body').on('click', function (e) {
-    $('[data-toggle=popover]').each(function () {
-        // hide any open popovers when the anywhere else in the body is clicked
-        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-            $(this).popover('hide');
-        }
-    });
-});
+    prefillForm(id);
+    customizeForm('details', entityPrettyPrintSingular, 'Descripción del formulario', id);
+    showModal();
+}
+
+function searchShow() {
+    customizeForm('details', entityPrettyPrintSingular, 'Descripción del formulario', id);
+    showModal();
+}
+
+function modifyShow(id) {
+    prefillForm(id);
+    customizeForm('modify', entityPrettyPrintSingular, 'Descripción del formulario', id);
+    showModal();
+}
 
 function addShow() {
-    enableForm('entityForm');
-    cleanForm('entityForm');
-    $('#viewEditModal').modal('show');
-    $('#viewEditModal').modal('handleUpdate')
+    cleanForm();
+    customizeForm('add', entityPrettyPrintSingular, 'Descripción del formulario');
+    showModal();
 }
 
-function editShow(id_edit) {
-    enableForm('entityForm');
-    cleanForm('entityForm');
-    prefillForm(id_edit);
-    $('#viewEditModal').modal('show');
-    $('#viewEditModal').modal('handleUpdate')
-}
-
-function getCols() {
+function deleteRow(id) {
     $.ajax({
-        url: "Attributes",
-        type: 'GET',
+        url: entity + "S",
+        type: 'POST',
         dataType: "text",
         data: {
-            'action': "get" + entity,
-            'pk': dateS
-        },
-        success: function (data) {
-
-            cols = $.parseJSON(data);
-            return cols;
-
+            'op': "deleted",
+            'pk': id
         }
-    });
-    return false;
-}
-
-function preFill(id) {
-    $.ajax({
-        url: "ObjectS",
-        type: 'GET',
-        dataType: "text",
-        data: {
-            'action': "get",
-            'pk': dateS
-        },
-        success: function (data) {
-
-            eventos = $.parseJSON(data);
-            console.log(eventos);
-
-        }
+    }).done(function (data) {
+        hideForm();
+        refreshTable();
+    }).fail(function () {
+        alert('error')
     });
 }
 
+function generateForm() {
 
-function disableForm(formid) {
-    $("#" + formid + " :input").prop("disabled", true);
-    $("#" + formid + " .dropify-wrapper").addClass('hidden');
-    $("#" + formid + " .dropify-display").removeClass('hidden');
+    cleanForm();
+    $('#' + formContainer).children().remove();
+    for (var i = 0; i < cols.length; i++) {
+        $('#' + formContainer).append(genInput(cols[i]));
+    }
 
 }
 
-function enableForm(formid) {
-    $("#" + formid + " :input").prop("disabled", false);
-    $("#" + formid + " .dropify-wrapper").removeClass('hidden');
-    $("#" + formid + " .dropify-display").addClass('hidden');
+function genInput(col) {
+    var title = col.title;
+    var data = col.data;
+    var type = col.type;
+    var description = col.description;
+    var required = col.required;
+    var identifier = col.identifier;
+    var theHTML = [];
+    var theInput = [];
+    switch (type) {
+        case 'textocorto':
+            theInput.push('',
+                    '<input id="' + data + '"' + ((required) ? ' required' : '') + ((identifier) ? ' data-id="true"' : '') +' maxlength="25" placeholder="Escribe algo..." class="form-control maxlenght" type="text"> ');
+            break;
+        case 'textolargo':
+            theInput.push('',
+                    '<textarea id="' + data + '"' + ((required) ? ' required' : '') + ((identifier) ? ' data-id="true"' : '') + ' class="form-control maxlenght" maxlength="1000" rows="4" placeholder="Escribe algo de máximo 100 caracteres..."></textarea>');
+            break;
+        case 'email':
+            theInput.push('',
+                    '<input id="' + data + '"' + ((required) ? ' required' : '') + ((identifier) ? ' data-id="true"' : '') + ' type="email" maxlength="150" placeholder="Escribe el email..." class="form-control maxlenght">');
+            break;
+        case 'password':
+            theInput.push('',
+                    '<input id="' + data + '"' + ((required) ? ' required' : '') + ' data-pass="true" type="password" maxlength="25" placeholder="Escribe la clave..." class="form-control maxlenght">');
+            break;
+        default:
+            break;
+    }
+
+
+    theHTML.push('',
+            '<div class="form-group row">',
+            '<div class="col-lg-3 d-flex justify-content-between align-items-center">',
+            '<label class="col-form-label">' + title + ((required) ? ' *' : '') + '</label>',
+            '<button type="button" class="btn btn-icons btn-rounded btn-light" data-toggle="popover" ',
+            'title="' + title + '" data-content="' + description + '" data-custom-class="popover-primary">',
+            '<i class="mdi mdi-help"></i></button>',
+            '</div>',
+            '<div class="col-lg-8">',
+            theInput.join(''),
+            '</div>',
+            '</div>');
+    return theHTML.join('');
 }
 
-function cleanForm(formid) {
-    $("#" + formid + " :input").val("");
-    $("#" + formid + " :checkbox").prop('checked', false);
-    $("#" + formid + " :radio").prop('checked', false);
-    $("#" + formid + " .selectpicker").selectpicker('val', '');
+function prefillForm(id) {
+    $.ajax({
+        url: entity + "S",
+        type: 'GET',
+        dataType: "text",
+        data: {
+            'op': "get",
+            'pk': id
+        },
+        success: function (data) {
+            result = $.parseJSON(data);
+            // Limpiar form
+            cleanForm();
+            for (var i = 0; i < cols.length; i++) {
+                var type = cols[i].type;
+                var id = cols[i].data;
+                switch (type) {
+                    case 'textocorto':
+                    case 'textolargo':
+                    case 'email':
+                    case 'contabilidad':
+                    case 'color':
+                    case 'entero':
+                    case 'decimal':
+                        $('#' + id).val(result[id]);
+                        break;
+                    case 'foto':
+                        break;
+                    case 'archivo':
+                        break;
+                    case 'fecha':
+                        break;
+                    case 'fechahora':
+                        break;
+                    case 'checkbox':
+                        break;
+                    case 'url':
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }
+    });
+}
+
+function customizeForm(type, title, description) {
+    customizeForm(type, title, description, '');
+}
+
+function customizeForm(type, title, description, id) {
+
+
+    $('#modal-dismiss-button').removeClass('hidden');
+    $('#modal-confirm-button').removeClass('hidden');
+    $('#modal-edit').removeClass('hidden');
+    $('#modal-delete').removeClass('hidden');
+    $('#modal-search').removeClass('hidden');
+    $('#modal-add').removeClass('hidden');
+    $('#modal-undo').removeClass('hidden');
+
+    $('.modal-action').unbind();
+    $('.modal-action').tooltip();
+
+    $('#modal-edit').click(function () {
+        modifyShow(id);
+    });
+    $('#modal-delete').click(function () {
+        deleteRow(id);
+    });
+    $('#modal-undo').click(function () {
+        detailsShow(id);
+    });
+
+    $('#modal-confirm-button').val(type);
+
+    switch (type) {
+        case 'details':
+            $('#modal-title').text('Detalles de ' + title);
+            $('#modal-dismiss-button').text('Salir');
+            $('#modal-confirm-button').addClass('hidden');
+            $('#modal-add').addClass('hidden');
+            $('#modal-undo').addClass('hidden');
+            $('#modal-search').addClass('hidden');
+            disableForm();
+            break;
+        case 'add':
+            $('#modal-title').text('Agregar ' + title);
+            $('#modal-confirm-button').text('Agregar ' + title);
+            $('#modal-dismiss-button').text('Cancelar');
+            $('#modal-edit').addClass('hidden');
+            $('#modal-add').addClass('hidden');
+            $('#modal-delete').addClass('hidden');
+            $('#modal-search').addClass('hidden');
+            $('#modal-undo').addClass('hidden');
+            enableForm();
+//            $('#modal-confirm-button').click(function () {
+//                submitForm('add');
+//            });
+            break;
+        case 'modify':
+            $('#modal-title').text('Modificar ' + title);
+            $('#modal-confirm-button').text('Modificar ' + title);
+            $('#modal-dismiss-button').text('Cancelar');
+            $('#modal-edit').addClass('hidden');
+            $('#modal-add').addClass('hidden');
+            $('#modal-search').addClass('hidden');
+            
+            enableForm();
+            
+            $('[data-id="true"]').prop("disabled", true);
+            $('[data-pass="true"]').prop("disabled", true);
+            
+//            $('#modal-confirm-button').click(function () {
+//                submitForm('modify');
+//            });
+            break;
+        case 'search':
+            $('#modal-title').text('Consultar ' + title);
+            $('#modal-confirm-button').text('Consultar ' + title);
+            $('#modal-dismiss-button').text('Cancelar');
+            $('#modal-edit').addClass('hidden');
+            $('#modal-search').addClass('hidden');
+            $('#modal-add').addClass('hidden');
+            $('#modal-delete').addClass('hidden');
+//            $('#modal-confirm-button').click(function () {
+//                submitForm('search');
+//            });
+            enableForm();
+            break;
+    }
+}
+
+function showModal() {
+    $('#' + modalid).modal('show');
+    $('#' + modalid).modal('handleUpdate');
+}
+
+function hideForm() {
+    $('#' + modalid).modal('hide');
+}
+
+function disableForm() {
+    $("#" + formContainer + " :input").prop("disabled", true);
+    $("#" + formContainer + " .dropify-wrapper").addClass('hidden');
+    $("#" + formContainer + " .dropify-display").removeClass('hidden');
+}
+
+function enableForm() {
+    $("#" + formContainer + " :input").prop("disabled", false);
+    $("#" + formContainer + " .dropify-wrapper").removeClass('hidden');
+    $("#" + formContainer + " .dropify-display").addClass('hidden');
+}
+
+function cleanForm() {
+    $("#" + formContainer + " :input").val("");
+    $("#" + formContainer + " :checkbox").prop('checked', false);
+    $("#" + formContainer + " :radio").prop('checked', false);
+    $("#" + formContainer + " .selectpicker").selectpicker('val', '');
     $('.dropify-clear').click();
 }
 
-function preload() {
-    $('#textocorto').val('test');
-}
+$('#' + formid).on('submit', function () {
+    submitForm($('#modal-confirm-button').val());
+    return false;
+});
 
-function getDataForm() {
-    debugger;
-    var textocorto = $('#textocorto').val();
-    var textolargo = $('#textolargo').val();
-    var entero = $('#entero').val();
-    var decimal = $('#decimal').val();
-    var bool = $("#bool").is(':checked');
-    var fecha = $('#fecha').val();
-    var fechahora = $('#fechahora').val();
-    var contabilidad = $('#contabilidad').val();
-    var color = $('#color').val();
-    var despunico = $('select#despunico').val();
-    var despmultiple = $('select#despmultiple').val();
-    var radioValue = $('input[name=e1]:checked').attr('id');
-    var check1 = $("#check1").is(':checked');
-    var check2 = $("#check2").is(':checked');
-    var check3 = $("#check3").is(':checked');
-    var checkArray = [].push(check1).push(check2).push(check3);
+function submitForm(type) {
 
-    var parametros = {
-        "textocorto": "in",
-        "company_id": 1,
-        "email": user,
-        "password": pass
-    };
+    var parameters = {};
+    var method = "POST";
+    var id = "";
+
+    switch (type) {
+        case 'add':
+            parameters['op'] = 'create';
+            break;
+        case 'modify':
+            parameters['op'] = 'update';
+            break;
+        case 'search':
+            detailsShow($('#search-id').val());
+            return;
+            break;
+    }
+
+    for (var i = 0; i < cols.length; i++) {
+
+        if (cols[i].identifier == true)
+            id = $('#' + cols[i].data).val();
+
+        switch (cols[i].type) {
+            case 'textocorto':
+            case 'textolargo':
+            case 'password':
+            case 'email':
+            case 'contabilidad':
+            case 'fecha':
+            case 'fechahora':
+            case 'color':
+            case 'url':
+                parameters[cols[i].data] = $('#' + cols[i].data).val();
+                break;
+            case 'foto':
+                break;
+            case 'archivo':
+                break;
+            case 'despunico':
+            case 'despmultiple':
+                parameters[cols[i].data] = $('select#' + cols[i].data).val();
+                break;
+            case 'checkbox':
+                parameters[cols[i].data] = $('#' + cols[i].data).is(':checked');
+                break;
+            case 'radio':
+                parameters[cols[i].data] = $('input[name=' + cols[i].data + ']:checked').attr('id');
+                break;
+            default:
+                break;
+        }
+    }
+
+//    var check1 = $("#check1").is(':checked');
+//    var check2 = $("#check2").is(':checked');
+//    var check3 = $("#check3").is(':checked');
+//    var checkArray = [].push(check1).push(check2).push(check3);
+
+
 
     $.ajax({
-        data: parametros,
-        url: "Login",
+        data: parameters,
+        url: entity + "S",
         type: "POST",
         async: false
 
     }).done(function (response) {
         console.log(response);
-        switch (response) {
-            case 'Company':
-                console.log("ingresa company");
-                window.location.href = "app";
+        switch (type) {
+            case 'add':
+                hideForm();
+                refreshTable();
                 break;
-            case 'Admin':
-                console.log("ingresa admin");
-                window.location.href = "app";
-                break;
-            case 'Client':
-                console.log("ingresa client");
-                window.location.href = "app";
+            case 'modify':
+                hideForm();
+                refreshTable();
+                //detailsShow(id);
                 break;
             default:
-                alert("No se encuentra este usuario. Intente otra vez");
+                alert('error');
                 break;
         }
+
 
     }).fail(function () {
         alert("error");
     });
-
 }
-
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#logoprev').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$("#logo").change(function () {
-    readURL(this);
-});
 
 function openInNewTab(url) {
     var win = window.open(url, '_blank');
@@ -319,13 +517,11 @@ function initializePlugins() {
         warningClass: "badge mt-1 badge-success",
         limitReachedClass: "badge mt-1 badge-danger"
     });
-
     $('[data-toggle="popover"]').popover();
-
+    $('[data-toggle="tooltip"]').tooltip();
     $('.btn').on('click', function (e) {
         $('.btn').not(this).popover('hide');
     });
-
     if ($("#datepicker-popup").length) {
         $('#datepicker-popup').datepicker({
             enableOnReadonly: true,
@@ -335,7 +531,6 @@ function initializePlugins() {
 
     $('.material-timedate').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY - hh:mm a', shortTime: true, lang: 'es', cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
     $('.material-date').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY', lang: 'es', time: false, cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
-
     $('.selectpicker').selectpicker();
     $('.dropify').dropify({
         messages: {
@@ -345,8 +540,16 @@ function initializePlugins() {
             'error': 'Ooops, algo salió mal.'
         }
     });
-
     if ($(".color-picker").length) {
         $('.color-picker').asColorPicker();
     }
 }
+
+$('body').on('click', function (e) {
+    $('[data-toggle=popover]').each(function () {
+// hide any open popovers when the anywhere else in the body is clicked
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+});

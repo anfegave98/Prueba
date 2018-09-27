@@ -6,6 +6,7 @@
 package Dao;
 
 import Model.Asset;
+import Model.Asset_store;
 import Util.Asset_available_report;
 import Util.DbUtil;
 import java.io.IOException;
@@ -106,6 +107,17 @@ public class AssetDAO {
         return asset;
     }
 
+    public int rASidBCS(String codebar,int store_id) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select asset_store.asset_store_id from asset,asset_store where asset.asset_id=asset_store.asset_id"
+                + " and asset.codebar='"+codebar+"' and asset.store_id="+store_id);
+        while (rs.next()) {
+            return rs.getInt("asset_store_id");
+        }
+        
+        return 0;
+    }
+    
     public ArrayList<Asset> getAllAsset() throws SQLException {
         ArrayList<Asset> assets = new ArrayList<>();
         Statement statement = connection.createStatement();
@@ -169,12 +181,13 @@ public class AssetDAO {
     public Asset_available_report getOneAvailable(String codebar) throws SQLException {
         Asset_available_report asset = new Asset_available_report();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select asset.name as name, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false and asset.codebar='"+codebar+"'");
+        ResultSet rs = statement.executeQuery("select asset.name as name, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available,asset_store.asset_store_id from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false and asset.codebar='"+codebar+"'");
         while (rs.next()) {
             asset.setName(rs.getString("name"));
             asset.setCodebar(rs.getString("codebar"));
             asset.setPrincipal_picture(rs.getString("principal_picture"));
             asset.setDescription(rs.getString("description"));
+            asset.setAsset_store_id(rs.getInt("asset_store_id"));
             asset.setAvailable(rs.getInt("available"));
             asset.setNo_available(rs.getInt("no_available"));
         }

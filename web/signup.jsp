@@ -285,8 +285,8 @@
         <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
         <!-- Latest compiled and minified JavaScript -->
-        <script src="assets/js/bootstrap-select.min.js"></script>
-        <script src="assets/js/bootstrap-select-es_ES.js"></script>
+        <script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+        <script src="assets/vendors/bootstrap-select/bootstrap-select-es_ES.js"></script>
         <script src="assets/vendors/wait-me/waitMe.min.js"></script>
         <!-- endinject -->
         <!-- Plugin js for this page-->

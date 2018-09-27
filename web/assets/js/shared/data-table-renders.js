@@ -4,25 +4,25 @@ $.fn.dataTable.render.moneda = function (sign) {
     };
 };
 
-$.fn.dataTable.render.checkbox = function (sign) {
+$.fn.dataTable.render.checkbox = function () {
     return function (data, type, row) {
         return data ? '<input type="checkbox" disabled checked/>' : '<input type="checkbox" disabled/>'
     };
 };
 
-$.fn.dataTable.render.photo = function (sign) {
+$.fn.dataTable.render.photo = function () {
     return function (data, type, row) {
         return '<button onclick="openInNewTab(\'' + data + '\');" type="button" class="btn btn-warning btn-fw ml-2"><i class="mdi mdi-fullscreen"></i>Ver Imagen</button>'
     };
 };
 
-$.fn.dataTable.render.file = function (sign) {
+$.fn.dataTable.render.file = function () {
     return function (data, type, row) {
         return '<button onclick="openInNewTab(\'' + data + '\');" type="button" class="btn btn-success btn-fw ml-2"><i class="mdi mdi-cloud-download"></i>Descargar</button>'
     };
 };
 
-$.fn.dataTable.render.color = function (sign) {
+$.fn.dataTable.render.color = function () {
     return function (data, type, row) {
         return '<div style="background-color:' + data + ', border-color:#fff" class="badge badge-danger">' + data + '</div>'
     };

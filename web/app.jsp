@@ -12,8 +12,8 @@
 
 <%
 
-    String name = "Admin";
-    String email = "Admin";
+    String name = "Oscar";
+    String email = "oscar@oscar.com";
     String primary_color = "#128bfc";
     String secondary_color = "#15b67d";
     String theme = "light";
@@ -25,7 +25,7 @@
 
     String buttonText = "Nuevo Préstamo";
     String buttonFunction = "prestamo";
-
+    
     Company c = null;
     if (request.getSession().getAttribute("company") != null) {
         c = (Company) request.getSession().getAttribute("company");
@@ -38,6 +38,7 @@
         response.sendRedirect("login");
     }
 
+
 %>
 
 <%    // Definir elementos del menu para distintos usuarios
@@ -46,21 +47,21 @@
     if (type.equalsIgnoreCase("empresa")) {
         role = "Empresa";
         menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
-        menu.add(new MenuItem("movs", "mdi-notification-clear-all", "Préstamos"));
+        menu.add(new MenuItem("lends", "mdi-notification-clear-all", "Préstamos"));
         menu.add(new MenuItem("assets", "mdi-table", "Activos"));
         menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes"));
         menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores"));
     } else if (type.equalsIgnoreCase("admin")) {
         role = "Administrador";
         menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
-        menu.add(new MenuItem("movs", "mdi-notification-clear-all", "Préstamos"));
+        menu.add(new MenuItem("lends", "mdi-notification-clear-all", "Préstamos"));
         menu.add(new MenuItem("assets", "mdi-table", "Activos"));
         menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes"));
         menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores"));
     } else if (type.equalsIgnoreCase("client")) {
         role = "Cliente";
         menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
-        menu.add(new MenuItem("movs", "mdi-notification-clear-all", "Préstamos"));
+        menu.add(new MenuItem("lends", "mdi-notification-clear-all", "Préstamos"));
         menu.add(new MenuItem("assets", "mdi-table", "Activos"));
     }
 %>
@@ -125,8 +126,9 @@
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                         <span class="mdi mdi-menu"></span>
                     </button>
-
+                   
                     <ul class="navbar-nav navbar-nav-right">
+                         <!--
                         <li class="nav-item dropdown ml-4">
                             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
                                 <i class="mdi mdi-bell-outline"></i>
@@ -166,6 +168,7 @@
                                 </a>
                             </div>
                         </li>
+                         -->
                         <li class="nav-item dropdown d-none d-xl-inline-block">
                             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                                 <span class="profile-text">Hola, <span id="display_name" ><%=name%></span> !</span>
@@ -202,7 +205,7 @@
                                     </div>
                                 </div>
                                 <button onclick="<%=buttonFunction%>()" class="btn btn-success btn-accent btn-block">
-                                    <%=buttonText%><i class="mdi mdi-plus"></i>
+                                    <%=buttonText%>
                                 </button>
                             </div>
                         </li>
@@ -229,10 +232,13 @@
                     <footer class="footer">
                         <div class="container-fluid clearfix">
                             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-                                <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
+                                <a href="http://www.bistock.com/" target="_blank">BIStock</a>. All rights reserved.</span>
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made with
                                 <i class="mdi mdi-heart text-danger"></i>
-                            </span>
+                                by our <span style="color: #ff6258" data-toggle="tooltip" data-placement="top" data-html="true"
+                                             title="Oscar Romero<br>Brenda Méndez<br>Julián Daza<br>Juan Palomino<br>Mateo Ortiz<br>Alejandro Bogotá<br>Gibrán Raydan<br>Andrés Galeano">
+                            development team
+                            </span></span>
                         </div>
                     </footer>
                     <!-- partial -->
@@ -246,8 +252,7 @@
         <!-- plugins:js -->
         <script src="assets/vendors/js/vendor.bundle.base.js"></script>
         <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
-        <script src="assets/js/shared/data-table-ellipsis.js"></script>
-        <script src="assets/js/shared/data-table-datetime.js"></script>
+        <script src="assets/js/shared/data-table-renders.js"></script>
         <script src="assets/vendors/wait-me/waitMe.min.js"></script>
         <script src="assets/js/shared/moment-with-locales.js"></script>
         <script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
