@@ -5,7 +5,7 @@ function openURL(href) {
         text: 'Cargando datos...',
         bg: 'rgba(255, 255, 255, 0.7)',
         color: '#128bfc'
-    });
+    }); 
 
     var link = href;  //$(this).attr('href');                                    
     $.ajax({
@@ -22,8 +22,6 @@ function openURL(href) {
 
                 openJS(href);
 
-                $('#loader').waitMe("hide");
-
             }, 1000);
 
 
@@ -32,10 +30,12 @@ function openURL(href) {
     $(".nav-item").removeClass('active');
     $("#" + href).addClass('active');
     //window.history.pushState({href: href}, '', '/' + localStorage.getItem('url') + '/app/' + href);
-    window.history.pushState({href: href}, '', './' + href); 
+    window.history.pushState({href: href}, '', './' + href);
 }
 function openJS(href) {
     $.getScript(href + ".js", function () {
+        //$.getScript("parametrizable.js", function () {
+        //});
     });
 }
 

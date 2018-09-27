@@ -1,8 +1,7 @@
 // Entidad en singular y en primera mayúscula
-var entity = 'Admin';
-var entityPrettyPrintSingular = 'Administrador';
-var entityPrettyPrintPlural = 'Administradores';
-var servlet = 'Attributes';
+var entity = 'Client';
+var entityPrettyPrintSingular = 'Cliente';
+var entityPrettyPrintPlural = 'Clientes';
 var tableDetails = true;
 var tableDelete = true;
 var tableModify = true;
@@ -15,7 +14,6 @@ var tableFinished = false;
 var formFinished = false;
 
 generatePage();
-
 
 
 $('body').on('click', function (e) {

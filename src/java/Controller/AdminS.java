@@ -43,7 +43,7 @@ public class AdminS extends HttpServlet {
 //            AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
             AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
-            if (op.equalsIgnoreCase("getall")) { 
+            if (op.equalsIgnoreCase("getall")) {
                 ArrayList<Admin> admins = a.getAllAdmins();
                 String pasareEsto = g.toJson(admins);
                 out.print(pasareEsto);

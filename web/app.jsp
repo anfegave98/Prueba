@@ -272,6 +272,7 @@
         <script src="assets/js/shared/dropify.js"></script> 
         <script src="assets/js/shared/formpickers.js"></script>
         <script src="assets/vendors/bootstrap-material-datepicker/bootstrap-material-datetimepicker.js"></script>
+        <script src="parametrizable.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
         <script src="app.js"></script>

@@ -30,10 +30,10 @@ public class AttributesS extends HttpServlet {
             ArrayList<Attribute> atributos = new ArrayList<>();
             switch (op) {
                 case "getClient":
-                    atributos.add(new Attribute("Nombres", "name", "textocorto", "Texto de ayuda para el parámetro", true, false, true));
-                    atributos.add(new Attribute("Apellidos", "last_name", "textocorto", "Texto de ayuda para el parámetro", true, false, true));
-                    atributos.add(new Attribute("Email", "email", "email", "Texto de ayuda para el parámetro", true, true, true));
-                    atributos.add(new Attribute("Contraseña", "password", "password", "Texto de ayuda para el parámetro", true, false, false));
+                    atributos.add(new Attribute("Nombres de cliente", "name", "textocorto", "Texto de ayuda para el parámetro", true, false, true));
+                    atributos.add(new Attribute("Apellidos de cliente", "last_name", "textocorto", "Texto de ayuda para el parámetro", true, false, true));
+                    atributos.add(new Attribute("Email de cliente", "email", "email", "Texto de ayuda para el parámetro", true, true, true));
+                    atributos.add(new Attribute("Contraseña de cliente", "password", "password", "Texto de ayuda para el parámetro", true, false, false));
                     break;
                 case "getAdmin":
                     atributos.add(new Attribute("Nombres", "name", "textocorto", "Texto de ayuda para el nombre", true, false, true));
