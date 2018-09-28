@@ -35,6 +35,7 @@ function generatePage() {
         generateTable();
         // Generar formulario con columnas obtenidas    
         generateForm();
+       
         //initializePlugins();
     }).fail(function () {
         alert('error')

@@ -16,8 +16,6 @@ var formFinished = false;
 
 generatePage();
 
-
-
 $('body').on('click', function (e) {
     $('[data-toggle=popover]').each(function () {
 // hide any open popovers when the anywhere else in the body is clicked
@@ -26,8 +24,6 @@ $('body').on('click', function (e) {
         }
     });
 });
-
-
 
 $('#' + formid).on('submit', function () {
     submitForm($('#modal-confirm-button').val());
