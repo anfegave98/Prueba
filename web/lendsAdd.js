@@ -27,7 +27,10 @@ $(document).ready(function () {
             url: 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json'
         },
         responsive: true,
-        order: [[ 1, "desc" ]]
+        order: [[ 1, "desc" ]],
+        initComplete: function (oSettings) {
+            $('#loader').waitMe("hide");
+        }
     });
 
     $('#items_table tbody').on('click', 'a.less', function () {

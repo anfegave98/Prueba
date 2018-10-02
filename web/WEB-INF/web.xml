@@ -73,6 +73,22 @@
         <jsp-file>/common/rstate.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
+        <servlet-name>lends</servlet-name>
+        <url-pattern>/lends</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>lends</servlet-name>
+        <jsp-file>/common/rlends.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>lendsAdd</servlet-name>
+        <url-pattern>/lendsAdd</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>lendsAdd</servlet-name>
+        <jsp-file>/common/rlendsadd.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
         <servlet-name>state</servlet-name>
         <url-pattern>/state</url-pattern>
     </servlet-mapping>
