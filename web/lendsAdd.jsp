@@ -6,7 +6,7 @@
                 <form id="findClient" class="forms-sample">
                     <div class="input-group col-12">
 
-                        <input type="text" class="form-control" id="client_email" placeholder="Email del Cliente">
+                        <input type="email" class="form-control" id="client_email" placeholder="Email del Cliente">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-success mr-2">Buscar</button>
                         </div>

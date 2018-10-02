@@ -21,7 +21,7 @@ $(document).ready(function () {
             {
                 targets: -1,
                 data: null,
-                defaultContent: '<a style="cursor: pointer; "><i class="menu-icon mdi mdi-lightbulb-outline"></i>></a>'
+                defaultContent: '<a style="cursor: pointer; "><i class="menu-icon mdi mdi-undo"></i></a>'
             }
         ],
         language: {

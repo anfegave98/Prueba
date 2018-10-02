@@ -20,7 +20,7 @@ $(document).ready(function () {
             {
                 targets: -1,
                 data: null,
-                defaultContent: '<a class="plus" style="cursor: pointer; "><i class="menu-icon mdi mdi-cart-plus"></i></a><a class="less" style="cursor: pointer; "><i class="menu-icon mdi mdi-minus-circle"></i>></a>'
+                defaultContent: '<a class="plus" style="cursor: pointer; "><i class="menu-icon mdi mdi-plus-circle"></i></a><a class="less" style="cursor: pointer; "><i class="menu-icon mdi mdi-minus-circle"></i></a>'
             }
         ],
         language: {
@@ -42,16 +42,22 @@ $(document).ready(function () {
         var data = table.row($(this).parents('tr')).data();
         addQuantity(data.asset_store_id);
     });
+    
+    $('#end_date').bootstrapMaterialDatePicker({format: 'DD/MM/YYYY', lang: 'es', time: false, cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
 
 });
 
 
 function sendLend() {
+    
+    debugger;
+    
     var parametrosAssetAdd = {
         "op": "create",
         "admin_role_store_id": 1,
         "client_id": client.client_id,
-        "lend_items": JSON.stringify(items)
+        "lend_items": JSON.stringify(items),
+        "end_date": $('#end_date').val()
     };
 
     $.ajax({
@@ -63,11 +69,11 @@ function sendLend() {
         console.log(response);
         if (response == 'true') {
             console.log(true);
-            window.location.href = "prestamos.jsp";
+            openURL('lends');
             
 
         } else {
-            alert("Cliente no existe");
+            alert("Error de envio");
             return null;
         }
 
@@ -157,7 +163,7 @@ $('#findClient').on('submit', function () {
 
     var parametrosAssetAdd = {
         "op": "get",
-        "email": $('#client_email').val()
+        "pk": $('#client_email').val()
     };
 
     $.ajax({
@@ -236,3 +242,4 @@ function submitForm() {
     });
 
 }
+

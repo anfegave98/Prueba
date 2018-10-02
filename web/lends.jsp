@@ -7,7 +7,7 @@
 
                 <h4 class="card-title">Inventario</h4>
                 <div>
-                    <button type="button" onclick="window.location.href = 'lendsAdd'" class="btn btn-success btn-fw">Agregar</button> 
+                    <button type="button" onclick="openURL('lendsAdd')" class="btn btn-success btn-fw">Agregar</button> 
                 </div>
             </div>
             <div class="card-body">
@@ -19,9 +19,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nombres</th>
-                                <th>Código de Barras</th>
-                                <th>Descripción</th>
+                                <th>Cliente ID</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Devolución</th>
                                 <th></th>
                             </tr>
                         </thead>

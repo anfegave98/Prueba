@@ -49,17 +49,17 @@
         menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
         menu.add(new MenuItem("lends", "mdi-notification-clear-all", "Préstamos"));
         menu.add(new MenuItem("asset", "mdi-table", "Activos"));
+        menu.add(new MenuItem("state", "mdi-comment-check-outline", "Estados"));
         menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes"));
         menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores"));
-        menu.add(new MenuItem("state", "mdi-shield-outline", "Estados"));
     } else if (type.equalsIgnoreCase("admin")) {
         role = "Administrador";
         menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
         menu.add(new MenuItem("lends", "mdi-notification-clear-all", "Préstamos"));
         menu.add(new MenuItem("asset", "mdi-table", "Activos"));
+        menu.add(new MenuItem("state", "mdi-comment-check-outline", "Estados"));
         menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes"));
         menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores"));
-        menu.add(new MenuItem("state", "mdi-shield-outline", "Estados"));
     } else if (type.equalsIgnoreCase("client")) {
         role = "Cliente";
         menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
@@ -234,7 +234,7 @@
                     <footer class="footer">
                         <div class="container-fluid clearfix">
                             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-                                <a href="http://www.bistock.com/" target="_blank">BIStock</a>. All rights reserved.</span>
+                                <a href="http://www.bistock.com/" target="_blank">BIStock</a>. All rights reserved. V.2.2</span>
                             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made with
                                 <i class="mdi mdi-heart text-danger"></i>
                                 by our <span style="color: #ff6258" data-toggle="tooltip" data-placement="top" data-html="true"

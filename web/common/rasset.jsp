@@ -3,7 +3,7 @@
 <html lang="en">
     <body>
         <script>
-            localStorage.setItem("redirect", "assets");
+            localStorage.setItem("redirect", "asset");
             document.location.href = './app';
         </script>
     </body>
