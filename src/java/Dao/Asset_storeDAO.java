@@ -51,8 +51,6 @@ public class Asset_storeDAO {
         preparedStatement.setInt(3, asset_store.getAsset_store_id());
         preparedStatement.executeUpdate();
     }
-    
-    
 
     public Asset_store readAsset_store(int asset_id, int store_id) throws SQLException, URISyntaxException {
         Asset_store asset_store = new Asset_store();

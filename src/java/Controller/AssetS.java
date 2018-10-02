@@ -128,7 +128,7 @@ public class AssetS extends HttpServlet {
                     asset.setPrincipal_picture(request.getParameter("principal_picture"));
                     asset.setDescription(request.getParameter("description"));
                     a.updateAsset(asset);
-
+                    
                 }
             }
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {

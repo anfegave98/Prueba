@@ -87,6 +87,7 @@ public class AssetDAO {
             asset.setCodebar(rs.getString("codebar"));
             asset.setPrincipal_picture(rs.getString("principal_picture"));
             asset.setDescription(rs.getString("description"));
+            statement = connection.createStatement();
             ResultSet r=statement.executeQuery("select available,no_available from asset_store where asset_id="+asset.getAsset_id());
             while(r.next()){
                 asset.setAvailable(r.getInt("availables")-rs.getInt("no_availables"));
