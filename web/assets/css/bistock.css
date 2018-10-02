@@ -312,3 +312,7 @@ td {
     padding: 1rem 0.5rem 1rem 0.5rem;
     margin: -1rem 0 -1rem 0;
 }
+
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 15px !important;
+}
