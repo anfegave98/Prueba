@@ -1,11 +1,6 @@
 function openURL(href) {
 
-    $('#loader').waitMe({
-        effect: 'win8_linear',
-        text: 'Cargando datos...',
-        bg: 'rgba(255, 255, 255, 0.7)',
-        color: '#128bfc'
-    }); 
+    initializeLoader();
 
     var link = href;  //$(this).attr('href');                                    
     $.ajax({
@@ -59,6 +54,51 @@ $(document).ready(function () {
 }
 );
 
+function initializeLoader() {
+    $('#loader').waitMe({
+        effect: 'win8_linear',
+        text: 'Cargando datos...',
+        bg: 'rgba(243, 244, 250, 0.8)',
+        color: '#128bfc'
+    });
+}
+
 function dismissLoader() {
-    $('#loader').waitMe("hide");
+    setTimeout(function () {
+        $('#loader').waitMe("hide");
+    }, 300);
+}
+
+function initializePlugins() {
+    $('.maxlenght').maxlength({
+        alwaysShow: true,
+        warningClass: "badge mt-1 badge-success",
+        limitReachedClass: "badge mt-1 badge-danger"
+    });
+    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="tooltip"]').tooltip();
+    $('.btn').on('click', function (e) {
+        $('.btn').not(this).popover('hide');
+    });
+    if ($("#datepicker-popup").length) {
+        $('#datepicker-popup').datepicker({
+            enableOnReadonly: true,
+            todayHighlight: true,
+        });
+    }
+
+    $('.material-timedate').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY - hh:mm a', shortTime: true, lang: 'es', cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
+    $('.material-date').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY', lang: 'es', time: false, cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
+    $('.selectpicker').selectpicker();
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Arrastra un archivo o haz clic aquí',
+            'replace': 'Arrastra un archivo o haz clic aquí para reemplazar',
+            'remove': 'Eliminar',
+            'error': 'Ooops, algo salió mal.'
+        }
+    });
+    if ($(".color-picker").length) {
+        $('.color-picker').asColorPicker();
+    }
 }

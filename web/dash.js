@@ -1,5 +1,8 @@
+var table1finished = false;
+var table2finished = false;
+
 $(document).ready(function () {
-    table = $('#tabletop5').DataTable({
+    table1 = $('#tabletop5').DataTable({
         ajax: {
             url: "Lend_itemsS",
             type: "GET",
@@ -24,12 +27,17 @@ $(document).ready(function () {
         language: {
             url: 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json'
         },
-        responsive: true
+        responsive: true,
+        initComplete: function (oSettings) {
+
+            finished1 = true;
+            triggerLoaderOut();
+        }
 
     });
 
 
-    table = $('#tablaactivos').DataTable({
+    table2 = $('#tablaactivos').DataTable({
         ajax: {
             url: "LendS",
             type: "GET",
@@ -55,19 +63,33 @@ $(document).ready(function () {
             url: 'https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json'
         },
         responsive: true,
-        order: [[ 1, "desc" ]]
+        order: [[1, "desc"]],
+        initComplete: function (oSettings) {
+
+            finished2 = true;
+            triggerLoaderOut();
+        }
     });
-     $.ajax({
+    $.ajax({
         type: 'GET',
-        url: "LendS",        
+        url: "LendS",
         data: {
             'op': "count_report"
         },
         dataType: "text",
         success: function (data) {
             $('#cantidad').append(data);
+            finished3 = true;
+            triggerLoaderOut();
         },
         async: false
     });
 
 });
+
+function triggerLoaderOut() {
+    if (finished1 && finished2 && finished3) {
+        dismissLoader();
+        initializePlugins();
+    }
+}

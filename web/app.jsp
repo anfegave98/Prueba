@@ -21,7 +21,7 @@
 
     String type = "empresa";
     String role = "";
-    String activeRef = "asset"; 
+    String activeRef = "dash"; 
 
     String buttonText = "Nuevo Préstamo";
     String buttonFunction = "prestamo";

@@ -574,37 +574,5 @@ function openInNewTab(url) {
     win.focus();
 }
 
-function initializePlugins() {
-    $('.maxlenght').maxlength({
-        alwaysShow: true,
-        warningClass: "badge mt-1 badge-success",
-        limitReachedClass: "badge mt-1 badge-danger"
-    });
-    $('[data-toggle="popover"]').popover();
-    $('[data-toggle="tooltip"]').tooltip();
-    $('.btn').on('click', function (e) {
-        $('.btn').not(this).popover('hide');
-    });
-    if ($("#datepicker-popup").length) {
-        $('#datepicker-popup').datepicker({
-            enableOnReadonly: true,
-            todayHighlight: true,
-        });
-    }
 
-    $('.material-timedate').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY - hh:mm a', shortTime: true, lang: 'es', cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
-    $('.material-date').bootstrapMaterialDatePicker({format: 'dddd[,] DD [de] MMMM [de] YYYY', lang: 'es', time: false, cancelText: 'Cancelar', clearText: 'Borrar', nowText: 'Ahora', nowButton: true});
-    $('.selectpicker').selectpicker();
-    $('.dropify').dropify({
-        messages: {
-            'default': 'Arrastra un archivo o haz clic aquí',
-            'replace': 'Arrastra un archivo o haz clic aquí para reemplazar',
-            'remove': 'Eliminar',
-            'error': 'Ooops, algo salió mal.'
-        }
-    });
-    if ($(".color-picker").length) {
-        $('.color-picker').asColorPicker();
-    }
-}
 
