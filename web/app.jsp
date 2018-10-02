@@ -21,7 +21,7 @@
 
     String type = "empresa";
     String role = "";
-    String activeRef = "dash";
+    String activeRef = "asset"; 
 
     String buttonText = "Nuevo Préstamo";
     String buttonFunction = "prestamo";
@@ -48,21 +48,23 @@
         role = "Empresa";
         menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
         menu.add(new MenuItem("lends", "mdi-notification-clear-all", "Préstamos"));
-        menu.add(new MenuItem("assets", "mdi-table", "Activos"));
+        menu.add(new MenuItem("asset", "mdi-table", "Activos"));
         menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes"));
         menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores"));
+        menu.add(new MenuItem("state", "mdi-shield-outline", "Estados"));
     } else if (type.equalsIgnoreCase("admin")) {
         role = "Administrador";
         menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
         menu.add(new MenuItem("lends", "mdi-notification-clear-all", "Préstamos"));
-        menu.add(new MenuItem("assets", "mdi-table", "Activos"));
+        menu.add(new MenuItem("asset", "mdi-table", "Activos"));
         menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes"));
         menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores"));
+        menu.add(new MenuItem("state", "mdi-shield-outline", "Estados"));
     } else if (type.equalsIgnoreCase("client")) {
         role = "Cliente";
         menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));
         menu.add(new MenuItem("lends", "mdi-notification-clear-all", "Préstamos"));
-        menu.add(new MenuItem("assets", "mdi-table", "Activos"));
+        menu.add(new MenuItem("asset", "mdi-table", "Activos"));
     }
 %>
 

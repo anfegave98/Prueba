@@ -16,11 +16,11 @@ var formFinished = false;
 
 var cols;
 var table;
-    
+
 function generatePage() {
-    
+
     $("#card-title").text(entityPrettyPrintPlural)
-    
+
     $.ajax({
         url: "AttributesS",
         type: 'GET',
@@ -35,7 +35,7 @@ function generatePage() {
         generateTable();
         // Generar formulario con columnas obtenidas    
         generateForm();
-       
+
         //initializePlugins();
     }).fail(function () {
         alert('error')
@@ -139,17 +139,24 @@ function generateTable() {
         }
 
     });
+
+    var identifierid;
+    for (var i = 0; i < cols.length; i++) {
+        if (cols[i].identifier)
+            identifierid = cols[i].data;
+    }
+
     $('#entity_table tbody').on('click', 'button.details', function () {
         var data = table.row($(this).parents('tr')).data();
-        detailsShow(data.email);
+        detailsShow(data[identifierid]);
     });
     $('#entity_table tbody').on('click', 'button.modify', function () {
         var data = table.row($(this).parents('tr')).data();
-        modifyShow(data.email);
+        modifyShow(data[identifierid]);
     });
     $('#entity_table tbody').on('click', 'button.delete', function () {
         var data = table.row($(this).parents('tr')).data();
-        deleteRow(data.email);
+        deleteRow(data[identifierid]);
     });
 
 
@@ -157,8 +164,8 @@ function generateTable() {
 }
 
 function triggerLoaderOut() {
-    if (tableFinished && formFinished) { 
-        $('#loader').waitMe("hide");
+    if (tableFinished && formFinished) {
+        dismissLoader();
         initializePlugins();
     }
 }
@@ -258,6 +265,16 @@ function genInput(col) {
         case 'contabilidad':
             theInput.push('',
                     '<input id="' + data + '"' + ((required) ? ' required' : '') + ' type="number" placeholder="Indica un número..." class="form-control">');
+            break;
+        case 'entero':
+            theInput.push('',
+                    '<input min="0" id="' + data + '"' + ((required) ? ' required' : '') + ' type="number" placeholder="Indica un número..." class="form-control">');
+            break;
+        case 'foto':
+            theInput.push('',
+                    '<input id="' + data + '"' + ((required) ? ' required' : '') + ' type="file" data-default-file="./assets/images/product_images/apple-watch.jpg" di="photo" class="dropify" data-max-file-size="3M" data-allowed-file-extensions="png jpg svg jpeg">',
+                    '<img class="dropify-display hidden img-fluid rounded" src="" alt="photo">');
+
             break;
         default:
             break;
@@ -480,6 +497,8 @@ function submitForm(type) {
             case 'fechahora':
             case 'color':
             case 'url':
+            case 'entero':
+            case 'decimal':
                 parameters[cols[i].data] = $('#' + cols[i].data).val();
                 break;
             case 'foto':

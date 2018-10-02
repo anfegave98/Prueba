@@ -58,3 +58,7 @@ $(document).ready(function () {
 
 }
 );
+
+function dismissLoader() {
+    $('#loader').waitMe("hide");
+}

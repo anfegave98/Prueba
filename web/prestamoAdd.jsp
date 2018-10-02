@@ -23,8 +23,8 @@
 <html lang="en">
     <head>
         <title>BI-Stock | Intelligence for your Business</title>
-        <%@ include file="includes/stylesheet.jsp" %>
-        <link rel="stylesheet" href="assets/css/demo_1/style.css">
+        <%@ include file="common/stylesheet.jsp" %>
+        <link rel="stylesheet" href="assets/css/style.css">
         <style>
             .navbar.default-layout {
                 background: <%=primary_color%>;

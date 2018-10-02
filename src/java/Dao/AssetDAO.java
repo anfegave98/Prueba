@@ -32,24 +32,15 @@ public class AssetDAO {
     }
 
     public boolean createAsset(Asset asset) throws SQLException {
-        if (asset.getAsset_parent_id() == 0) {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into asset(asset_parent_id,name,codebar,principal_picture,description,creation_date,deleted) values (NULL,?,?,?,?,?,false)");
-            preparedStatement.setString(1, asset.getName());
-            preparedStatement.setString(2, asset.getCodebar());
-            preparedStatement.setString(3, asset.getPrincipal_picture());
-            preparedStatement.setString(4, asset.getDescription());
-            preparedStatement.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
-            preparedStatement.executeUpdate();
-        } else {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into asset(asset_parent_id,name,codebar,principal_picture,description,creation_date,deleted) values (?,?,?,?,?,?,false)");
-            preparedStatement.setInt(1, asset.getAsset_parent_id());
-            preparedStatement.setString(2, asset.getName());
-            preparedStatement.setString(3, asset.getCodebar());
-            preparedStatement.setString(4, asset.getPrincipal_picture());
-            preparedStatement.setString(5, asset.getDescription());
-            preparedStatement.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
-            preparedStatement.executeUpdate();
-        }
+        
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into asset(name,codebar,principal_picture,description,creation_date,deleted) values (?,?,?,?,?,false)");
+        preparedStatement.setString(1, asset.getName());
+        preparedStatement.setString(2, asset.getCodebar());
+        preparedStatement.setString(3, asset.getPrincipal_picture());
+        preparedStatement.setString(4, asset.getDescription());
+        preparedStatement.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+        preparedStatement.executeUpdate();
+        
         return true;
 
     }
@@ -86,13 +77,13 @@ public class AssetDAO {
         }
         return asset;
     }
-    
+
     public Asset readAssetByCodebar(String codebar) throws SQLException {
         Asset asset = null;
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from asset where deleted=false and codebar='"+codebar+"'");
+        ResultSet rs = statement.executeQuery("select * from asset where deleted=false and codebar='" + codebar + "'");
         while (rs.next()) {
-            asset= new Asset();
+            asset = new Asset();
             asset.setAsset_id(rs.getInt("asset_id"));
             asset.setAsset_parent_id(rs.getInt("asset_parent_id"));
             asset.setName(rs.getString("name"));
@@ -100,24 +91,24 @@ public class AssetDAO {
             asset.setPrincipal_picture(rs.getString("principal_picture"));
             asset.setDescription(rs.getString("description"));
         }
-        if(asset==null){
-            asset=new Asset();
+        if (asset == null) {
+            asset = new Asset();
             asset.setCodebar("0");
         }
         return asset;
     }
 
-    public int rASidBCS(String codebar,int store_id) throws SQLException {
+    public int rASidBCS(String codebar, int store_id) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select asset_store.asset_store_id from asset,asset_store where asset.asset_id=asset_store.asset_id"
-                + " and asset.codebar='"+codebar+"' and asset.store_id="+store_id);
+                + " and asset.codebar='" + codebar + "' and asset.store_id=" + store_id);
         while (rs.next()) {
             return rs.getInt("asset_store_id");
         }
-        
+
         return 0;
     }
-    
+
     public ArrayList<Asset> getAllAsset() throws SQLException {
         ArrayList<Asset> assets = new ArrayList<>();
         Statement statement = connection.createStatement();
@@ -125,7 +116,7 @@ public class AssetDAO {
         while (rs.next()) {
             Asset asset = new Asset();
             asset.setAsset_id(rs.getInt("asset_id"));
-            asset.setAsset_parent_id(rs.getInt("asset_parent_id"));
+            //asset.setAsset_parent_id(rs.getInt("asset_parent_id"));
             asset.setName(rs.getString("name"));
             asset.setCodebar(rs.getString("codebar"));
             asset.setPrincipal_picture(rs.getString("principal_picture"));
@@ -134,7 +125,8 @@ public class AssetDAO {
         }
         return assets;
     }
-     public ArrayList<Asset_available_report> getAllAvailable() throws SQLException {
+
+    public ArrayList<Asset_available_report> getAllAvailable() throws SQLException {
         ArrayList<Asset_available_report> assets = new ArrayList<>();
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select asset.name as name, asset_store.asset_store_id, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false");
@@ -164,9 +156,9 @@ public class AssetDAO {
     public Asset_available_report getOneAvailable(int asset_id) throws SQLException {
         Asset_available_report asset = new Asset_available_report();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select asset.name as name, asset_store.asset_store_id, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false and asset_store.asset_store_id="+asset_id);
+        ResultSet rs = statement.executeQuery("select asset.name as name, asset_store.asset_store_id, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false and asset_store.asset_store_id=" + asset_id);
         while (rs.next()) {
-            
+
             asset.setName(rs.getString("name"));
             asset.setCodebar(rs.getString("codebar"));
             asset.setPrincipal_picture(rs.getString("principal_picture"));
@@ -177,11 +169,11 @@ public class AssetDAO {
         }
         return asset;
     }
-    
+
     public Asset_available_report getOneAvailable(String codebar) throws SQLException {
         Asset_available_report asset = new Asset_available_report();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select asset.name as name, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available,asset_store.asset_store_id from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false and asset.codebar='"+codebar+"'");
+        ResultSet rs = statement.executeQuery("select asset.name as name, asset.codebar as codebar, asset.principal_picture,asset.description,asset_store.available,asset_store.no_available,asset_store.asset_store_id from asset, asset_store where asset.asset_id=asset_store.asset_id and asset.deleted = false and asset_store.deleted=false and asset.codebar='" + codebar + "'");
         while (rs.next()) {
             asset.setName(rs.getString("name"));
             asset.setCodebar(rs.getString("codebar"));

@@ -45,12 +45,12 @@
         <url-pattern>/movs</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>assets</servlet-name>
-        <jsp-file>/common/rassets.jsp</jsp-file>
+        <servlet-name>asset</servlet-name>
+        <jsp-file>/common/rasset.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>assets</servlet-name>
-        <url-pattern>/app/assets</url-pattern>
+        <servlet-name>asset</servlet-name>
+        <url-pattern>/asset</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>admins</servlet-name>
@@ -67,6 +67,22 @@
     <servlet-mapping>
         <servlet-name>clients</servlet-name>
         <url-pattern>/clients</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>state</servlet-name>
+        <jsp-file>/common/rstate.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>state</servlet-name>
+        <url-pattern>/state</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>stateAdd</servlet-name>
+        <jsp-file>/common/rstateadd.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>stateAdd</servlet-name>
+        <url-pattern>/stateAdd</url-pattern>
     </servlet-mapping>
     <!-- Redirecciones de BackEnd -->
     <servlet>

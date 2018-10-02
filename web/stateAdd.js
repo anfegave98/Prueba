@@ -4,7 +4,7 @@ function sendState() {
     var parametrosAssetAdd = {
         "op": "create",
         "asset_store_id": asset.asset_store_id,
-        "admin_id":1,
+        "admin_id": 1,
         "quantity": $('#cantidad').val(),
         "description": $('#descripcion').val()
     };
@@ -18,8 +18,7 @@ function sendState() {
         console.log(response);
         if (response == 'true') {
             console.log(true);
-            window.location.href = "State.jsp";
-            
+            openURL('state');
 
         } else {
             alert("Cliente no existe");
@@ -32,7 +31,7 @@ function sendState() {
 }
 
 $('#findAsset').on('submit', function () {
-     $('#sub_div_asset').attr('style','display:none;');
+    $('#sub_div_asset').attr('style', 'display:none;');
     var parametrosAssetAdd = {
         "op": "getByCodebar",
         "codebar": $('#codebar').val()
@@ -83,7 +82,7 @@ function showDetails() {
 
     }).done(function (response) {
         console.log(response);
-        var jason=$.parseJSON(response);
+        var jason = $.parseJSON(response);
         $('#sub_div_asset').removeAttr('style');
         $('#asset_in_state_show').append(jason.store_id);
         $('#asset_in_lend_show').append(jason.asset_id);
@@ -93,5 +92,8 @@ function showDetails() {
     });
 }
 
+$(document).ready(function () {
+    dismissLoader();
+});
 
 
