@@ -12,7 +12,7 @@ package Model;
 public class Asset {
 
     private int asset_id;
-    private int asset_parent_id;
+    private int available;
     private String name;
     private String codebar;
     private String principal_picture;
@@ -29,12 +29,12 @@ public class Asset {
         this.asset_id = asset_id;
     }
 
-    public int getAsset_parent_id() {
-        return asset_parent_id;
+    public int getAvailable() {
+        return available;
     }
 
-    public void setAsset_parent_id(int asset_parent_id) {
-        this.asset_parent_id = asset_parent_id;
+    public void setAvailable(int available) {
+        this.available = available;
     }
 
     public String getName() {

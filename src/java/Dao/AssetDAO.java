@@ -52,14 +52,13 @@ public class AssetDAO {
     }
 
     public void updateAsset(Asset asset) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update asset set asset_parent_id=?,name=?,codebar=?,principal_picture=?,description=?,modification_date=?" + " where asset_id=?");
-        preparedStatement.setInt(1, asset.getAsset_parent_id());
-        preparedStatement.setString(2, asset.getName());
-        preparedStatement.setString(3, asset.getCodebar());
-        preparedStatement.setString(4, asset.getPrincipal_picture());
-        preparedStatement.setString(5, asset.getDescription());
-        preparedStatement.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
-        preparedStatement.setInt(7, asset.getAsset_id());
+        PreparedStatement preparedStatement = connection.prepareStatement("update asset set name=?,codebar=?,principal_picture=?,description=?,modification_date=?" + " where asset_id=?");
+        preparedStatement.setString(1, asset.getName());
+        preparedStatement.setString(2, asset.getCodebar());
+        preparedStatement.setString(3, asset.getPrincipal_picture());
+        preparedStatement.setString(4, asset.getDescription());
+        preparedStatement.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+        preparedStatement.setInt(6, asset.getAsset_id());
         preparedStatement.executeUpdate();
     }
 
@@ -69,7 +68,6 @@ public class AssetDAO {
         ResultSet rs = statement.executeQuery("select * from asset where deleted=false and asset_id=" + asset_id);
         while (rs.next()) {
             asset.setAsset_id(asset_id);
-            asset.setAsset_parent_id(rs.getInt("asset_parent_id"));
             asset.setName(rs.getString("name"));
             asset.setCodebar(rs.getString("codebar"));
             asset.setPrincipal_picture(rs.getString("principal_picture"));
@@ -85,11 +83,14 @@ public class AssetDAO {
         while (rs.next()) {
             asset = new Asset();
             asset.setAsset_id(rs.getInt("asset_id"));
-            asset.setAsset_parent_id(rs.getInt("asset_parent_id"));
             asset.setName(rs.getString("name"));
             asset.setCodebar(rs.getString("codebar"));
             asset.setPrincipal_picture(rs.getString("principal_picture"));
             asset.setDescription(rs.getString("description"));
+            ResultSet r=statement.executeQuery("select available,no_available from asset_store where asset_id="+asset.getAsset_id());
+            while(r.next()){
+                asset.setAvailable(r.getInt("availables")-rs.getInt("no_availables"));
+            }
         }
         if (asset == null) {
             asset = new Asset();
