@@ -75,23 +75,23 @@
                                                 </div>
                                                 <div class="form-group col-12">
                                                     <label for="name">Nombre de la empresa</label>
-                                                    <input value="Jenno's Pizza" id="name" maxlength="18" type="text" placeholder="Ingrese el nombre de su empresa" class="form-control">
+                                                    <input required value="Jenno's Pizza" id="name" maxlength="18" type="text" placeholder="Ingrese el nombre de su empresa" class="form-control">
                                                 </div>
                                                 <div class="form-group col-12">
                                                     <label>Sector</label><br>
-                                                    <select id="sectors" class="selectpicker" data-dropup-auto="false" data-size="10" style="width:100%">
+                                                    <select required id="sectors" class="selectpicker" data-dropup-auto="false" data-size="10" style="width:100%">
                                                         <option value=""> </option>
                                                     </select>
 
                                                 </div>
                                                 <div class="form-group col-6">
                                                     <label for="primary_color">Color principal</label> <!--#128bfc-->
-                                                    <input type='text' class="color-picker" value="#128bfc" id="primary_color"/>
+                                                    <input required type='text' class="color-picker" value="#128bfc" id="primary_color"/>
                                                 </div>
                                                 
                                                 <div class="form-group col-6">
                                                     <label for="secondary_color">Color secundario</label> <!--#15b67d-->
-                                                    <input type='text' class="color-picker" value="#15b67d" id="secondary_color"/>
+                                                    <input required type='text' class="color-picker" value="#15b67d" id="secondary_color"/>
                                                 </div>
 
                                                 <div class="form-group col-12">
@@ -104,7 +104,7 @@
 
                                                 <div class="form-group col-12">
                                                     <label for="logo">Logo de la Empresa</label>
-                                                    <input type="file" id="logo" class="dropify" data-height="80" data-max-file-size="3M" data-allowed-file-extensions="png jpg svg jpeg"/>
+                                                    <input required type="file" id="logo" class="dropify" data-height="50" data-max-file-size="3M" data-allowed-file-extensions="png jpg svg jpeg"/>
                                                     <p class="small-text">Sube una imagen PNG, JPG o SVG de tu logo completo de forma horizontal. Peso máximo: 3 MB. Tamaño recomendado: 2500px *  56px</p>
                                                 </div>
                                             </div>
@@ -208,23 +208,23 @@
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="sedeName">Nombre de la sede *</label>
-                                                <input value="Jenno's Sergio" id="sedeName" type="text" placeholder="Ingrese el nombre de la sede" class="form-control">
+                                                <input required value="Jenno's Sergio" id="sedeName" name="sedeName" type="text" placeholder="Ingrese el nombre de la sede" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="address">Dirección *</label>
-                                                <input value="Calle 27A # 30" id="address" type="text" placeholder="Ingrese la dirección" class="form-control">
+                                                <input required value="Calle 27A # 30" id="address" name="address" type="text" placeholder="Ingrese la dirección" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="phone_1">Teléfono 1 *</label>
-                                                <input value="3212596548" id="phone_1" type="text" placeholder="Ingrese el teléfono principal" class="form-control">
+                                                <input required value="3212596548" id="phone_1" name="phone_1" type="text" placeholder="Ingrese el teléfono principal" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="phone_2">Teléfono 2</label>
-                                                <input value="4896541" id="phone_2" type="text" placeholder="Ingrese el teléfono secundario" class="form-control">
+                                                <input required value="4896541" id="phone_2" name="phone_2" type="text" placeholder="Ingrese el teléfono secundario" class="form-control">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="emailAtencion">Email de Atención al Cliente</label>
-                                                <input value="sergio@jennos.com" type="email" class="form-control" id="emailAtencion" placeholder="Ingrese el correo de atención">
+                                                <input required value="sergio@jennos.com" type="email" class="form-control" id="emailAtencion" name="emailAtencion" placeholder="Ingrese el correo de atención">
                                             </div>
 
                                         </div>
@@ -244,23 +244,23 @@
 
                                             <div class="form-group col-12">
                                                 <label for="adminName">Nombres</label>
-                                                <input value="Juan Sebastián" type="text" class="form-control" id="adminName" placeholder="Ingrese sus nombres">
+                                                <input required value="Juan Sebastián" type="text" class="form-control" id="adminName" placeholder="Ingrese sus nombres">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="last_name">Apellidos</label>
-                                                <input value="Leyva" type="text" class="form-control" id="last_name" placeholder="Ingrese sus apellidos">
+                                                <input required value="Leyva" type="text" class="form-control" id="last_name" placeholder="Ingrese sus apellidos">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="adminEmail">Email</label>
-                                                <input value="gerente@jennos.com" type="email" class="form-control" id="adminEmail" placeholder="Ingrese su correo principal">
+                                                <input required value="gerente@jennos.com" type="email" class="form-control" id="adminEmail" placeholder="Ingrese su correo principal">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="pass">Contraseña</label>
-                                                <input val="1234" type="password" class="form-control" id="pass" placeholder="Ingrese su contraseña">
+                                                <input required type="password" class="form-control" id="pass" name="pass" placeholder="Ingrese su contraseña">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="pass2">Confirmar Contraseña</label>
-                                                <input val="1234" type="password" class="form-control" id="pass2" placeholder="Confirme su contraseña">
+                                                <input required type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirme su contraseña">
                                             </div>
                                         </div>
 

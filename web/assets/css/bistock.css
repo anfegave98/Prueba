@@ -316,3 +316,9 @@ td {
 .dataTables_wrapper .dataTables_paginate {
     margin-top: 15px !important;
 }
+
+.wizard > .content > .body label.error {
+    color: #ffc5c1;
+    display: inline-block;
+    margin-left: 1.5em;
+}

@@ -2,8 +2,41 @@ $(document).ready(function () {
     getSectors();
     $("#nombre_update").text($("#name").val());
 });
- 
-var form = $('#register-form').show();
+
+jQuery.extend(jQuery.validator.messages, {
+    required: "Este campo es requerido.",
+    remote: "Por favor arregle este campo.",
+    email: "Por favor ingrese un correo electrónico válido.",
+    url: "Please enter a valid URL.",
+    date: "Please enter a valid date.",
+    dateISO: "Please enter a valid date (ISO).",
+    number: "Please enter a valid number.",
+    digits: "Please enter only digits.",
+    creditcard: "Please enter a valid credit card number.",
+    equalTo: "Los valores no coinciden",
+    accept: "Please enter a value with a valid extension.",
+    maxlength: jQuery.validator.format("Please enter no more than {0} characters."),
+    minlength: jQuery.validator.format("Please enter at least {0} characters."),
+    rangelength: jQuery.validator.format("Please enter a value between {0} and {1} characters long."),
+    range: jQuery.validator.format("Please enter a value between {0} and {1}."),
+    max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
+    min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
+});
+
+
+var form = $("#register-form");
+
+form.validate({
+    errorPlacement: function errorPlacement(error, element) {
+        element.before(error);
+    },
+    rules: {
+        confirm: {
+            equalTo: "#pass"
+        }
+    }
+});
+
 form.steps({
     headerTag: "h3",
     bodyTag: "section",
@@ -25,39 +58,54 @@ form.steps({
         $tab.css('width', (100 / tabCount) + '%');
     },
     onStepChanging: function (event, currentIndex, newIndex) {
+        debugger;
         if (currentIndex > newIndex) {
             return true;
         }
 
         if (currentIndex < newIndex) {
-            //form.find('.body:eq(' + newIndex + ') label.error').remove();
-            //form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
+            form.find('.body:eq(' + newIndex + ') label.error').remove();
+            form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
         }
 
-        //form.validate().settings.ignore = ':disabled,:hidden';
-        //return form.valid();
-        return true;
+        form.validate().settings.ignore = ':disabled,:hidden';
+        var test = form.valid();
+        return test;
+        //return true;
     },
     onFinishing: function (event, currentIndex) {
         //form.validate().settings.ignore = ':disabled';
         //return form.valid();
+        debugger;
 
-        $('#register-form').waitMe({
-            effect: 'win8_linear',
-            text: 'Creando cuenta...',
-            bg: 'rgba(255, 255, 255, 0.7)',
-            color: '#128bfc'
-        });
+        form.validate().settings.ignore = ':disabled';
+        var test2 = form.valid();
+        if (test2) {
+            $('#register-form').waitMe({
+                effect: 'win8_linear',
+                text: 'Creando cuenta...',
+                bg: 'rgba(255, 255, 255, 0.7)',
+                color: '#128bfc'
+            });
 
-        var exito = submitForm();
-        if (exito) {
-            window.location.href = "login";
-            return true;
-        } else {
-            console.log('error detectado');
-            return false;
+            var exito = submitForm();
+            if (exito) {
+                window.location.href = "login";
+                return true;
+            } else {
+                console.log('error detectado');
+                return false;
+            }
         }
+        return test2;
+
+    },
+    onFinished: function (event, currentIndex)
+    {
+
+
     }
+
 });
 
 $.validator.setDefaults({
@@ -79,23 +127,23 @@ $.validator.setDefaults({
         });
     }
 });
-
-$("#register-form").validate({
-    rules: {
-        address: "required"
-    },
-    messages: {
-        address: "mensaje para nombre sede"
-    },
-    errorPlacement: function (label, element) {
-        label.addClass('mt-2 text-danger');
-        label.insertAfter(element);
-    },
-    highlight: function (element, errorClass) {
-        $(element).parent().addClass('has-danger')
-        $(element).addClass('form-control-danger')
-    }
-});
+//
+//$("#register-form").validate({
+//    rules: {
+//        address: "required"
+//    },
+//    messages: {
+//        address: "mensaje para nombre sede"
+//    },
+//    errorPlacement: function (label, element) {
+//        label.addClass('mt-2 text-danger');
+//        label.insertAfter(element);
+//    },
+//    highlight: function (element, errorClass) {
+//        $(element).parent().addClass('has-danger')
+//        $(element).addClass('form-control-danger')
+//    }
+//});
 
 
 $('#colorbar').css('background', '#128bfc');
