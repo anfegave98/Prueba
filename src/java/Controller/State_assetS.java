@@ -37,15 +37,14 @@ public class State_assetS extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
             Gson g = new Gson();
+            Asset_store_reportDAO dao = new Asset_store_reportDAO("AABGJJMO_BiStock_" + 1);
             if (op.equalsIgnoreCase("report")) {
                 //            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
 //            AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
-                Asset_store_reportDAO dao = new Asset_store_reportDAO("AABGJJMO_BiStock_" + 1);
-                int store_id = Integer.parseInt(request.getParameter("store_id"));
-                ArrayList<Asset_store_report> reports = dao.Generate_asset_store_report(store_id);
-                String pasareEsto = g.toJson(reports);
-                out.print(pasareEsto);
-
+                out.print(new Gson().toJson(dao.Generate_asset_store_report(Integer.parseInt(request.getParameter("store_id")))));
+            }
+            if(op.equalsIgnoreCase("getall")){
+                out.print(new Gson().toJson(dao.getItems()));
             }
         } catch (SQLException ex) {
             Logger.getLogger(State_assetS.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,16 +84,12 @@ public class State_assetS extends HttpServlet {
                 //asset_store.setAvaliable(asset_store.getAvaliable() - state_asset.getQuantity());
                 asset_store.setNo_avaliable(asset_store.getNo_avaliable() + state_asset.getQuantity());
                 asset_storedao.updateAsset_store(asset_store);
-                out.println("ok");
+                out.print(true);
             }
             if (op.equalsIgnoreCase("remove")) {
                 State_asset state_asset = s.readState_asset(Integer.parseInt(request.getParameter("state_asset_id")));
-                out.println(state_asset.getQuantity());
-                out.println(state_asset.getDevolution_quantity());
                 int devolution_quantity = Integer.parseInt(request.getParameter("devolution_quantity"));
                 state_asset.setDevolution_quantity(state_asset.getDevolution_quantity() + devolution_quantity);
-                out.println(state_asset.getDevolution_quantity());
-
                 if (state_asset.getDevolution_quantity() == state_asset.getQuantity()) {
                     state_asset.setDeleted(true);
                 }
@@ -108,6 +103,19 @@ public class State_assetS extends HttpServlet {
                 asset_storedao.updateAsset_store(asset_store);
                 out.println("ok");
 
+            }
+            
+            if(op.equalsIgnoreCase("removeAll")){
+                State_asset state_asset = s.readState_asset(Integer.parseInt(request.getParameter("state_asset_id")));
+                state_asset.setDevolution_quantity(state_asset.getQuantity());
+                state_asset.setDeleted(true);
+                s.updateState_asset(state_asset);
+                Asset_storeDAO asset_storedao = new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
+                int id_store = asset_storedao.readAsset_store(state_asset.getAsset_store_id()).getStore_id();
+                Asset_store asset_store = asset_storedao.readAsset_store(asset_storedao.readAsset_store(state_asset.getAsset_store_id()).getAsset_id(), id_store);
+                asset_store.setNo_avaliable(asset_store.getNo_avaliable() - state_asset.getDevolution_quantity());
+                asset_storedao.updateAsset_store(asset_store);
+                out.print(true);
             }
 
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
