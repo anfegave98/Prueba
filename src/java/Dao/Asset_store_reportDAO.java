@@ -32,16 +32,22 @@ public class Asset_store_reportDAO {
     public ArrayList<Asset_store_report>  Generate_asset_store_report(int store_id) throws SQLException{
         ArrayList<Asset_store_report> asset_store_reports = new ArrayList<>();
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select asset.name, asset_store.available,state_asset.quantity as no_available,state_asset.description from asset,asset_store,state_asset where asset.asset_id = asset_store.asset_id and asset_store.asset_store_id = state_asset.asset_store_id and asset_store.store_id ="+store_id+ " and state_asset.deleted= false");
+        ResultSet rs = statement.executeQuery("select state_asset.state_asset_id, asset.name,asset.codebar, state_asset.devolution_quantity as available,state_asset.quantity as no_available,state_asset.description from asset,asset_store,state_asset where asset.asset_id = asset_store.asset_id and asset_store.asset_store_id = state_asset.asset_store_id and asset_store.store_id ="+store_id+ " and state_asset.deleted= false");
         while (rs.next()) {
             Asset_store_report asset_store_report = new Asset_store_report();
+            asset_store_report.setState_asset_id(rs.getInt("state_asset_id"));
             asset_store_report.setName(rs.getString("name"));
+            asset_store_report.setCodebar(rs.getString("codebar"));
             asset_store_report.setAvailable(rs.getInt("available"));
             asset_store_report.setNo_available(rs.getInt("no_available"));
-            asset_store_report.setDescription("description");
+            asset_store_report.setDescription(rs.getString("description"));
             asset_store_reports.add(asset_store_report);
         }
         return asset_store_reports;
+    }
+
+    public Object getItems() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

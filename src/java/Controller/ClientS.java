@@ -44,7 +44,7 @@ public class ClientS extends HttpServlet {
                 out.print(pasareEsto);
             }
             if (op.equalsIgnoreCase("get")) {
-                String email = request.getParameter("email");
+                String email = request.getParameter("pk");
                 Client e = a.getByEmail(email);
                 if (e == null) {
                     out.print(false);
@@ -82,7 +82,7 @@ public class ClientS extends HttpServlet {
                 }
             }
             if (op.equalsIgnoreCase("deleted")) {
-                String email = request.getParameter("email");
+                String email = request.getParameter("pk");
                 a.deleteClient(email);
 
             }
