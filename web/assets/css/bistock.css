@@ -1,0 +1,324 @@
+.landing-page .top-banner  {
+    /* background: linear-gradient(120deg, #01539a, #9a9a9a); */
+    background: linear-gradient(120deg, #01539a, #2d7cce);
+}
+
+.landing-page .footer {
+    background: linear-gradient(120deg, #01539a, #2d7cce);
+}
+
+.landing-page .top-banner-overlay {
+    background: url(../../assets/images/topbanneroverlay2.svg) no-repeat center;
+    background-size: cover;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.landing-page .top-banner-img {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.dark-transparent-card {
+    color: white;
+    background-color: #00000075;
+}
+
+.white-hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.asColorPicker-wrap:hover .asColorPicker-clear {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.asColorPicker-trigger span {
+    width: 15px;
+    height: 15px;
+}
+
+.reg2 .jsgrid-cell {
+    background-color: transparent;
+}
+.reg2 .jsgrid-grid-header {
+    background: #f9f9f91f;
+}
+
+.reg2 .jsgrid .jsgrid-button {
+    background-image: url(../images/sprites/jsgrid-icons-white.png);
+}
+
+.reg2 .jsgrid-header-cell {
+    background: #0969c77a;
+}
+/*
+.reg2 .jsgrid .jsgrid-table td {
+    padding: 13px 21px;
+}*/
+
+.form-check .form-check-label input:checked + .input-helper:after {
+    line-height: 15px;
+} 
+
+.jsgrid-pager-nav-button {
+    padding: .2em .0em;
+}
+.jsgrid-pager-page {
+    padding: .2em .0em;
+}
+
+.landing-page .navbar .navbar-brand img {
+    width: 170px;
+}
+
+/*
+input {
+    box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.22) !important;
+}
+
+input:hover {
+    box-shadow: 2px 4px 20px 0px rgba(60, 63, 70, 0.45) !important;
+}
+*/
+.wizard > .content {
+    background: #ffffff24;
+    color: white;
+}
+
+.wizard .content {
+    min-height: 100px;
+}
+.wizard .content > .body {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    position: absolute;
+}
+.wizard .content .body.current {
+    position: relative;
+}
+
+.form-group .bootstrap-select, .form-horizontal .bootstrap-select, .form-inline .bootstrap-select {
+    width: 100% !important;
+}
+
+.bootstrap-select .dropdown-toggle .filter-option-inner-inner {
+    height: 20px;
+}
+
+.bootstrap-select .btn {
+    padding: 0.94rem 1.375rem;
+    font-size: 0.75rem;
+}
+
+/*
+.bootstrap-select .btn {
+    box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.22) !important;
+}
+.bootstrap-select .btn:hover {
+    box-shadow: 2px 4px 20px 0px rgba(60, 63, 70, 0.45) !important;
+}*/
+
+.asColorPicker-trigger{
+    padding-top: 13px !important;
+}
+
+.asColorPicker-wrap:hover .asColorPicker-clear {
+    margin-top: 9px;
+}
+
+.form-check .form-check-label input:checked + .input-helper:after {
+    line-height: 15px;
+}
+
+.btn-outline-primary, .wizard > .actions .disabled a {
+    color: #2196f3;
+    background-color: white;
+    background-image: none;
+    border-color: #2196f3;
+}
+
+.btn-primary, .wizard > .actions a {
+    color: #fff;
+    background-color: #61c2f5;
+    border-color: #2196f3;
+}
+
+.dataTables_wrapper .dataTable .btn {
+    padding: 0.3rem 0.6rem;
+    min-width: 40px;
+}
+
+td {
+    word-wrap: break-word
+}
+
+.modal-md {
+    max-width: 900px;
+}
+
+.form-check-label{
+    font-size: 0.8rem !important;
+    line-height: 1.8 !important;
+    padding-left: 25px !important;
+    padding-right: 5px !important;
+    padding-top: 10px;  
+}
+.form-check-input {
+    margin-left: -1.5rem;
+}
+
+.popover {
+    z-index: 1110;
+}
+
+.popover-primary .popover-body {
+    color: #fff;
+    background: #3c3c3c;
+}
+
+.form-group .btn-light {
+    color: #7b7b7b;
+    background-color: #e6e6e6;
+    border-color: #fbfbfb;
+}
+
+.datepicker.datepicker-dropdown, .datepicker.datepicker-inline {
+    box-shadow: 0px 1px 15px 11px rgba(109, 109, 109, 0.19);
+    border-radius: 2px;
+}
+
+.datepicker-dropdown.datepicker-orient-top:before {
+    opacity: 0 !important;
+}
+
+.datepicker-dropdown.datepicker-orient-top:after {
+    opacity: 0 !important;
+}
+
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header {
+    background: #366698;
+}
+
+.dtp div.dtp-date, .dtp div.dtp-time {
+    background: #559ce4;
+}
+
+.dtp .p10 > a {
+    color: #ffffff;
+}
+
+.dtp div.dtp-actual-year {
+    color: #c8dded;
+}
+
+.dtp table.dtp-picker-days tr > td > a.selected {
+    background: #4ca6ca;
+}
+
+.dtp table.dtp-picker-days tr > td > a, .dtp .dtp-picker-time > a {
+    padding: 5px 8px !important;
+}
+
+.dtp-buttons .btn-flat{
+    margin-left: 10px;
+}
+
+.dropdown-menu.show {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.dropify-wrapper {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05), 0 2px 10px 0 rgba(0, 0, 0, 0.02);
+}
+
+.hidden{
+    display: none !important;
+}
+
+.img-fluid {
+    max-height: 350px;
+}
+
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(../../assets/images/loader-64x/Preloader_2.gif) center no-repeat #fff;
+}
+
+.toggle-handle{
+    background-color: white;
+    padding: 6px;
+    background-color: #63bdf5;
+}
+
+.switchspecial>.form-check-label {
+    padding-left: 0px !important;
+}
+
+#register-form > .steps a {
+    display: block;
+    width: auto;
+    margin: 0 0.5em 0.5em;
+    padding: 0.4em;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.auth.auth-bg-1 {
+    background: url(../../assets/images/auth/login_1.jpg);
+    background-size: cover;
+}
+
+.table-button {
+    margin: 0 !important;
+} 
+
+.close:not(:disabled):not(.disabled):hover, .close:not(:disabled):not(.disabled):focus {
+    opacity: 1 !important;
+}
+
+.close-success:hover {
+    color: #01c380 !important;
+}
+
+.close-info:hover {
+    color: #5e31c7 !important;
+}
+
+.close-danger:hover {
+    color: #da1515 !important;
+}
+
+.close-warning:hover {
+    color: #e8a100 !important;
+}
+
+.tooltip {
+    z-index: 2000;
+}
+
+.modal-header .close {
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    margin: -1rem 0 -1rem 0;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 15px !important;
+}
+
+.wizard > .content > .body label.error {
+    color: #ffc5c1;
+    display: inline-block;
+    margin-left: 1.5em;
+}

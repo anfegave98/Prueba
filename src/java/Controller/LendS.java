@@ -87,7 +87,7 @@ public class LendS extends HttpServlet {
                 Lend l = new Lend();
                 l.setAdmin_role_store_id(Integer.parseInt(request.getParameter("admin_role_store_id")));
                 l.setClient_id(Integer.parseInt(request.getParameter("client_id")));
-                l.setEnd_date(Date.valueOf(request.getParameter("end_date").toString()));
+                l.setEnd_date(new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("end_date"))); 
                 //Date d=(Date) request.getParameter("devolution_date");
                 int mayor = ld.createLend(l);
                 if (mayor != 0) {
@@ -133,12 +133,14 @@ public class LendS extends HttpServlet {
             if (op.equalsIgnoreCase("updateEnd_date")) {//Solo enviar la fecha, sin la hora
                 Lend lend = new Lend();
                 lend.setLend_id(Integer.parseInt(request.getParameter("lend_id")));
-                lend.setEnd_date(Date.valueOf(request.getParameter("end_date").toString()));
+                lend.setEnd_date(new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("end_date")));
                 ld.updateEnd_date(lend);
 
             }
             
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
+            Logger.getLogger(LendS.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(LendS.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

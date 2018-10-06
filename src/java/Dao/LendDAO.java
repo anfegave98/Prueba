@@ -11,13 +11,13 @@ import Util.Lend_report;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -36,7 +36,7 @@ public class LendDAO {
         preparedStatement.setInt(1, lend.getAdmin_role_store_id());
         preparedStatement.setInt(2, lend.getClient_id());
         preparedStatement.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
-        preparedStatement.setDate(4, lend.getEnd_date());
+        preparedStatement.setDate(4, new java.sql.Date(lend.getEnd_date().getTime()));
         preparedStatement.executeUpdate();
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select MAX(lend_id) as lend_id,start_date from lend");
@@ -191,10 +191,11 @@ public class LendDAO {
         preparedStatement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
         preparedStatement.executeUpdate();
     }
+
     public void updateEnd_date(Lend lend) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update lend set end_date=? where lend_id='"+lend.getLend_id()+"'");
-        preparedStatement.setDate(1, lend.getEnd_date());
+        PreparedStatement preparedStatement = connection.prepareStatement("update lend set end_date=? where lend_id='" + lend.getLend_id() + "'");
+        preparedStatement.setDate(1, new java.sql.Date(lend.getEnd_date().getTime()));
         preparedStatement.executeUpdate();
-        
+
     }
 }

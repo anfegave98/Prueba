@@ -6,7 +6,7 @@
 <%@page import="Model.Company"%>
 <%
     if (request.getSession().getAttribute("company") != null) {
-        response.sendRedirect("dashboard.jsp");
+        response.sendRedirect("app");
     } else {
     }
 %>
@@ -15,7 +15,24 @@
 <html lang="en">
     <head>
         <title>Login | BI-Stock</title>
-        <%@ include file="includes/stylesheet.jsp" %>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="assets/vendors/iconfonts/puse-icons-feather/feather.css">
+        <link rel="stylesheet" href="assets/vendors/iconfonts/ti-icons/css/themify-icons.css">
+        <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+        <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.addons.css">
+        <!-- endinject -->
+        <!-- plugin css for this page -->
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/bistock.css">
+        <!-- endinject -->
+        <link rel="shortcut icon" href="assets/images/favicon.png" />
     <body>
         <div class="container-scroller">
             <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -63,7 +80,7 @@
                                   </div> -->
                                     <div class="text-block text-center my-3">
                                         <span class="text-small font-weight-semibold">¿No eres miembro?</span>
-                                        <a href="company_register.jsp" class="text-black text-small">Registra tu empresa</a>
+                                        <a href="signup" class="text-black text-small">Registra tu empresa</a>
                                     </div>
                                 </form>
                             </div><!--
@@ -91,7 +108,7 @@
         <script src="assets/vendors/js/vendor.bundle.base.js"></script>
         <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
         <!-- endinject -->
-        <script src="assets/js/login.js"></script>
+        <script src="login.js"></script>
         <!-- inject:js -->
         <script src="assets/js/shared/off-canvas.js"></script>
         <script src="assets/js/shared/hoverable-collapse.js"></script>
