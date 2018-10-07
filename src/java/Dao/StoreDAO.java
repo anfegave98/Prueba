@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,34 +30,28 @@ public class StoreDAO {
     }
 
     public Boolean createStore(Store store) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into store(company_id,name,sell,lend,rental,address,phone_1,phone_2,email,principal,deleted,creation_date) values (?,?,?,?,?,?,?,?,?,?,false,?)");
-        preparedStatement.setString(1, store.getCompany());
-        preparedStatement.setString(2, store.getName());
-        preparedStatement.setBoolean(3, store.isSell());
-        preparedStatement.setBoolean(4, store.isLend());
-        preparedStatement.setBoolean(5, store.isRental());
-        preparedStatement.setString(6, store.getAddress());
-        preparedStatement.setString(7, store.getPhone_1());
-        preparedStatement.setString(8, store.getPhone_2());
-        preparedStatement.setString(9, store.getEmail());
-        preparedStatement.setBoolean(10, store.isPrincipal());
-        preparedStatement.setTimestamp(11, new Timestamp(System.currentTimeMillis()));
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into store(name,lend,address,phone_1,phone_2,email,principal,creation_date,deleted) values (?,?,?,?,?,?,?,?,false)");
+        preparedStatement.setString(1, store.getName());
+        preparedStatement.setBoolean(2, store.isLend());
+        preparedStatement.setString(3, store.getAddress());
+        preparedStatement.setString(4, store.getPhone_1());
+        preparedStatement.setString(5, store.getPhone_2());
+        preparedStatement.setString(6, store.getEmail());
+        preparedStatement.setBoolean(7, store.isPrincipal());
+        preparedStatement.setTimestamp(8, new Timestamp(System.currentTimeMillis()));
         preparedStatement.executeUpdate();
         return true;
     }
 
-    public Store readStore(int store_id) throws SQLException, URISyntaxException {
+    public Store readStore(String name) throws SQLException, URISyntaxException {
         Store store = null;
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select * from store where deleted=false and store_id=" + store_id);
+        ResultSet rs = statement.executeQuery("select * from store where deleted=false and name='" + name+"'");
         while (rs.next()) {
             store=new Store();
             store.setStore_id(rs.getInt("store_id"));
-            store.setCompany(rs.getString("company"));
             store.setName(rs.getString("name"));
-            store.setSell(rs.getBoolean("sell"));
             store.setLend(rs.getBoolean("lend"));
-            store.setRental(rs.getBoolean("rental"));
             store.setAddress(rs.getString("address"));
             store.setPhone_1(rs.getString("phone_1"));
             store.setPhone_2(rs.getString("phone_2"));
@@ -66,25 +61,22 @@ public class StoreDAO {
         return store;
     }
 
-    public void updateStore(Store store) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update store set name=?,sell=?,lend=?,rental=?,address=?,phone_1=?,phone_2=?,email=?,principal=?" + " where store_id=?");
-        preparedStatement.setString(1, store.getName());
-        preparedStatement.setBoolean(2, store.isSell());
-        preparedStatement.setBoolean(3, store.isLend());
-        preparedStatement.setBoolean(4, store.isRental());
-        preparedStatement.setString(5, store.getAddress());
-        preparedStatement.setString(6, store.getPhone_1());
-        preparedStatement.setString(7, store.getPhone_2());
-        preparedStatement.setString(8, store.getEmail());
-        preparedStatement.setBoolean(9, store.isPrincipal());
-        preparedStatement.setInt(10, store.getStore_id());
+    public Boolean updateStore(Store store) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("update store set address=?,phone_1=?,phone_2=?,email=? where name=?");
+        preparedStatement.setString(1, store.getAddress());
+        preparedStatement.setString(2, store.getPhone_1());
+        preparedStatement.setString(3, store.getPhone_2());
+        preparedStatement.setString(4, store.getEmail());
+        preparedStatement.setString(5, store.getName());
         preparedStatement.executeUpdate();
+        return true;
     }
 
-    public void deleteStore(int store_id) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("update store set deleted=true,elimination_date=? where store_id=" + store_id);
+    public Boolean deleteStore(String name) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("update store set deleted=true,elimination_date=? where name='" + name+"'");
         preparedStatement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
         preparedStatement.executeUpdate();
+        return true;
     }
 
     public boolean existsOne() throws SQLException {
@@ -94,6 +86,34 @@ public class StoreDAO {
             return true;
         }
         return false;
+    }
+    
+    public boolean exists(String name) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs= statement.executeQuery("select * from store where deleted=false and name='"+name+"'");
+        while (rs.next()){
+            return true;
+        }
+        return false;
+    }
+
+    public ArrayList<Store> readAll() throws SQLException {
+        ArrayList<Store> stores = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ResultSet rs= statement.executeQuery("select * from store where deleted=false");
+        while (rs.next()){
+            Store store=new Store();
+            store.setStore_id(rs.getInt("store_id"));
+            store.setName(rs.getString("name"));
+            store.setLend(rs.getBoolean("lend"));
+            store.setAddress(rs.getString("address"));
+            store.setPhone_1(rs.getString("phone_1"));
+            store.setPhone_2(rs.getString("phone_2"));
+            store.setEmail(rs.getString("email"));
+            store.setPrincipal(rs.getBoolean("principal"));
+            stores.add(store);
+        }
+        return stores;
     }
     
 }

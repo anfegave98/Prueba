@@ -29,7 +29,22 @@ public class StoreS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String op = request.getParameter("op");
+            StoreDAO s = new StoreDAO("AABGJJMO_BiStock_1");
+            Gson g = new Gson();
+            switch (op) {
+                case "get":
+                    out.print(new Gson().toJson(s.readStore(request.getParameter("pk"))));
+                    break;
+                case "getall":
+                    out.print(new Gson().toJson(s.readAll()));
+                    break;
+            }
+        } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
+            Logger.getLogger(StoreS.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -43,22 +58,34 @@ public class StoreS extends HttpServlet {
             //StoreDAO s = new StoreDAO("AABGJJMO_BiStock_"+1);
             Gson g = new Gson();
             //if (!s.existsOne(company.getCompany_id())) {
-            if (!s.existsOne()) {
-                if (op.equalsIgnoreCase("create")) {
-                    Store store=new Store();
+            switch (op) {
+                case "create":
+                    if (!s.exists(request.getParameter("name"))) {
+                        Store store = new Store();
+                        store.setName(request.getParameter("name"));
+                        store.setLend(true);
+                        store.setAddress(request.getParameter("address"));
+                        store.setPhone_1(request.getParameter("phone_1"));
+                        store.setPhone_2(request.getParameter("phone_2"));
+                        store.setEmail(request.getParameter("email"));
+                        store.setPrincipal(true);
+                        out.print(s.createStore(store));
+                    }
+                    break;
+                case "update":
+                    Store store = new Store();
                     store.setName(request.getParameter("name"));
-                    store.setSell(false);
-                    store.setLend(true);
-                    store.setRental(false);
                     store.setAddress(request.getParameter("address"));
                     store.setPhone_1(request.getParameter("phone_1"));
                     store.setPhone_2(request.getParameter("phone_2"));
                     store.setEmail(request.getParameter("email"));
-                    store.setPrincipal(true);
-                    out.print(s.createStore(store));
-                }
-            }else{
-                out.print("Ya existe tienda principal");
+                    out.print(s.updateStore(store));
+                    break;
+                case "delete":
+                    String name = request.getParameter("pk");
+                    out.print(s.deleteStore(name));
+                default:
+                    break;
             }
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(StoreS.class.getName()).log(Level.SEVERE, null, ex);

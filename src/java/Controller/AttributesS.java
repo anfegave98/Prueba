@@ -50,6 +50,15 @@ public class AttributesS extends HttpServlet {
                     atributos.add(new Attribute("Disponible", "available", "entero", "Cuántos hay en la tienda", true, false, false));
                     //atributos.add(new Attribute("Disponibles", "available", "entero", "Cantidad de activo disponible", true, false, true));
                     break;
+                case "getStore":
+                    atributos.add(new Attribute("Nombre","name","textocorto","Nombre de la tienda",true,true,true));
+                    atributos.add(new Attribute("Prestamo","lend","checkbox","Su tienda realiza prestamos?", true, false, true));
+                    atributos.add(new Attribute("Direccion","address","textocorto","Direccion de la tienda", true, false, true));
+                    atributos.add(new Attribute("Telefono 1","phone_1","textocorto","Telefono de la tienda", true, false, true));
+                    atributos.add(new Attribute("Telefono 2","phone_2","textocorto","Telefono opcional de la tienda", true, false, true));
+                    atributos.add(new Attribute("Correo","email","textocorto","Email de la tienda", true, false, true));
+                    atributos.add(new Attribute("Principal","principal","checkbox","Direccion de la tienda", true, false, true));
+                    
                 default:
                     break;
             }

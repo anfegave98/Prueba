@@ -12,17 +12,13 @@ package Model;
 public class Store {
     
     private int store_id;
-    private String company;
     private String name;
-    private boolean sell;
     private boolean lend;
-    private boolean rental;
     private String address;
     private String phone_1;
     private String phone_2;
     private String email;
     private boolean principal;
-    private boolean deleted;
 
     public Store() {
     }
@@ -35,14 +31,6 @@ public class Store {
         this.store_id = store_id;
     }
 
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
     public String getName() {
         return name;
     }
@@ -51,14 +39,7 @@ public class Store {
         this.name = name;
     }
 
-    public boolean isSell() {
-        return sell;
-    }
-
-    public void setSell(boolean sell) {
-        this.sell = sell;
-    }
-
+ 
     public boolean isLend() {
         return lend;
     }
@@ -67,14 +48,7 @@ public class Store {
         this.lend = lend;
     }
 
-    public boolean isRental() {
-        return rental;
-    }
-
-    public void setRental(boolean rental) {
-        this.rental = rental;
-    }
-
+ 
     public String getAddress() {
         return address;
     }
@@ -115,13 +89,6 @@ public class Store {
         this.principal = principal;
     }
 
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
     
     
     

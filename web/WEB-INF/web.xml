@@ -53,6 +53,14 @@
         <url-pattern>/asset</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>store</servlet-name>
+        <jsp-file>/common/store.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>store</servlet-name>
+        <url-pattern>/store</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>admins</servlet-name>
         <jsp-file>/common/radmins.jsp</jsp-file>
     </servlet>

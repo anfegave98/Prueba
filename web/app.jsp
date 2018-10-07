@@ -52,6 +52,7 @@
         menu.add(new MenuItem("state", "mdi-comment-check-outline", "Estados"));
         menu.add(new MenuItem("clients", "mdi-lightbulb-outline", "Clientes"));
         menu.add(new MenuItem("admins", "mdi-shield-outline", "Administradores"));
+        menu.add(new MenuItem("store", "mdi-shield-outline", "Tiendas"));
     } else if (type.equalsIgnoreCase("admin")) {
         role = "Administrador";
         menu.add(new MenuItem("dash", "mdi-television", "Dashboard"));

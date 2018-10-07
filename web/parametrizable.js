@@ -270,6 +270,10 @@ function genInput(col) {
             theInput.push('',
                     '<input min="0" id="' + data + '"' + ((required) ? ' required' : '') + ' type="number" placeholder="Indica un número..." class="form-control">');
             break;
+        case 'checkbox':
+            theInput.push('',
+                    '<input id="' + data + '"' + ((required) ? ' required' : '') + ' type="checkbox" class="form-check-input">');
+            break;
         case 'foto':
             theInput.push('',
                     '<input id="' + data + '"' + ((required) ? ' required' : '') + ' type="file" data-default-file="./assets/images/product_images/apple-watch.jpg" di="photo" class="dropify" data-max-file-size="3M" data-allowed-file-extensions="png jpg svg jpeg">',
@@ -331,6 +335,7 @@ function prefillForm(id) {
                     case 'fechahora':
                         break;
                     case 'checkbox':
+                        $('#' + id).val(result[id]);
                         break;
                     case 'url':
                         break;

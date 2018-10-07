@@ -100,7 +100,6 @@ public class AdminS extends HttpServlet {
             if (op.equalsIgnoreCase("deleted")) {
                 String email = request.getParameter("pk");
                 a.deleteAdmin(email);
-
             }
             if (op.equalsIgnoreCase("update")) {
                 Admin admin = new Admin();

@@ -12,7 +12,8 @@ $(document).ready(function () {
             {data: 'description'},
             {data: null, render: function (data, type, row) {
                     // Combine the first and last names into a single table field
-                    return data.lend_quantity + '/' + data.available;
+                    var d=data.available-data.no_available;
+                    return data.lend_quantity + '/' + d;
                 }},
             {data: null}
         ],
@@ -136,7 +137,7 @@ function updateTable() {
 function addQuantity(asset_store_id) {
     for (i = 0; i < items.length; i++) {
         if (items[i].asset_store_id == asset_store_id) {
-            if (items[i].lend_quantity == items[i].available)
+            if (items[i].lend_quantity == items[i].available-items[i].no_available)
                 alert('no se puede mas')
             else
                 items[i].lend_quantity++;

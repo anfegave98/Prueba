@@ -90,7 +90,7 @@ public class AssetDAO {
             statement = connection.createStatement();
             ResultSet r=statement.executeQuery("select available,no_available from asset_store where asset_id="+asset.getAsset_id());
             while(r.next()){
-                asset.setAvailable(r.getInt("availables")-rs.getInt("no_availables"));
+                asset.setAvailable(r.getInt("available")-rs.getInt("no_available"));
             }
         }
         if (asset == null) {

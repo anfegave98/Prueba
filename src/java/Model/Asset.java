@@ -69,4 +69,13 @@ public class Asset {
         this.description = description;
     }
 
+    public Asset(int asset_id, int available, String name, String codebar, String principal_picture, String description) {
+        this.asset_id = asset_id;
+        this.available = available;
+        this.name = name;
+        this.codebar = codebar;
+        this.principal_picture = principal_picture;
+        this.description = description;
+    }
+
 }
