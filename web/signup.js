@@ -288,7 +288,7 @@ function submitForm() {
     var adminName = document.getElementById('adminName').value;
     var last_name = document.getElementById('last_name').value;
     var adminEmail = document.getElementById('adminEmail').value;
-    var password = document.getElementById('pass2').value;
+    var password = document.getElementById('pass').value;
 
 
     // crear company

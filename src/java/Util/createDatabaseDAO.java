@@ -244,16 +244,23 @@ public class createDatabaseDAO {
         //State_Asset
         table = "create table State_Asset(\n"
                 + "state_asset_id int primary key auto_increment,\n"
-                + "asset_store_id int,\n"
                 + "admin_id int,\n"
-                + "quantity int,\n"
-                + "devolution_quantity int,\n"
                 + "description varchar(300),\n"
                 + "creation_date timestamp,\n"
                 + "deleted bool,\n"
-                + "foreign key(admin_id) references admin(admin_id),\n"
+                + "foreign key(admin_id) references admin(admin_id)\n"
+                + ");";
+        preparedStatement = connection.prepareStatement(table);
+        preparedStatement.executeUpdate();
+        table = "create table State_Items(\n"
+                + "state_asset_id int,\n"
+                + "asset_store_id int,\n"
+                + "quantity int,\n"
+                + "devolution_quantity int,\n"
+                + "foreign key(state_asset_id) references state_asset(state_asset_id),\n"
                 + "foreign key(asset_store_id) references asset_store(asset_store_id)\n"
                 + ");";
+
         preparedStatement = connection.prepareStatement(table);
         preparedStatement.executeUpdate();
         //Lend
@@ -287,4 +294,3 @@ public class createDatabaseDAO {
         return true;
     }
 }
-
