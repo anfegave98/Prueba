@@ -47,14 +47,16 @@ public class State_assetS extends HttpServlet {
             String op = request.getParameter("op");
             Gson g = new Gson();
             Asset_store_reportDAO dao = new Asset_store_reportDAO("AABGJJMO_BiStock_" + 1);
+            State_assetDAO ld = new State_assetDAO("AABGJJMO_BiStock_" + 1);
+
             if (op.equalsIgnoreCase("report")) {
-                //            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
-//            AdminDAO a = new AdminDAO("AABGJJMO_BiStock_" + company_id);
-                //out.print(new Gson().toJson(dao.Generate_asset_store_report(Integer.parseInt(request.getParameter("store_id")))));
                 out.print(new Gson().toJson(new ArrayList<Asset_store_reportDAO>()));
-                
+
             }
-            if(op.equalsIgnoreCase("getall")){
+            if (op.equalsIgnoreCase("activeNormal")) {
+                out.print(g.toJson(ld.getActiveState_assets()));
+            }
+            if (op.equalsIgnoreCase("getall")) {
                 out.print(new Gson().toJson(dao.getItems()));
             }
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
@@ -69,30 +71,25 @@ public class State_assetS extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("op");
-//            int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
-//            State_asset_assetDAO a = new State_asset_assetDAO("AABGJJMO_BiStock_" + company_id);
-           // State_assetDAO s = new State_assetDAO("AABGJJMO_BiStock_" + 1);
-           State_assetDAO ld = new State_assetDAO("AABGJJMO_BiStock_" + 1);
+            State_assetDAO ld = new State_assetDAO("AABGJJMO_BiStock_" + 1);
             Gson g = new Gson();
             if (op.equalsIgnoreCase("create")) {
+                System.out.println("entre");
                 State_asset l = new State_asset();
                 l.setAdmin_id(Integer.parseInt(request.getParameter("admin_id")));
-                l.setCreation_date((Date) new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("creation_date"))); 
-                //Date d=(Date) request.getParameter("devolution_date");
+                l.setDescription(request.getParameter("description"));
+
                 int mayor = ld.createState_asset(l);
+                
                 if (mayor != 0) {
-//                  int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
-//                  State_asset_itemsDAO a = new State_asset_itemsDAO("AABGJJMO_BiStock_" + company_id);
                     State_itemsDAO ldi = new State_itemsDAO("AABGJJMO_BiStock_" + 1);
                     String state_items = request.getParameter("state_items");
+                    System.out.println(state_items.toString());
                     List<queryState_asset> list_items = new Gson().fromJson(state_items, new TypeToken<List<queryState_asset>>() {
                     }.getType());
-                    System.out.println(list_items.toString() + "sdfewfwefwefwe");
                     for (queryState_asset q : list_items) {
                         State_items item = new State_items();
                         item.setState_asset_id(mayor);
-//                        int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
-//                        State_asset_itemsDAO a = new State_asset_itemsDAO("AABGJJMO_BiStock_" + company_id);
                         Asset_storeDAO as = new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
                         Asset_store asset_sencillo = as.readAsset_store(q.getAsset_store_id());
                         asset_sencillo.setNo_avaliable(asset_sencillo.getNo_avaliable() + q.getQuantity());
@@ -103,23 +100,7 @@ public class State_assetS extends HttpServlet {
                     }
                     out.print("true");
                 }
-                
-//                State_asset_asset state_asset = new State_asset_asset();
-//                state_asset.setDescription(request.getParameter("description"));
-//                state_asset.setAdmin_id(Integer.parseInt(request.getParameter("admin_id")));
-//                s.createState_asset_asset(state_asset);
-//
-////              int company_id=Integer.parseInt(request.getSession().getAttribute("company_id"));
-////              Asset_storeDAO a = new Asset_storeDAO("AABGJJMO_BiStock_" + company_id);
-//                Asset_storeDAO asset_storedao = new Asset_storeDAO("AABGJJMO_BiStock_" + 1);
-//                int id_store = asset_storedao.readAsset_store(Integer.parseInt(request.getParameter("asset_store_id"))).getStore_id();
-//
-//                Asset_store asset_store = asset_storedao.readAsset_store(asset_storedao.readAsset_store(Integer.parseInt(request.getParameter("asset_store_id"))).getAsset_id(), id_store);
-//
-//                //asset_store.setAvaliable(asset_store.getAvaliable() - state_asset.getQuantity());
-//                asset_store.setNo_avaliable(asset_store.getNo_avaliable());
-//                asset_storedao.updateAsset_store(asset_store);
-//                out.print(true);
+             
             }
 //            if (op.equalsIgnoreCase("remove")) {
 //                State_asset_asset state_asset = s.readState_asset_asset(Integer.parseInt(request.getParameter("state_asset_id")));
@@ -139,7 +120,7 @@ public class State_assetS extends HttpServlet {
 //                out.println("ok");
 //
 //            }
-            
+
 //            if(op.equalsIgnoreCase("removeAll")){
 //                State_asset_asset state_asset = s.readState_asset_asset(Integer.parseInt(request.getParameter("state_asset_id")));
 //                state_asset.setDevolution_quantity(state_asset.getQuantity());
@@ -152,12 +133,9 @@ public class State_assetS extends HttpServlet {
 //                asset_storedao.updateAsset_store(asset_store);
 //                out.print(true);
 //            }
-
         } catch (SQLException | URISyntaxException | ClassNotFoundException ex) {
             Logger.getLogger(State_assetS.class
                     .getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(State_assetS.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

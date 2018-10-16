@@ -32,7 +32,7 @@ public class State_itemsDAO {
     }
 
     public void createState_items(State_items state_items) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into state_items(state_asset_id,asset_store_id,quantity,devolution_quantity) values (?,?,?,0)");
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into state_items(state_asset_id,asset_store_id,quantity,devolution_quantity) values (?,?,?,?)");
         preparedStatement.setInt(1, state_items.getState_asset_id());
         preparedStatement.setInt(2, state_items.getAsset_store_id());
         preparedStatement.setInt(3, state_items.getQuantity());

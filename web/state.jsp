@@ -13,10 +13,10 @@
                     <table id="state_table" class="table table-bordered table-striped table-hover js-basic-example dataTable">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Codebar</th>
+                                <th>ID</th>
+                                <th>Administrador</th>
                                 <th>Description</th>
-                                <th>Cuantos</th>
+                                <th>Fecha</th>
                                 <th></th>
                             </tr>
                         </thead>
